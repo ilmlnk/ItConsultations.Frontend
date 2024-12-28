@@ -4,13 +4,13 @@
         <mat-drawer-container class="">
             <mat-drawer mode="side" opened>
                 <div class="drawer">
-                    <div>
+                    <div class="drawer-button-wrapper">
                         <button class="drawer-button">
                             <mat-icon>space_dashboard</mat-icon>
                             <span>Dashboard</span>
                         </button>
                     </div>
-                    <div>
+                    <div class="drawer-button-wrapper">
                         <button mat-button [matMenuTriggerFor]="menuConsultations" class="drawer-button">
                             <mat-icon>interpreter_mode</mat-icon>
                             <span>
@@ -36,37 +36,39 @@
                             </button>
                         </mat-menu>
                     </div>
-                    <div>
+                    <div class="drawer-button-wrapper">
                         <button class="drawer-button">
                             <mat-icon>groups</mat-icon>
                             <span>Coaches</span>
                         </button>
                     </div>
-                    <div>
+                    <div class="drawer-button-wrapper">
                         <button class="drawer-button">
                             <mat-icon>school</mat-icon>
                             <span>Students</span>
                         </button>
                     </div>
-                    <div>
+                    <mat-divider></mat-divider>
+                    <div class="drawer-button-wrapper">
                         <button class="drawer-button">
                             <mat-icon>calendar_month</mat-icon>
                             <span>Calendar</span>
                         </button>
                     </div>
-                    <div>
+                    <div class="drawer-button-wrapper">
                         <button class="drawer-button">
                             <mat-icon>emoji_events</mat-icon>
                             <span>Achievements</span>
                         </button>
                     </div>
-                    <div>
+                    <mat-divider></mat-divider>
+                    <div class="drawer-button-wrapper">
                         <button class="drawer-button">
                             <mat-icon>diversity_3</mat-icon>
                             <span>Network</span>
                         </button>
                     </div>
-                    <div>
+                    <div class="drawer-button-wrapper">
                         <button mat-button [matMenuTriggerFor]="menuMessenger" class="drawer-button">
                             <mat-icon>comment</mat-icon>
                             <span>Communication</span>
@@ -86,7 +88,7 @@
                             </button>
                         </mat-menu>
                     </div>
-                    <div>
+                    <div class="drawer-button-wrapper">
                         <button mat-button [matMenuTriggerFor]="menuElearning" class="drawer-button">
                             <mat-icon>3p</mat-icon>
                             <span>E-Learning</span>

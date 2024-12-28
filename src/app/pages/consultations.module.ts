@@ -32,6 +32,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { CalendarPageComponent } from './consultations/calendar-page/calendar-page.component';
 import { FavoritesConsultationsPageComponent } from './consultations/favorites-consultations-page/favorites-consultations-page.component';
 import { MeetingRecordingsPageComponent } from './consultations/meeting-recordings-page/meeting-recordings-page.component';
+import { MatDividerModule } from '@angular/material/divider';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,8 @@ import { MeetingRecordingsPageComponent } from './consultations/meeting-recordin
     ConsultationsListComponent,
     CalendarPageComponent,
     FavoritesConsultationsPageComponent,
-    MeetingRecordingsPageComponent
+    MeetingRecordingsPageComponent,
+    ConsultationsPageRootComponent
   ],
   imports: [
     FormsModule,
@@ -75,7 +77,8 @@ import { MeetingRecordingsPageComponent } from './consultations/meeting-recordin
     MatSelectModule,
     MatSidenavModule,
     MatMenuModule,
-    MatIconModule
+    MatIconModule,
+    MatDividerModule
   ],
   exports: [
     MatDialogModule,
@@ -88,7 +91,8 @@ import { MeetingRecordingsPageComponent } from './consultations/meeting-recordin
     MatSelectModule,
     MatSidenavModule,
     MatMenuModule,
-    MatIconModule
+    MatIconModule,
+    MatDividerModule
   ],
   providers: [
     
