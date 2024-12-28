@@ -1,0 +1,23 @@
+<div class="consultation-container">
+    <div class="consultation-card">
+        <div class="consultation-header">
+            <h1>{{ consultation.coach.firstName }} {{ consultation.coach.lastName }}</h1>
+            <span>{{ consultation.coach.position }} at {{ consultation.coach.companyName }}</span>
+        </div>
+        <div class="consultation-body">
+            <h2>{{ consultation.title }}</h2>
+            <p>{{ consultation.description }}</p>
+            
+            <h2>{{ consultation.coach.firstName }} {{ consultation.coach.lastName }}</h2>
+            <img src="{{ consultation.thumbnailUrl }}" alt="{{ consultation.title }}" />
+            <img src="{{ consultation.coachImageUrl }}" alt="{{ consultation.title }}" />
+            <p>{{ consultation.duration }}</p>
+        </div>
+        <div class="consultation-footer">
+            <button type="button" class="btn btn-primary" (click)="openModal()">Book a consultation</button>
+            <p>{{ consultation.price }}</p>
+        </div>
+    </div>
+</div>
+
+

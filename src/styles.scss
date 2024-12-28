@@ -5,3 +5,8 @@
 
 /* Importing Datepicker SCSS file. */
 @import "../node_modules/ngx-bootstrap/datepicker/bs-datepicker";
+@import "@angular/material/prebuilt-themes/indigo-pink.css";
+
+* {
+    font-family: "Open Sans", sans-serif;
+}

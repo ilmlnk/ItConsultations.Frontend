@@ -1,0 +1,17 @@
+<div>
+    <h1 class="title">Consultations</h1>
+    <form *ngIf="myForm" [formGroup]="myForm" class="align-items-center">
+        <div class="form-group mb-3">
+          <div class="btn-group" btnRadioGroup formControlName="radio">
+            <label btnRadio="list" class="btn btn-primary mb-0">List</label>
+            <label btnRadio="table" class="btn btn-primary mb-0">Table</label>
+          </div>
+        </div>
+
+        <cons-consultations-list
+        [consultations]="consultations"
+        ></cons-consultations-list>
+      </form>
+
+
+</div>

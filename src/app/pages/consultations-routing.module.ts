@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
-import { ConsultationsListPageComponent } from './consultations-list-page/consultations-list-page.component';
-import { CoachesListPageComponent } from './coaches-list-page/coaches-list-page.component';
+import { ConsultationsListPageComponent } from './consultations/consultations-list-page/consultations-list-page.component';
+import { CoachesListPageComponent } from './consultations/coaches-list-page/coaches-list-page.component';
 import { RouterModule, Routes } from '@angular/router';
 import { AppRoutingModule } from '../app-routing.module';
 
