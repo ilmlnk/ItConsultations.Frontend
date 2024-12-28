@@ -3,7 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ConsultationTimeModalComponent } from './consultation-time-modal/consultation-time-modal.component';
 
 @Component({
-  selector: 'app-consultation-modal',
+  selector: 'cons-consultation-modal',
   standalone: false,
   
   templateUrl: './consultation-modal.component.html',

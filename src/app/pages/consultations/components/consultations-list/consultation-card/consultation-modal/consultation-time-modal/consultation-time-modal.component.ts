@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-consultation-time-modal',
+  selector: 'cons-consultation-time-modal',
   standalone: false,
   
   templateUrl: './consultation-time-modal.component.html',

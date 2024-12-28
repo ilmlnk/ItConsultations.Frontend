@@ -8,11 +8,14 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatChipsModule } from '@angular/material/chips';
+import { ConsultationsTableComponent } from './pages/consultations/components/consultations-table/consultations-table.component';
+import { StudentsListPageComponent } from './pages/consultations/students-list-page/students-list-page.component';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    StudentsListPageComponent
   ],
   imports: [
     BrowserModule,

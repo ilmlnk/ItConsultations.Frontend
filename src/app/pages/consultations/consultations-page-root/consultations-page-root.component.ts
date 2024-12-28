@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-consultations-page-root',
+  selector: 'cons-consultations-page-root',
   standalone: false,
   
   templateUrl: './consultations-page-root.component.html',

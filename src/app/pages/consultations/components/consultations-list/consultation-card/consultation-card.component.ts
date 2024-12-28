@@ -1,8 +1,6 @@
 import { Component, ComponentRef, Input, Output, TemplateRef, ViewChild, ViewContainerRef } from '@angular/core';
 import { Consultation } from '../../../../../shared/models/consultation';
 import { EventEmitter } from '@angular/core';
-import { ModalWindowComponent } from '../../modal-window/modal-window.component';
-import { ModalService } from '../../../../../shared/services/modal.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ConsultationModalComponent } from './consultation-modal/consultation-modal.component';
 
@@ -25,7 +23,7 @@ export class ConsultationCardComponent {
   openModal(): void {
     const dialogRef = this.dialog.open(ConsultationModalComponent, {
       width: '600px',
-      height: '500px',
+      height: '550px',
       data: { consultation: this.consultation }
     });
 

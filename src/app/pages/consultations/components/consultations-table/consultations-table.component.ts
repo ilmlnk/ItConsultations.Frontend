@@ -3,20 +3,18 @@ import { Consultation } from '../../../../shared/models/consultation';
 import { ConsultationsService } from '../../../../shared/services/consultations.service';
 
 @Component({
-  selector: 'cons-consultations-list',
+  selector: 'cons-consultations-table',
   standalone: false,
-  templateUrl: './consultations-list.component.html',
-  styleUrl: './consultations-list.component.scss'
+  
+  templateUrl: './consultations-table.component.html',
+  styleUrl: './consultations-table.component.scss'
 })
-export class ConsultationsListComponent {
+export class ConsultationsTableComponent {
   @Input() consultations: Consultation[] = [];
 
   constructor(private _consultationsService: ConsultationsService) {}
 
   ngOnInit() {
-    this._consultationsService.getConsultations()
-      .subscribe((consultations: Consultation[]) => {
-        this.consultations = consultations;
-      });
+    
   }
 }

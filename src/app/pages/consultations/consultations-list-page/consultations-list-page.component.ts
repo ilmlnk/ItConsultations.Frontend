@@ -6,7 +6,6 @@ import { ConsultationsService } from '../../../shared/services/consultations.ser
 @Component({
   selector: 'cons-consultations-list-page',
   standalone: false,
-
   templateUrl: './consultations-list-page.component.html',
   styleUrl: './consultations-list-page.component.scss'
 })
@@ -65,5 +64,14 @@ export class ConsultationsListPageComponent {
     this.myForm = this.formBuilder.group({
       radio: ['list']
     });
+
+    this._consultationService.getConsultations()
+      .subscribe((consultations: Consultation[]) => {
+        this.consultations = consultations;
+      })
+  }
+
+  get radioButtonState(): boolean {
+    return this.myForm?.value.radio === 'list' ? true : false;
   }
 }

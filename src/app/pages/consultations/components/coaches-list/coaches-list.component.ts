@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-coaches-list',
+  selector: 'cons-coaches-list',
   standalone: false,
   
   templateUrl: './coaches-list.component.html',

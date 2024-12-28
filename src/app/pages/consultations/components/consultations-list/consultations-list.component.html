@@ -1,9 +1,8 @@
-<div class="container">
+<div class="">
     <div class="consultations-list">
+        <ng-content select="[header]"></ng-content>
         <div class="consultation-wrapper" *ngFor="let consultation of consultations">
-            <cons-consultation-card 
-            [consultation]="consultation"
-            ></cons-consultation-card>
+            <cons-consultation-card [consultation]="consultation"></cons-consultation-card>
         </div>
     </div>
 </div>

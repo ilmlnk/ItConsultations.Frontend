@@ -25,6 +25,13 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatError, MatFormField, MatHint, MatLabel } from '@angular/material/form-field';
 import { MatOptionModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { ConsultationsTableComponent } from './consultations/components/consultations-table/consultations-table.component';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatIconModule } from '@angular/material/icon';
+import { CalendarPageComponent } from './consultations/calendar-page/calendar-page.component';
+import { FavoritesConsultationsPageComponent } from './consultations/favorites-consultations-page/favorites-consultations-page.component';
+import { MeetingRecordingsPageComponent } from './consultations/meeting-recordings-page/meeting-recordings-page.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +52,12 @@ import { MatSelectModule } from '@angular/material/select';
     ConsultationModalComponent,
     ConsultationTimeModalComponent,
     SelectedOptionsComponent,
-    SelectedOptionsComponent
+    SelectedOptionsComponent,
+    ConsultationsTableComponent,
+    ConsultationsListComponent,
+    CalendarPageComponent,
+    FavoritesConsultationsPageComponent,
+    MeetingRecordingsPageComponent
   ],
   imports: [
     FormsModule,
@@ -61,10 +73,22 @@ import { MatSelectModule } from '@angular/material/select';
     MatError,
     MatHint,
     MatSelectModule,
+    MatSidenavModule,
+    MatMenuModule,
+    MatIconModule
   ],
   exports: [
     MatDialogModule,
-    MatChipsModule
+    MatChipsModule,
+    MatFormField,
+    MatLabel,
+    MatOptionModule,
+    MatError,
+    MatHint,
+    MatSelectModule,
+    MatSidenavModule,
+    MatMenuModule,
+    MatIconModule
   ],
   providers: [
     
