@@ -1,25 +1,111 @@
-.drawer {
-    justify-content: center;
-    width: 250px;
-    display: grid;
-    gap: 12px;
-    margin-top: 8px;
-}
+.layout {
+    .drawer-outer-container {
+        .drawer-container {
+            position: fixed;
+            z-index: 1;
+            padding-top: 20px;
+            height: 100vh;
+        }
 
-.drawer-button-wrapper {
-    vertical-align: middle;
+        .drawer-inner-container {
+            .drawer {
+                justify-content: center;
+                width: 250px;
+                display: grid;
+                gap: 12px;
+                background-color: white;
+                padding-top: 32px;
+            }
+        }
+    }
 
-    .drawer-button {
-        width: 200px;
+    .drawer-button-wrapper {
+        vertical-align: middle;
 
-        mat-icon {
-            border: 1px solid;
+        .drawer-button mat-icon {
+            margin: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             border-radius: 50%;
             width: 48px;
             height: 48px;
-            align-content: center;
+            background-color: rgba(127, 167, 240, 0.15);
+            color: #6895E9;
+            transition: transform 0.2s ease, background-color 0.2s ease, color 0.2s ease;
         }
 
+        .drawer-button:focus mat-icon {
+            color: white;
+            background-color: #6895E9;
+        }
 
+        .drawer-button:focus span {
+            color: rgb(29, 29, 29);
+        }
+
+        .drawer-button:focus {
+            background-color: rgba(127, 167, 240, 0.15);
+        }
+
+        .drawer-button span {
+            font-size: 14px;
+            font-weight: 600;
+            color: #828282;
+            transition: color 0.2s ease;
+        }
+
+        .drawer-button:hover span {
+            color: rgb(29, 29, 29);
+        }
+
+        .drawer-button {
+            display: flex;
+            align-items: center;
+            width: 200px;
+            vertical-align: middle;
+            background: none;
+            border: none;
+            cursor: pointer;
+            text-align: left;
+            border-radius: 8px;
+            transition: transform 0.2s ease, background-color 0.2s ease;
+
+            mat-icon {
+                margin: 12px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: 50%;
+                width: 48px;
+                height: 48px;
+                background-color: rgba(127, 167, 240, 0.15);
+                color: #6895E9;
+                transition: transform 0.2s ease, background-color 0.2s ease;
+            }
+        }
+
+        .drawer-button:hover {
+            background-color: rgba(127, 167, 240, 0.15);
+        }
+
+        .drawer-button:hover mat-icon {
+            color: white;
+            background-color: #6895E9;
+        }
+    }
+
+    .drawer-bottom {
+        display: flex;
+        gap: 8px;
+        justify-content: center;
+        margin-top: 8px;
+
+        .drawer-bottom-button {
+            text-align: center;
+            align-content: center;
+            align-items: center;
+            display: flex;
+        }
     }
 }
