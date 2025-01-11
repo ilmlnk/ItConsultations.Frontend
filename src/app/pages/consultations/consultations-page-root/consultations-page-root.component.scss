@@ -49,6 +49,7 @@
         }
 
         .drawer-button span {
+            margin-left: 4px;
             font-size: 14px;
             font-weight: 600;
             color: #828282;
@@ -62,7 +63,8 @@
         .drawer-button {
             display: flex;
             align-items: center;
-            width: 200px;
+            width: 230px;
+            height: 75px;
             vertical-align: middle;
             background: none;
             border: none;
@@ -70,6 +72,7 @@
             text-align: left;
             border-radius: 8px;
             transition: transform 0.2s ease, background-color 0.2s ease;
+            justify-content: flex-start;
 
             mat-icon {
                 margin: 12px;
