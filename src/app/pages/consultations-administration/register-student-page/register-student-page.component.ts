@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { LocalizationService } from '../../../shared/services/localization.service';
-import { FormControl } from '@angular/forms';
-import { debounceTime, distinctUntilChanged, map, startWith } from 'rxjs/operators';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
+import { FormBuilder } from '@angular/forms';
 import { filter, tap, switchMap } from 'rxjs/operators';
 
 @Component({
@@ -12,6 +13,7 @@ import { filter, tap, switchMap } from 'rxjs/operators';
   styleUrl: './register-student-page.component.scss'
 })
 export class RegisterStudentPageComponent {
+  registrationForm!: FormGroup;
   selectedCity: string;
   cities: string[];
   filteredCities: Observable<string[]>;
@@ -21,10 +23,14 @@ export class RegisterStudentPageComponent {
   selectedFile: File | null;
   previewUrl: string | ArrayBuffer | null;
 
-  constructor(private localizationService: LocalizationService) {}
+  constructor(
+    private fb: FormBuilder, 
+    private localizationService: LocalizationService
+  ) {}
 
   ngOnInit() {
     this.loadCities();
+    this.initForm();
 
     this.filteredCities = this.cityControl.valueChanges
       .pipe(
@@ -50,13 +56,18 @@ export class RegisterStudentPageComponent {
     const file = event.target.files[0];
     if (file) {
       this.selectedFile = file;
-      
+
       const reader = new FileReader();
       reader.onload = () => {
         this.previewUrl = reader.result;
       };
       reader.readAsDataURL(file);
     }
+  }
+
+  hasError(controlName: string, errorName: string): boolean {
+    const control = this.registrationForm.get(controlName);
+    return control?.hasError(errorName) && control.touched ? true : false;
   }
 
   private loadCities() {
@@ -92,5 +103,18 @@ export class RegisterStudentPageComponent {
         );
       })
     );
+  }
+
+  private initForm() {
+    this.registrationForm = this.fb.group({
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
+      birthDate: '',
+      city: '',
+      email: ['', [Validators.required, Validators.email]],
+      username : ['', Validators.required],
+      password: ['', Validators.required],
+      confirmPassword: ['', Validators.required]
+    })
   }
 }

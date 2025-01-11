@@ -1,4 +1,11 @@
+
+
 .form-group {
     display: flex;
     flex-direction: column;
+}
+
+.form-section {
+    display: grid;
+    grid-column: 2fr 1fr;
 }
