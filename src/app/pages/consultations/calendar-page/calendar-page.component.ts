@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-calendar-page',
+  selector: 'cons-calendar-page',
   standalone: false,
   
   templateUrl: './calendar-page.component.html',

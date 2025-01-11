@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-favorites-consultations-page',
+  selector: 'cons-favorites-consultations-page',
   standalone: false,
   
   templateUrl: './favorites-consultations-page.component.html',
