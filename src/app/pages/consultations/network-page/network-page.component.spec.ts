@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MailPageComponent } from './mail-page.component';
+import { NetworkPageComponent } from './network-page.component';
 
-describe('MailPageComponent', () => {
-  let component: MailPageComponent;
-  let fixture: ComponentFixture<MailPageComponent>;
+describe('NetworkPageComponent', () => {
+  let component: NetworkPageComponent;
+  let fixture: ComponentFixture<NetworkPageComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [MailPageComponent]
+      declarations: [NetworkPageComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(MailPageComponent);
+    fixture = TestBed.createComponent(NetworkPageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

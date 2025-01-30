@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Consultation } from '../../../../shared/models/consultation';
-import { ConsultationsService } from '../../../../shared/services/consultations.service';
+import { ConsultationsService } from '../../../../shared/services/consultations/consultations.service';
 
 @Component({
   selector: 'cons-consultations-table',

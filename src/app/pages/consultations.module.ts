@@ -35,7 +35,6 @@ import { MeetingRecordingsPageComponent } from './consultations/meeting-recordin
 import { MatDividerModule } from '@angular/material/divider';
 import { MatInputModule } from '@angular/material/input';
 import { NotesPageComponent } from './consultations/notes-page/notes-page.component';
-import { MailPageComponent } from './consultations/mail-page/mail-page.component';
 import { MessengerPageComponent } from './consultations/messenger-page/messenger-page.component';
 import { MeetingsPageComponent } from './consultations/meetings-page/meetings-page.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
@@ -43,7 +42,15 @@ import { MatButton, MatButtonModule } from '@angular/material/button';
 import { MatRadioModule } from '@angular/material/radio';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
-import { MatFormFieldControl } from '@angular/material/form-field';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { AchievementsPageComponent } from './consultations/achievements-page/achievements-page.component';
+import { NetworkPageComponent } from './consultations/network-page/network-page.component';
+import { ForumPageComponent } from './consultations/forum-page/forum-page.component';
+import { IndividualLessonsPageComponent } from './consultations/individual-lessons-page/individual-lessons-page.component';
+import { HandbookPageComponent } from './consultations/handbook-page/handbook-page.component';
+import { MeetingLinkWindowComponent } from './consultations/components/meeting-link-window/meeting-link-window.component';
 
 @NgModule({
   declarations: [
@@ -72,9 +79,14 @@ import { MatFormFieldControl } from '@angular/material/form-field';
     MeetingRecordingsPageComponent,
     ConsultationsPageRootComponent,
     NotesPageComponent,
-    MailPageComponent,
     MessengerPageComponent,
-    MeetingsPageComponent
+    MeetingsPageComponent,
+    AchievementsPageComponent,
+    NetworkPageComponent,
+    ForumPageComponent,
+    IndividualLessonsPageComponent,
+    HandbookPageComponent,
+    MeetingLinkWindowComponent
   ],
   imports: [
     FormsModule,
@@ -102,7 +114,10 @@ import { MatFormFieldControl } from '@angular/material/form-field';
     MatButton,
     MatRadioModule,
     BrowserAnimationsModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    MatExpansionModule,
+    MatButtonToggleModule,
+    MatTooltipModule
   ],
   exports: [
     MatDialogModule,
@@ -120,7 +135,10 @@ import { MatFormFieldControl } from '@angular/material/form-field';
     MatButtonModule,
     MatButton,
     BrowserAnimationsModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    MatExpansionModule,
+    MatButtonToggleModule,
+    MatTooltipModule
   ],
   providers: [
     
