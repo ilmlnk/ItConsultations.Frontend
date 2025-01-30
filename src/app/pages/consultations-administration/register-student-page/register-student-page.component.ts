@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { LocalizationService } from '../../../shared/services/localization.service';
+import { LocalizationService } from '../../../shared/services/localization/localization.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
 import { Observable, of } from 'rxjs';

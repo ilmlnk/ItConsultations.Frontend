@@ -1,0 +1,57 @@
+<div class="dashboard-container">
+    <div class="section-container">
+        <mat-card class="section" appearance="outlined">
+            <h2>Recent Consultations</h2>
+
+            <mat-list *ngIf="recentConsultations.length > 0; else noConsultations">
+                <mat-list-item *ngFor="let recentConsultation of recentConsultations">
+
+                </mat-list-item>
+            </mat-list>
+
+            <ng-template #noConsultations>
+                <h5>No recent consultations found.</h5>
+                <button mat-stroked-button>Book a Consultation</button>
+            </ng-template>
+        </mat-card>
+        <mat-card class="section" appearance="outlined">
+            <h2>Favorite Consultations</h2>
+
+            <mat-list *ngIf="favoriteConsultations.length > 0; else noConsultations">
+                <mat-list-item *ngFor="let favoriteConsultation of favoriteConsultations">
+
+                </mat-list-item>
+            </mat-list>
+
+            <ng-template #noConsultations>
+                <h5>No favorite consultations found.</h5>
+                <button mat-stroked-button>Add Favorites</button>
+            </ng-template>
+        </mat-card>
+        <mat-card class="section" appearance="outlined">
+            <h2>We recommend you</h2>
+
+            <mat-list *ngIf="recommendedConsultations.length > 0">
+                <mat-list-item *ngFor="let recommendedConsultation of recommendedConsultations">
+
+                </mat-list-item>
+            </mat-list>
+        </mat-card>
+        <mat-card class="section" appearance="outlined">
+            <div class="calendar-section-header">
+                <h2>Calendar</h2>
+                <button mat-icon-button>
+                    <mat-icon>open_in_new</mat-icon>
+                </button>
+            </div>
+            <div>
+                <!-- <div class="live-time-indicator"></div> -->
+                <full-calendar class="fc-direction-ltr" [options]="calendarOptions"></full-calendar>
+            </div>
+        </mat-card>
+        <mat-card class="section" appearance="outlined">
+            <h2>Recent People</h2>
+            <app-recent-people></app-recent-people>
+        </mat-card>
+    </div>
+</div>

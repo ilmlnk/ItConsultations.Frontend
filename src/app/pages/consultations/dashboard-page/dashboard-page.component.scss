@@ -1,0 +1,19 @@
+.dashboard-container {
+    margin: 16px;
+
+    .section-container {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+
+        .section {
+            padding: 12px;
+        }
+
+        .calendar-section-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 24px;
+        }
+    }
+}

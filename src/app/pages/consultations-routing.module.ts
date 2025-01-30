@@ -17,10 +17,12 @@ import { MeetingsPageComponent } from './consultations/meetings-page/meetings-pa
 import { ForumPageComponent } from './consultations/forum-page/forum-page.component';
 import { IndividualLessonsPageComponent } from './consultations/individual-lessons-page/individual-lessons-page.component';
 import { HandbookPageComponent } from './consultations/handbook-page/handbook-page.component';
+import { DashboardPageComponent } from './consultations/dashboard-page/dashboard-page.component';
 
 const routes: Routes = [
   {
     path: '', component: ConsultationsPageRootComponent, children: [
+      { path: '', component: DashboardPageComponent },
       { path: 'consultations-list', component: ConsultationsListPageComponent },
       { path: 'favorites', component: FavoritesConsultationsPageComponent },
       { path: 'recordings', component: MeetingRecordingsPageComponent },

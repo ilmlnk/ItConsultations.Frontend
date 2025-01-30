@@ -110,5 +110,10 @@
             align-items: center;
             display: flex;
         }
+
+        .mat-badge-content {
+            width: 40px;
+            border-radius: 12px;
+        }
     }
 }

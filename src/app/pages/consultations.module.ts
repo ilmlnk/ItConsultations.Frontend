@@ -10,7 +10,6 @@ import { ConsultationsPageRootComponent } from './consultations/consultations-pa
 import { HeaderComponent } from '../shared/components/header/header.component';
 import { FooterComponent } from '../shared/components/footer/footer.component';
 import { SidebarComponent } from '../shared/components/sidebar/sidebar.component';
-import { InputComponent } from '../shared/components/input/input.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ButtonsModule } from 'ngx-bootstrap/buttons';
 import { CoachesListComponent } from './consultations/components/coaches-list/coaches-list.component';
@@ -51,6 +50,12 @@ import { ForumPageComponent } from './consultations/forum-page/forum-page.compon
 import { IndividualLessonsPageComponent } from './consultations/individual-lessons-page/individual-lessons-page.component';
 import { HandbookPageComponent } from './consultations/handbook-page/handbook-page.component';
 import { MeetingLinkWindowComponent } from './consultations/components/meeting-link-window/meeting-link-window.component';
+import { MatBadgeModule } from '@angular/material/badge';
+import { DashboardPageComponent } from './consultations/dashboard-page/dashboard-page.component';
+import { MatCardModule } from '@angular/material/card';
+import { MatListModule } from '@angular/material/list';
+import { FullCalendarModule } from '@fullcalendar/angular';
+import { RecentPeopleComponent } from './consultations/components/recent-people/recent-people.component';
 
 @NgModule({
   declarations: [
@@ -63,7 +68,6 @@ import { MeetingLinkWindowComponent } from './consultations/components/meeting-l
     HeaderComponent,
     FooterComponent,
     SidebarComponent,
-    InputComponent,
     CoachesListComponent,
     ConsultationsListComponent,
     ConsultationCardComponent,
@@ -86,7 +90,9 @@ import { MeetingLinkWindowComponent } from './consultations/components/meeting-l
     ForumPageComponent,
     IndividualLessonsPageComponent,
     HandbookPageComponent,
-    MeetingLinkWindowComponent
+    MeetingLinkWindowComponent,
+    DashboardPageComponent,
+    RecentPeopleComponent,
   ],
   imports: [
     FormsModule,
@@ -117,7 +123,11 @@ import { MeetingLinkWindowComponent } from './consultations/components/meeting-l
     MatAutocompleteModule,
     MatExpansionModule,
     MatButtonToggleModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatBadgeModule,
+    MatCardModule,
+    MatListModule,
+    FullCalendarModule
   ],
   exports: [
     MatDialogModule,
@@ -138,7 +148,8 @@ import { MeetingLinkWindowComponent } from './consultations/components/meeting-l
     MatAutocompleteModule,
     MatExpansionModule,
     MatButtonToggleModule,
-    MatTooltipModule
+    MatTooltipModule,
+    FullCalendarModule
   ],
   providers: [
     

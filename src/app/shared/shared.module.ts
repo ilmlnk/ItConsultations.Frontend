@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { LocalizationService } from './services/localization.service';
+import { ConsultationsService } from './services/consultations/consultations.service';
+import { HttpClient } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -8,6 +9,10 @@ import { LocalizationService } from './services/localization.service';
   imports: [
     CommonModule
   ],
-  exports: []
+  exports: [],
+  providers: [
+    ConsultationsService,
+    HttpClient
+  ]
 })
 export class SharedModule { }
