@@ -1,119 +1,67 @@
-.layout {
-    .drawer-outer-container {
-        .drawer-container {
-            position: fixed;
-            z-index: 1;
-            padding-top: 20px;
-            height: 100vh;
-        }
+:root {
+    --background-overlay: rgba(0, 0, 0, 0.1);
+    --background-blend: multiply;
+    --text-color: #333333;
+    --text-secondary: #666666;
+    
+    --header-bg: rgba(240, 245, 250, 0.4);
+    --header-border: rgba(0, 0, 0, 0.1);
+    --button-color: rgb(114, 114, 114);
+    --button-hover-bg: rgb(34, 151, 219);
+    --button-hover-color: white;
+  }
+  
+  body.dark-theme {
+    --background-overlay: rgba(0, 0, 0, 0.8); 
+    --text-color: rgb(114, 114, 114);
+    --text-secondary: #cccccc;
+    --header-bg: rgba(20, 25, 30, 0.7);
+    --header-border: rgba(255, 255, 255, 0.1);
+    --button-color: rgb(200, 200, 200);
+  }
 
-        .drawer-inner-container {
-            .drawer {
-                justify-content: center;
-                width: 250px;
-                display: grid;
-                gap: 12px;
-                background-color: white;
-                padding-top: 32px;
-            }
-        }
-    }
+  .header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 
-    .drawer-button-wrapper {
-        vertical-align: middle;
+  .background {
+    display: flex;
+    flex-direction: column;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+    width: 100%;
+    background-size: cover;
+    background-position: center;
+    transition: all 0.3s ease;
+    padding-bottom: 4em;
 
-        .drawer-button mat-icon {
-            margin: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            width: 48px;
-            height: 48px;
-            background-color: rgba(127, 167, 240, 0.15);
-            color: #6895E9;
-            transition: transform 0.2s ease, background-color 0.2s ease, color 0.2s ease;
-        }
+    background-attachment: fixed;
+    
+    background: rgba(0, 0, 0, 0.1) url('/background.png');
+    background-blend-mode: multiply;
+    color: #333333;
+    
+    &.dark-theme {
+        background: rgba(0, 0, 0, 0.7) url('/background.png');
+        background-blend-mode: multiply;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        color: #ffffff;
+      }
+      
+      &.light-theme {
+        background: rgba(0, 0, 0, 0.1) url('/background.png');
+        background-blend-mode: multiply;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        color: #333333;
+      }
+  }
 
-        .drawer-button:focus mat-icon {
-            color: white;
-            background-color: #6895E9;
-        }
-
-        .drawer-button:focus span {
-            color: rgb(29, 29, 29);
-        }
-
-        .drawer-button:focus {
-            background-color: rgba(127, 167, 240, 0.15);
-        }
-
-        .drawer-button span {
-            margin-left: 4px;
-            font-size: 14px;
-            font-weight: 600;
-            color: #828282;
-            transition: color 0.2s ease;
-        }
-
-        .drawer-button:hover span {
-            color: rgb(29, 29, 29);
-        }
-
-        .drawer-button {
-            display: flex;
-            align-items: center;
-            width: 230px;
-            height: 75px;
-            vertical-align: middle;
-            background: none;
-            border: none;
-            cursor: pointer;
-            text-align: left;
-            border-radius: 8px;
-            transition: transform 0.2s ease, background-color 0.2s ease;
-            justify-content: flex-start;
-
-            mat-icon {
-                margin: 12px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                border-radius: 50%;
-                width: 48px;
-                height: 48px;
-                background-color: rgba(127, 167, 240, 0.15);
-                color: #6895E9;
-                transition: transform 0.2s ease, background-color 0.2s ease;
-            }
-        }
-
-        .drawer-button:hover {
-            background-color: rgba(127, 167, 240, 0.15);
-        }
-
-        .drawer-button:hover mat-icon {
-            color: white;
-            background-color: #6895E9;
-        }
-    }
-
-    .drawer-bottom {
-        display: flex;
-        gap: 8px;
-        justify-content: center;
-        margin-top: 8px;
-
-        .drawer-bottom-button {
-            text-align: center;
-            align-content: center;
-            align-items: center;
-            display: flex;
-        }
-
-        .mat-badge-content {
-            width: 40px;
-            border-radius: 12px;
-        }
-    }
+.main-content {
+    margin: 5% 20% 0 20%;
 }

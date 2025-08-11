@@ -22,7 +22,7 @@ import { DashboardPageComponent } from './consultations/dashboard-page/dashboard
 const routes: Routes = [
   {
     path: '', component: ConsultationsPageRootComponent, children: [
-      { path: '', component: DashboardPageComponent },
+      { path: 'dashboard', component: DashboardPageComponent },
       { path: 'consultations-list', component: ConsultationsListPageComponent },
       { path: 'favorites', component: FavoritesConsultationsPageComponent },
       { path: 'recordings', component: MeetingRecordingsPageComponent },

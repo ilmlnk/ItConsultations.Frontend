@@ -6,7 +6,7 @@ import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 
 @Component({
-  selector: 'app-dashboard-page',
+  selector: 'cons-dashboard-page',
   standalone: false,
   templateUrl: './dashboard-page.component.html',
   styleUrl: './dashboard-page.component.scss',

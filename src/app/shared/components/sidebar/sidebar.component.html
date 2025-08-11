@@ -1,3 +1,66 @@
 <div class="sidebar">
-    <h1>Sidebar</h1>
+    <nav>
+        <ul class="sidebar-links">
+            <li *ngFor="let item of items; let i = index; trackBy: trackByFn" 
+                matTooltip="{{item.tooltip}}" 
+                matTooltipPosition="right"
+                class="sidebar-item">
+                
+                <a *ngIf="!item.children" 
+                   [routerLink]="item.route" 
+                   routerLinkActive="active"
+                   class="sidebar-link">
+                    <mat-icon class="sidebar-icon">{{item.icon}}</mat-icon>
+                </a>
+
+                <ng-container *ngIf="item.children">
+                    <a [matMenuTriggerFor]="dynamicMenu"
+                       [ngClass]="{'active': isParentActive(item)}"
+                       class="sidebar-link dropdown-trigger"
+                       (click)="onMenuItemClick($event, item)"
+                       #menuTrigger="matMenuTrigger">
+                        <mat-icon class="sidebar-icon">{{item.icon}}</mat-icon>
+                    </a>
+
+                    <mat-menu #dynamicMenu="matMenu" 
+                              class="sidebar-dropdown"
+                              xPosition="after"
+                              yPosition="below">
+                        <ng-container *ngFor="let child of item.children; trackBy: trackByChildFn">
+                            <button *ngIf="child.route" 
+                                    mat-menu-item 
+                                    [routerLink]="child.route"
+                                    routerLinkActive="active-menu-item"
+                                    class="dropdown-menu-item">
+                                <mat-icon *ngIf="child.icon" class="menu-item-icon">
+                                    {{child.icon}}
+                                </mat-icon>
+                                <span class="menu-item-text">{{child.title}}</span>
+                            </button>
+
+                            <button *ngIf="!child.route" 
+                                    mat-menu-item 
+                                    class="dropdown-menu-item action-item"
+                                    (click)="onChildItemClick(child, item)">
+                                <mat-icon *ngIf="child.icon" class="menu-item-icon">
+                                    {{child.icon}}
+                                </mat-icon>
+                                <span class="menu-item-text">{{child.title}}</span>
+                            </button>
+                        </ng-container>
+                        
+                        <mat-divider *ngIf="item.children && item.children.length > 2"></mat-divider>
+                        
+                        <button *ngIf="hasMenuActions(item)" 
+                                mat-menu-item 
+                                class="dropdown-menu-item action-item"
+                                (click)="onMenuAction(item)">
+                            <mat-icon class="menu-item-icon">settings</mat-icon>
+                            <span class="menu-item-text">Settings</span>
+                        </button>
+                    </mat-menu>
+                </ng-container>
+            </li>
+        </ul>
+    </nav>
 </div>

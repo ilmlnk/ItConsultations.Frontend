@@ -1,19 +1,86 @@
 .dashboard-container {
+    h2 {
+        color: rgb(114, 114, 114);
+    }
+
+    .edit-dashboard-container {
+        grid-column: 1 / -1;
+        display: flex;
+        justify-content: flex-end;
+        margin-bottom: 16px;
+    }
+
+    .edit-dashboard-button {
+        width: 48px;
+        height: 48px;
+        border-radius: 12px;
+        color: rgb(255, 255, 255);
+        transition: all 0.3s ease;
+        background-color: rgba(240, 245, 250, 0.4);
+        
+        &:hover {
+            background-color: rgb(34, 219, 96) !important;
+            transform: scale(1.05);
+            
+            mat-icon {
+                color: white;
+            }
+        }
+
+        &::before {
+            display: none;
+        }
+        
+        mat-icon {
+            font-size: clamp(18px, 4vw, 24px);
+            width: clamp(18px, 4vw, 24px);
+            height: clamp(18px, 4vw, 24px);
+            transition: all 0.3s ease;
+        }
+    }
+
+    .outward-button {
+        width: 32px;
+        height: 32px;
+        font-size: 12px;
+        transition: all 0.3s ease;
+        border-radius: 6px;
+        background-color: rgba(202, 207, 212, 0.4);
+
+        mat-icon {
+            margin: -4px;
+            display: flex;
+            font-size: 18px;
+        }
+    }
+
     margin: 16px;
 
     .section-container {
-        display: flex;
-        flex-direction: column;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
         gap: 16px;
 
         .section {
-            padding: 12px;
+            padding: 24px;
+            background: rgba(240, 245, 250, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            box-shadow: 0 0 20px rgba(0,0,0,0.06);
+            filter: url(#glass);
+
+            .section-header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 16px;
+            }
         }
 
-        .calendar-section-header {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 24px;
+        .section:nth-child(3n) {
+            grid-column: 1 / -1;
         }
     }
 }

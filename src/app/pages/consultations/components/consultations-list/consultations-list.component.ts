@@ -9,11 +9,15 @@ import { ConsultationsService } from '../../../../shared/services/consultations/
   styleUrl: './consultations-list.component.scss'
 })
 export class ConsultationsListComponent {
-  @Input() consultations: Consultation[] = [];
+  @Input() consultations: Consultation[];
 
-  constructor(private _consultationsService: ConsultationsService) {}
+  constructor(private _consultationsService: ConsultationsService) { }
 
   ngOnInit() {
+    this.initList();
+  }
+
+  private initList() {
     this._consultationsService.getConsultations()
       .subscribe((consultations: Consultation[]) => {
         this.consultations = consultations;

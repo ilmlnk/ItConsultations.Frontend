@@ -37,7 +37,7 @@ import { NotesPageComponent } from './consultations/notes-page/notes-page.compon
 import { MessengerPageComponent } from './consultations/messenger-page/messenger-page.component';
 import { MeetingsPageComponent } from './consultations/meetings-page/meetings-page.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatButton, MatButtonModule } from '@angular/material/button';
+import { MatButtonModule } from '@angular/material/button';
 import { MatRadioModule } from '@angular/material/radio';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
@@ -54,8 +54,10 @@ import { MatBadgeModule } from '@angular/material/badge';
 import { DashboardPageComponent } from './consultations/dashboard-page/dashboard-page.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatListModule } from '@angular/material/list';
-import { FullCalendarModule } from '@fullcalendar/angular';
 import { RecentPeopleComponent } from './consultations/components/recent-people/recent-people.component';
+import { DarkModeService } from '../shared/services/dark-mode/dark-mode.service';
+import { RecentNotesComponent } from './consultations/dashboard-page/components/recent-notes/recent-notes.component';
+import { PersonalizedAchievementsComponent } from './consultations/dashboard-page/components/personalized-achievements/personalized-achievements.component';
 
 @NgModule({
   declarations: [
@@ -93,6 +95,8 @@ import { RecentPeopleComponent } from './consultations/components/recent-people/
     MeetingLinkWindowComponent,
     DashboardPageComponent,
     RecentPeopleComponent,
+    RecentNotesComponent,
+    PersonalizedAchievementsComponent
   ],
   imports: [
     FormsModule,
@@ -102,22 +106,17 @@ import { RecentPeopleComponent } from './consultations/components/recent-people/
     ButtonsModule.forRoot(),
     MatDialogModule,
     MatChipsModule,
-    MatFormField,
-    MatLabel,
+    MatFormFieldModule,
     MatOptionModule,
-    MatError,
-    MatHint,
     MatSelectModule,
     MatSidenavModule,
     MatMenuModule,
     MatIconModule,
     MatDividerModule,
-    MatFormFieldModule,
     MatInputModule,
     MatDatepickerModule,
     MatNativeDateModule,
     MatButtonModule,
-    MatButton,
     MatRadioModule,
     BrowserAnimationsModule,
     MatAutocompleteModule,
@@ -126,33 +125,28 @@ import { RecentPeopleComponent } from './consultations/components/recent-people/
     MatTooltipModule,
     MatBadgeModule,
     MatCardModule,
-    MatListModule,
-    FullCalendarModule
+    MatListModule
   ],
+  
   exports: [
     MatDialogModule,
     MatChipsModule,
-    MatFormField,
-    MatLabel,
+    MatFormFieldModule,
     MatOptionModule,
-    MatError,
-    MatHint,
     MatSelectModule,
     MatSidenavModule,
     MatMenuModule,
     MatIconModule,
     MatDividerModule,
     MatButtonModule,
-    MatButton,
     BrowserAnimationsModule,
     MatAutocompleteModule,
     MatExpansionModule,
     MatButtonToggleModule,
-    MatTooltipModule,
-    FullCalendarModule
+    MatTooltipModule
   ],
   providers: [
-    
+    DarkModeService
   ]
 })
 export class ConsultationsModule { }

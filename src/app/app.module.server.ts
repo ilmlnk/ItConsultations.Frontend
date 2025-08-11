@@ -1,13 +1,11 @@
 import { NgModule } from '@angular/core';
-import { ServerModule } from '@angular/platform-server';
-import { provideServerRoutesConfig } from '@angular/ssr';
 import { AppComponent } from './app.component';
 import { AppModule } from './app.module';
-import { serverRoutes } from './app.routes.server';
+import 'zone.js/node';
+import { ServerModule } from '@angular/platform-server';
 
 @NgModule({
-  imports: [AppModule],
-  providers: [provideServerRoutesConfig(serverRoutes)],
+  imports: [AppModule, ServerModule],
   bootstrap: [AppComponent],
 })
 export class AppServerModule {}
