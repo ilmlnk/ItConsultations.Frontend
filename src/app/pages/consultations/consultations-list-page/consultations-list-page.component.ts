@@ -11,7 +11,48 @@ import { ConsultationsService } from '../../../shared/services/consultations/con
 })
 export class ConsultationsListPageComponent {
   myForm?: UntypedFormGroup;
-  consultations: Consultation[];
+  consultations: Consultation[] = [
+    {
+      id: 1,
+      title: '',
+      description: '',
+      price: 0,
+      thumbnailUrl: '',
+      coachImageUrl: '',
+      duration: 0,
+      coach: {
+        id: 0,
+        firstName: '',
+        lastName: '',
+        companyName: '',
+        languages: [],
+        email: '',
+        position: '',
+        imageUrl: '',
+        description: ''
+      }
+    },
+    {
+      id: 1,
+      title: '',
+      description: '',
+      price: 0,
+      thumbnailUrl: '',
+      coachImageUrl: '',
+      duration: 0,
+      coach: {
+        id: 0,
+        firstName: '',
+        lastName: '',
+        companyName: '',
+        languages: [],
+        email: '',
+        position: '',
+        imageUrl: '',
+        description: ''
+      }
+    }
+  ];
 
   constructor(private formBuilder: UntypedFormBuilder,
     private _consultationService: ConsultationsService

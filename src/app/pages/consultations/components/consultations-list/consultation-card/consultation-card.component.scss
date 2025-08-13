@@ -1,5 +1,27 @@
-.consultation-container {
-    padding: 16px;
-    border-radius: 8px;
-    background-color: white;
+.mat-mdc-card {
+    background: var(--consultation-card-bg) !important;
+    border: 1px solid var(--consultation-card-border) !important;
+    backdrop-filter: var(--consultation-card-backdrop-blur) !important;
+    -webkit-backdrop-filter: var(--consultation-card-backdrop-blur) !important;
+    box-shadow: var(--consultation-card-shadow) !important;
+    border-radius: 6px !important;
+    padding: 0 !important;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    position: relative;
+
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: linear-gradient(90deg, 
+          transparent 0%, 
+          rgba(255, 255, 255, 0.6) 50%, 
+          transparent 100%
+        );
+        pointer-events: none;
+      }
 }

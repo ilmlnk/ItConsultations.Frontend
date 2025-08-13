@@ -1,27 +1,25 @@
-<cons-modal-window>
-    <div class="modal-body" modal-body>
-        <button class="btn btn-primary" (click)="openConsultationTimeModal()">Choose consultation time</button>
-        <mat-form-field>
-            <mat-label>Favorite animal</mat-label>
-            <mat-select>
-              <mat-option>--</mat-option>
-              <mat-option>
-                Hello
-              </mat-option>
-              <mat-option>
-                Hello
-              </mat-option>
-              <mat-option>
-                Hello
-              </mat-option>
-            </mat-select>
-            <mat-error>Please choose an animal</mat-error>
-            <mat-hint>Hint</mat-hint>
-          </mat-form-field>
-        <cons-selected-options></cons-selected-options>
-        <textarea class="form-control" rows="3" placeholder="Additional comments"></textarea>
-    </div>
-    <div modal-footer>
-        <button class="btn btn-primary">Book a consultation</button>
-    </div>
-</cons-modal-window>
+<div class="modal-body" modal-body>
+  <button class="btn btn-primary" (click)="openConsultationTimeModal()">Choose consultation time</button>
+  <mat-form-field>
+    <mat-label>Favorite animal</mat-label>
+    <mat-select>
+      <mat-option>--</mat-option>
+      <mat-option>
+        Hello
+      </mat-option>
+      <mat-option>
+        Hello
+      </mat-option>
+      <mat-option>
+        Hello
+      </mat-option>
+    </mat-select>
+    <mat-error>Please choose an animal</mat-error>
+    <mat-hint>Hint</mat-hint>
+  </mat-form-field>
+  <cons-selected-options></cons-selected-options>
+  <textarea class="form-control" rows="3" placeholder="Additional comments"></textarea>
+</div>
+<div modal-footer>
+  <button class="btn btn-primary">Book a consultation</button>
+</div>

@@ -2,13 +2,13 @@
     <nav>
         <ul class="sidebar-links">
             <li *ngFor="let item of items; let i = index; trackBy: trackByFn" 
-                matTooltip="{{item.tooltip}}" 
-                matTooltipPosition="right"
                 class="sidebar-item">
                 
                 <a *ngIf="!item.children" 
                    [routerLink]="item.route" 
                    routerLinkActive="active"
+                   matTooltip="{{item.tooltip}}" 
+                   matTooltipPosition="right"
                    class="sidebar-link">
                     <mat-icon class="sidebar-icon">{{item.icon}}</mat-icon>
                 </a>
@@ -25,7 +25,8 @@
                     <mat-menu #dynamicMenu="matMenu" 
                               class="sidebar-dropdown"
                               xPosition="after"
-                              yPosition="below">
+                              yPosition="below"
+                              [overlapTrigger]="false">
                         <ng-container *ngFor="let child of item.children; trackBy: trackByChildFn">
                             <button *ngIf="child.route" 
                                     mat-menu-item 
@@ -49,7 +50,7 @@
                             </button>
                         </ng-container>
                         
-                        <mat-divider *ngIf="item.children && item.children.length > 2"></mat-divider>
+                        <mat-divider *ngIf="item.children && item.children.length > 3"></mat-divider>
                         
                         <button *ngIf="hasMenuActions(item)" 
                                 mat-menu-item 

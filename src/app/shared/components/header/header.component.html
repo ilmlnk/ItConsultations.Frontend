@@ -44,30 +44,8 @@
                 </button>
 
                 <mat-menu #languageMenu="matMenu" class="language-menu header-menu"  panelClass="header-menu-panel">
-                    <div class="language-info">
-                        <mat-icon class="language-avatar">account_circle</mat-icon>
-                        <div class="language-details">
-                            <!-- <span class="user-name">{{ currentUser?.name || 'Пользователь' }}</span>
-                            <span class="user-email">{{ currentUser?.email || 'user@example.com' }}</span> -->
-                        </div>
-                    </div>
-                    <mat-divider></mat-divider>
-                    <button mat-menu-item (click)="navigateToProfile()">
-                        <mat-icon>person</mat-icon>
-                        <span>Профиль</span>
-                    </button>
-                    <button mat-menu-item (click)="navigateToSettings()">
-                        <mat-icon>settings</mat-icon>
-                        <span>Настройки</span>
-                    </button>
-                    <button mat-menu-item (click)="navigateToHelp()">
-                        <mat-icon>help</mat-icon>
-                        <span>Помощь</span>
-                    </button>
-                    <mat-divider></mat-divider>
-                    <button mat-menu-item (click)="logout()">
-                        <mat-icon color="warn">logout</mat-icon>
-                        <span>Выйти</span>
+                    <button mat-menu-item *ngFor="let language of languages" (click)="setLanguage(language)">
+                        <span>{{ language.name }}</span>
                     </button>
                 </mat-menu>
             </li>
@@ -92,20 +70,20 @@
                     <mat-divider></mat-divider>
                     <button mat-menu-item (click)="navigateToProfile()">
                         <mat-icon>person</mat-icon>
-                        <span>Профиль</span>
+                        <span>Profile</span>
                     </button>
                     <button mat-menu-item (click)="navigateToSettings()">
                         <mat-icon>settings</mat-icon>
-                        <span>Настройки</span>
+                        <span>Settings</span>
                     </button>
                     <button mat-menu-item (click)="navigateToHelp()">
                         <mat-icon>help</mat-icon>
-                        <span>Помощь</span>
+                        <span>Help</span>
                     </button>
                     <mat-divider></mat-divider>
                     <button mat-menu-item (click)="logout()">
                         <mat-icon color="warn">logout</mat-icon>
-                        <span>Выйти</span>
+                        <span>Sign out</span>
                     </button>
                 </mat-menu>
             </li>

@@ -8,8 +8,6 @@ export interface Coach {
     description: string;
     position: string;
     imageUrl: string;
-    username: string;
-    password: string;
     companyName: string;
     companyImageUrl?: string;
     email?: string;

@@ -15,13 +15,12 @@ import { ButtonsModule } from 'ngx-bootstrap/buttons';
 import { CoachesListComponent } from './consultations/components/coaches-list/coaches-list.component';
 import { ConsultationsListComponent } from './consultations/components/consultations-list/consultations-list.component';
 import { ConsultationCardComponent } from './consultations/components/consultations-list/consultation-card/consultation-card.component';
-import { ModalWindowComponent } from './consultations/components/modal-window/modal-window.component';
 import { ConsultationModalComponent } from './consultations/components/consultations-list/consultation-card/consultation-modal/consultation-modal.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ConsultationTimeModalComponent } from './consultations/components/consultations-list/consultation-card/consultation-modal/consultation-time-modal/consultation-time-modal.component';
 import { SelectedOptionsComponent } from './consultations/components/consultations-list/consultation-card/consultation-modal/selected-options/selected-options.component';
 import { MatChipsModule } from '@angular/material/chips';
-import { MatError, MatFormField, MatFormFieldModule, MatHint, MatLabel } from '@angular/material/form-field';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatNativeDateModule, MatOptionModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSidenavModule } from '@angular/material/sidenav';
@@ -73,7 +72,6 @@ import { PersonalizedAchievementsComponent } from './consultations/dashboard-pag
     CoachesListComponent,
     ConsultationsListComponent,
     ConsultationCardComponent,
-    ModalWindowComponent,
     ConsultationModalComponent,
     ConsultationTimeModalComponent,
     SelectedOptionsComponent,
