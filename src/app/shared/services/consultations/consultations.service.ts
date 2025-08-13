@@ -1,13 +1,17 @@
 import { Injectable } from '@angular/core';
 import { Consultation } from '../../models/consultation';
-import { Cons, Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ConsultationsService {
-  private defaultServiceUrl = 'api/consultations';
+  private readonly _urlGet = '/api/consultations';
+  private readonly _urlPost = '/api/consultations';
+  private readonly _urlPut = '/api/consultations';
+  private readonly _urlDelete = '/api/consultations';
+
   private apiUrl = 'localhost:4201/api/consultations'
   constructor(
     protected http: HttpClient
@@ -16,6 +20,14 @@ export class ConsultationsService {
   getConsultations(): Observable<Consultation[]> {
     return new Observable<Consultation[]>();
     // return this.http.get<Consultation[]>(`${this.apiUrl}`);
+  }
+
+  createConsultation(consultation: Consultation): Observable<Consultation> {
+    
+  }
+
+  openConsultation(): Observable<Consultation> {
+    return new Observable<Consultation>();
   }
 
   getRecentConsultations(userId: string): Observable<Consultation[]> {
