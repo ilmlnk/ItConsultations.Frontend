@@ -17,7 +17,7 @@ import { MatListModule } from '@angular/material/list';
     MatTooltipModule,
     MatMenuModule,
     MatDatepickerModule,
-    MatListModule
+    MatListModule,
   ],
   exports: [],
   providers: [

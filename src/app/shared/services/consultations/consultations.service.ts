@@ -22,8 +22,13 @@ export class ConsultationsService {
     // return this.http.get<Consultation[]>(`${this.apiUrl}`);
   }
 
-  createConsultation(consultation: Consultation): Observable<Consultation> {
-    
+  createConsultation(consultation: Consultation, coachConsId: string): Observable<Consultation> {
+    return this.http.post<Consultation>(
+      `${this.apiUrl}/${coachConsId}`, consultation
+    )
+      .pipe(
+        
+      );
   }
 
   openConsultation(): Observable<Consultation> {

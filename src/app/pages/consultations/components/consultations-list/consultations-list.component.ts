@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { Consultation } from '../../../../shared/models/consultation';
 import { ConsultationsService } from '../../../../shared/services/consultations/consultations.service';
+import { NotificationsService } from '../../../../shared/services/notifications/notifications.service';
 
 @Component({
   selector: 'cons-consultations-list',
@@ -11,10 +12,17 @@ import { ConsultationsService } from '../../../../shared/services/consultations/
 export class ConsultationsListComponent {
   @Input() consultations: Consultation[];
 
-  constructor(private _consultationsService: ConsultationsService) { }
+  constructor(
+    private _consultationsService: ConsultationsService,
+    private _notificationsService: NotificationsService
+  ) { }
 
   ngOnInit() {
     this.initList();
+  }
+
+  showSuccess() {
+    this._notificationsService.showSuccess('Success!');
   }
 
   private initList() {
