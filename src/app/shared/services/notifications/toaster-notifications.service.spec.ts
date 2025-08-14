@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 
 import { ToasterNotificationsService } from './toaster-notifications.service';
 
-describe('ToasterNotificationsService', () => {
+describe('NotificationsServiceService', () => {
   let service: ToasterNotificationsService;
 
   beforeEach(() => {

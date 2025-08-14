@@ -57,6 +57,8 @@ import { RecentPeopleComponent } from './consultations/components/recent-people/
 import { DarkModeService } from '../shared/services/dark-mode/dark-mode.service';
 import { RecentNotesComponent } from './consultations/dashboard-page/components/recent-notes/recent-notes.component';
 import { PersonalizedAchievementsComponent } from './consultations/dashboard-page/components/personalized-achievements/personalized-achievements.component';
+import { ToasterNotificationComponent } from '../shared/components/toaster-notification/toaster-notification.component';
+import { BrowserModule } from '@angular/platform-browser';
 
 @NgModule({
   declarations: [
@@ -94,7 +96,8 @@ import { PersonalizedAchievementsComponent } from './consultations/dashboard-pag
     DashboardPageComponent,
     RecentPeopleComponent,
     RecentNotesComponent,
-    PersonalizedAchievementsComponent
+    PersonalizedAchievementsComponent,
+    ToasterNotificationComponent
   ],
   imports: [
     FormsModule,
@@ -123,7 +126,9 @@ import { PersonalizedAchievementsComponent } from './consultations/dashboard-pag
     MatTooltipModule,
     MatBadgeModule,
     MatCardModule,
-    MatListModule
+    MatListModule,
+    BrowserAnimationsModule,
+    BrowserModule
   ],
   
   exports: [

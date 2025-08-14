@@ -7,6 +7,9 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatListModule } from '@angular/material/list';
+import { ToasterNotificationsService } from './services/notifications/toaster-notifications.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BrowserModule } from '@angular/platform-browser';
 
 @NgModule({
   declarations: [],
@@ -18,10 +21,13 @@ import { MatListModule } from '@angular/material/list';
     MatMenuModule,
     MatDatepickerModule,
     MatListModule,
+    BrowserAnimationsModule,
+    BrowserModule
   ],
   exports: [],
   providers: [
     ConsultationsService,
+    ToasterNotificationsService
   ]
 })
 export class SharedModule { }

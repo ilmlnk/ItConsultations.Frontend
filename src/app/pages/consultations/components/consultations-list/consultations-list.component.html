@@ -3,6 +3,7 @@
         <ng-content select="[header]"></ng-content>
         <div class="consultation-wrapper" *ngFor="let consultation of consultations">
             <cons-consultation-card [consultation]="consultation"></cons-consultation-card>
+            <button (click)="triggerToaster()">Trigger me!</button>
         </div>
     </div>
 </div>
