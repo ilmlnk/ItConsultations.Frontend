@@ -61,9 +61,9 @@
 }
 
 .notification-title {
-  margin: 0;
-  font-size: 16px;
-  font-weight: 500;
+  margin-top: 6px;
+  font-size: 1rem;
+  font-weight: 600;
   color: white;
   line-height: 1.5;
   text-overflow: ellipsis;
@@ -71,36 +71,37 @@
   white-space: nowrap;
 }
 
-.notification-icon mat-icon {
-  font-size: 20px;
-  color: white;
+.notification-header mat-icon {
+  flex-shrink: 0;
 }
 
 .notification-text {
-    display: flex;
-    align-items: flex-start; 
-    justify-content: space-between;
-    padding: 12px 16px;
-    gap: 16px; 
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 12px 16px;
+  gap: 16px;
+  flex: 1;
+  margin-left: 18px;
+
+  span:first-child {
+    font-size: 14px;
+    color: #000;
+    line-height: 1.4;
+    word-wrap: break-word;
+    overflow-wrap: anywhere;
     flex: 1;
-    margin-left: 12px;
-
-    span:first-child {
-      font-size: 14px;
-      color: #666;
-      line-height: 1.4;
-      word-wrap: break-word;
-      flex: 1; 
-      margin-right: 16px; 
-    }
-
-    .notification-timestamp {
-      font-size: 12px;
-      color: #999;
-      flex-shrink: 0;
-      white-space: nowrap; 
-    }
+    margin-right: 16px;
   }
+
+  .notification-timestamp {
+    font-size: 12px;
+    color: #999;
+    flex-shrink: 0;
+    white-space: nowrap;
+  }
+}
 
 .notification-title {
   font-weight: 600;
@@ -129,23 +130,25 @@
 
 .notification-header {
   display: flex;
-  align-items: center;
+  align-items: stretch;
   justify-content: space-between;
   width: 100%;
-  min-height: 48px;
+}
 
-  mat-icon {
-    font-size: 24px;
-    width: 24px;
-    height: 24px;
-    margin-right: 12px;
-    flex-shrink: 0;
-  }
+.notification-header-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .notification-close-btn {
-  width: 28px;
-  height: 28px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .notification-progress {

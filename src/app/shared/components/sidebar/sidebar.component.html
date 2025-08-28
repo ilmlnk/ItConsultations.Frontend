@@ -51,14 +51,6 @@
                         </ng-container>
                         
                         <mat-divider *ngIf="item.children && item.children.length > 3"></mat-divider>
-                        
-                        <button *ngIf="hasMenuActions(item)" 
-                                mat-menu-item 
-                                class="dropdown-menu-item action-item"
-                                (click)="onMenuAction(item)">
-                            <mat-icon class="menu-item-icon">settings</mat-icon>
-                            <span class="menu-item-text">Settings</span>
-                        </button>
                     </mat-menu>
                 </ng-container>
             </li>

@@ -21,12 +21,6 @@ export class ConsultationsListComponent {
     this.initList();
   }
 
-  triggerToaster() {
-    this._toasterNotificationsService.showSuccess('Example', 'exampleexample');
-    this._toasterNotificationsService.showError('Error', 'errorExample');
-    this._toasterNotificationsService.showInfo('Warning', 'warningExample');
-  }
-
   private initList() {
     this._consultationsService
       .getConsultations()
