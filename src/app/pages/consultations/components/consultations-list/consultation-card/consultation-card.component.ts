@@ -1,8 +1,6 @@
-import { Component, ComponentRef, Input, Output, TemplateRef, ViewChild, ViewContainerRef } from '@angular/core';
+import { Component, Input, Output } from '@angular/core';
 import { Consultation } from '../../../../../shared/models/consultation';
 import { EventEmitter } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
-import { ConsultationModalComponent } from './consultation-modal/consultation-modal.component';
 
 @Component({
   selector: 'cons-consultation-card',
@@ -11,32 +9,33 @@ import { ConsultationModalComponent } from './consultation-modal/consultation-mo
   styleUrl: './consultation-card.component.scss'
 })
 export class ConsultationCardComponent {
-  @ViewChild('modalContainer', { read: ViewContainerRef }) modalContainer: ViewContainerRef;
-  @Input() consultation: Consultation;
+  @Input() model: Consultation;
+
   @Output() close = new EventEmitter<void>();
-  isModalOpen = false;
+  @Output() openBookingModal = new EventEmitter<Consultation>();
+  @Output() bookingRequested = new EventEmitter<{consultation: any, formData: any}>();
 
-  constructor(public dialog: MatDialog) {}
+  isOpenModal: boolean = false;
 
-  ngOnInit() {}
+  constructor() {}
 
-  openModal(): void {
-    const dialogRef = this.dialog.open(ConsultationModalComponent, {
-      width: '600px',
-      height: '550px',
-      data: { consultation: this.consultation }
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-    })
+  ngOnInit() {
   }
 
-  closeModal() {
-    this.isModalOpen = false;
+  onBookConsultation(): void {
+    this.openBookingModal.emit(this.model);
   }
 
-  get consultationEntity(): Consultation {
-    return this.consultation;
+  get coachFullName(): string {
+    return `${this.model.coach.firstName} ${this.model.coach.lastName}`;
+  }
+
+  get coachRating() {
+    const total = this.model.coach.reviews.reduce((sum, review) => sum + review.rating, 0);
+    return (total / this.model.coach.reviews.length).toFixed(2);
+  }
+
+  get coachReviewsCount() {
+    return this.model.coach.reviews.length;
   }
 }

@@ -39,12 +39,12 @@
 
     background-attachment: fixed;
     
-    background: rgba(0, 0, 0, 0.1) url('/background.png');
+    background: rgb(151, 188, 243);
     background-blend-mode: multiply;
     color: #333333;
     
     &.dark-theme {
-        background: rgba(0, 0, 0, 0.7) url('/background.png');
+        background: rgb(49, 49, 49);
         background-blend-mode: multiply;
         background-repeat: no-repeat;
         background-size: cover;
@@ -53,7 +53,7 @@
       }
       
       &.light-theme {
-        background: rgba(0, 0, 0, 0.1) url('/background.png');
+        background: rgb(151, 188, 243);
         background-blend-mode: multiply;
         background-repeat: no-repeat;
         background-size: cover;
@@ -64,4 +64,10 @@
 
 .main-content {
     margin: 5% 17% 0 17%;
+}
+
+@media (max-width: 768px) {
+  .main-content {
+    margin: 0;
+  }
 }

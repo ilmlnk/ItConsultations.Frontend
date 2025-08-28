@@ -1,13 +1,16 @@
 {
-  "name": "example-front",
-  "version": "0.0.0",
+  "name": "waveit-front",
+  "version": "0.0.1",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
+    "dev": "ng serve --open --port 4000",
+    "qa": "ng serve --open --port 4001",
+    "stage": "ng serve --open --port 4002",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve:ssr:example-front": "node dist/example-front/server/server.mjs"
+    "serve:ssr:example-front": "node dist/waveit-front/server/server.mjs"
   },
   "private": true,
   "dependencies": {

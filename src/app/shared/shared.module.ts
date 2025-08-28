@@ -22,7 +22,7 @@ import { BrowserModule } from '@angular/platform-browser';
     MatDatepickerModule,
     MatListModule,
     BrowserAnimationsModule,
-    BrowserModule
+    BrowserModule,
   ],
   exports: [],
   providers: [

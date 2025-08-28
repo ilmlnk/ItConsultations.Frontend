@@ -1,5 +1,6 @@
 import { Consultation } from "./consultation";
 import { Language } from "../enums/language.enum";
+import { Review } from "./review";
 
 export interface Coach {
     id: number;
@@ -15,5 +16,8 @@ export interface Coach {
     telegramUrl?: string;
     videoCardUrl?: string;
     consultations?: Consultation[];
+    reviews: Review[];
+    topics: string[];
+    skills: string[];
     languages: Language[];
 }

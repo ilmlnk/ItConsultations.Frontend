@@ -59,6 +59,8 @@ import { RecentNotesComponent } from './consultations/dashboard-page/components/
 import { PersonalizedAchievementsComponent } from './consultations/dashboard-page/components/personalized-achievements/personalized-achievements.component';
 import { ToasterNotificationComponent } from '../shared/components/toaster-notification/toaster-notification.component';
 import { BrowserModule } from '@angular/platform-browser';
+import { LanguageFlagPipe } from '../shared/pipes/language-flag.pipe';
+import { TranslatePipe } from '../shared/pipes/translate.pipe';
 
 @NgModule({
   declarations: [
@@ -97,7 +99,7 @@ import { BrowserModule } from '@angular/platform-browser';
     RecentPeopleComponent,
     RecentNotesComponent,
     PersonalizedAchievementsComponent,
-    ToasterNotificationComponent
+    ToasterNotificationComponent,
   ],
   imports: [
     FormsModule,
@@ -128,7 +130,9 @@ import { BrowserModule } from '@angular/platform-browser';
     MatCardModule,
     MatListModule,
     BrowserAnimationsModule,
-    BrowserModule
+    BrowserModule,
+    LanguageFlagPipe,
+    TranslatePipe
   ],
   
   exports: [

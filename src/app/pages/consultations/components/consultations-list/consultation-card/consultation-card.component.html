@@ -1,19 +1,88 @@
 <mat-card class="consultation-card">
-    <div class="consultation-header">
-        <h1>{{ consultation.coach.firstName }} {{ consultation.coach.lastName }}</h1>
-        <span>{{ consultation.coach.position }} at {{ consultation.coach.companyName }}</span>
+  <div class="coach-avatar">
+    <img [src]="model.coach.imageUrl" />
+    <div class="rating-display">
+      <mat-icon class="star-icon">star</mat-icon>
+      <span class="rating-value">{{ coachRating }}</span>
+      <span class="reviews-count" *ngIf="model">({{ coachReviewsCount }})</span>
     </div>
-    <div class="consultation-body">
-        <h2>{{ consultation.title }}</h2>
-        <p>{{ consultation.description }}</p>
+  </div>
 
-        <h2>{{ consultation.coach.firstName }} {{ consultation.coach.lastName }}</h2>
-        <img src="{{ consultation.thumbnailUrl }}" alt="{{ consultation.title }}" />
-        <img src="{{ consultation.coachImageUrl }}" alt="{{ consultation.title }}" />
-        <p>{{ consultation.duration }}</p>
+  <div class="consultation-content">
+    <div class="content-header">
+      <h2 class="consultation-title">{{ model.title }}</h2>
+      <div class="coach-info">
+        <h3 class="coach-name">{{ coachFullName }}</h3>
+        <span class="coach-position"
+          >{{ model.coach.position }} - {{ model.coach.companyName }}</span
+        >
+      </div>
     </div>
-    <div class="consultation-footer">
-        <button type="button" class="btn btn-primary" (click)="openModal()">Book a consultation</button>
-        <p>{{ consultation.price }}</p>
+
+    <div class="content-body">
+      <p class="consultation-description">{{ model.description }}</p>
+      <div class="consultation-meta">
+        <span class="duration" *ngIf="model.duration">
+          <mat-icon>schedule</mat-icon>
+          {{ model.duration }}
+        </span>
+      </div>
     </div>
+
+    <div class="content-footer">
+      <button
+        mat-raised-button
+        color="primary"
+        class="book-button"
+        (click)="onBookConsultation()"
+      >
+        Book Consultation
+      </button>
+      <div class="pricing">
+        <span class="price">{{ model.price }}</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="consultation-sidebar">
+    <div
+      class="skills-section"
+      *ngIf="model.coach.skills && model.coach.skills.length > 0"
+    >
+      <h4>Skills</h4>
+      <div class="skills-list">
+        <mat-chip-set>
+          <mat-chip *ngFor="let skill of model.coach.skills">{{
+            skill
+          }}</mat-chip>
+        </mat-chip-set>
+      </div>
+    </div>
+
+    <div
+      class="topics-section"
+      *ngIf="model.coach.topics && model.coach.topics.length > 0"
+    >
+      <h4>Topics</h4>
+      <div class="topics-list">
+        <mat-chip-set>
+          <mat-chip *ngFor="let topic of model.coach.topics" color="accent">{{
+            topic
+          }}</mat-chip>
+        </mat-chip-set>
+      </div>
+    </div>
+
+    <div class="languages-section" *ngIf="model.coach.languages">
+      <h4>Languages</h4>
+      <div class="languages-list">
+        <span
+          class="language-item"
+          *ngFor="let language of model.coach.languages"
+        >
+          {{ language | languageFlag }}
+        </span>
+      </div>
+    </div>
+  </div>
 </mat-card>

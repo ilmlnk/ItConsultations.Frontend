@@ -1,25 +1,124 @@
-<div class="modal-body" modal-body>
-  <button class="btn btn-primary" (click)="openConsultationTimeModal()">Choose consultation time</button>
-  <mat-form-field>
-    <mat-label>Favorite animal</mat-label>
-    <mat-select>
-      <mat-option>--</mat-option>
-      <mat-option>
-        Hello
-      </mat-option>
-      <mat-option>
-        Hello
-      </mat-option>
-      <mat-option>
-        Hello
-      </mat-option>
-    </mat-select>
-    <mat-error>Please choose an animal</mat-error>
-    <mat-hint>Hint</mat-hint>
-  </mat-form-field>
-  <cons-selected-options></cons-selected-options>
-  <textarea class="form-control" rows="3" placeholder="Additional comments"></textarea>
-</div>
-<div modal-footer>
-  <button class="btn btn-primary">Book a consultation</button>
+<div class="modal-overlay" 
+     [class.modal-open]="isOpen" 
+     *ngIf="isOpen"
+     (click)="onOverlayClick()"
+     (@modalAnimation.start)="onModalOpen()">
+  <div class="modal" (click)="onModalClick($event)">
+    <div class="modal-header">
+      <div class="modal-header-title">Book Consultation</div>
+      <button mat-icon-button 
+              class="modal-close-button" 
+              (click)="onClose()"
+              type="button">
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+    
+    <div class="modal-body">
+      <mat-card class="consultation-info" *ngIf="model">
+        <div class="consultation-details">
+          <h3>{{ model.title }}</h3>
+          <div class="coach-info">
+            <img [src]="model.coach.imageUrl" 
+                 class="coach-avatar" 
+                 [alt]="coachFullName"
+                 onerror="this.src='assets/images/default-avatar.png'" />
+            <div class="coach-details">
+              <span class="coach-name">{{ coachFullName }}</span>
+              <span class="coach-position">
+                {{ model.coach.position }} - {{ model.coach.companyName }}
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="consultation-meta">
+          <div class="duration">
+            <mat-icon>schedule</mat-icon>
+            <span>{{ model.duration }}</span>
+          </div>
+          <div class="price">
+            <mat-icon>attach_money</mat-icon>
+            <span>{{ model.price }}</span>
+          </div>
+        </div>
+      </mat-card>
+
+      <form class="consultation-form"
+            [formGroup]="consultationForm"
+            (ngSubmit)="onSubmit()"
+            novalidate>
+        
+        <div class="form-row">
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Email</mat-label>
+            <input matInput 
+                   type="email" 
+                   formControlName="email"
+                   placeholder="your@email.com">
+            <mat-error *ngIf="isFieldInvalid('email')">
+              {{ getFieldError('email') }}
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="form-row">
+          <mat-form-field appearance="outline" class="half-width">
+            <mat-label>Date</mat-label>
+            <input matInput 
+                   type="date" 
+                   formControlName="date">
+            <mat-error *ngIf="isFieldInvalid('date')">
+              Date is required
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="half-width">
+            <mat-label>Time</mat-label>
+            <input matInput 
+                   type="time" 
+                   formControlName="time">
+            <mat-error *ngIf="isFieldInvalid('time')">
+              Time is required
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="form-row">
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Phone (Optional)</mat-label>
+            <input matInput 
+                   type="tel" 
+                   formControlName="phone"
+                   placeholder="+1 (555) 123-4567">
+          </mat-form-field>
+        </div>
+
+        <div class="form-row">
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Message (Optional)</mat-label>
+            <textarea matInput 
+                      formControlName="message"
+                      rows="3"
+                      placeholder="Tell us about your goals or questions..."></textarea>
+          </mat-form-field>
+        </div>
+
+        <div class="form-actions">
+          <button mat-button 
+                  type="button" 
+                  (click)="onClose()"
+                  class="cancel-button">
+            Cancel
+          </button>
+          <button mat-raised-button 
+                  color="primary" 
+                  type="submit"
+                  [disabled]="consultationForm.invalid"
+                  class="submit-button">
+            Book Consultation
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
 </div>
