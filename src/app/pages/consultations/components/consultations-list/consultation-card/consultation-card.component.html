@@ -1,87 +1,79 @@
 <mat-card class="consultation-card">
-  <div class="coach-avatar">
-    <img [src]="model.coach.imageUrl" />
-    <div class="rating-display">
-      <mat-icon class="star-icon">star</mat-icon>
-      <span class="rating-value">{{ coachRating }}</span>
-      <span class="reviews-count" *ngIf="model">({{ coachReviewsCount }})</span>
-    </div>
-  </div>
-
-  <div class="consultation-content">
-    <div class="content-header">
-      <h2 class="consultation-title">{{ model.title }}</h2>
-      <div class="coach-info">
-        <h3 class="coach-name">{{ coachFullName }}</h3>
-        <span class="coach-position"
-          >{{ model.coach.position }} - {{ model.coach.companyName }}</span
-        >
-      </div>
-    </div>
-
-    <div class="content-body">
-      <p class="consultation-description">{{ model.description }}</p>
-      <div class="consultation-meta">
-        <span class="duration" *ngIf="model.duration">
-          <mat-icon>schedule</mat-icon>
-          {{ model.duration }}
-        </span>
-      </div>
-    </div>
-
-    <div class="content-footer">
-      <button
-        mat-raised-button
-        color="primary"
-        class="book-button"
-        (click)="onBookConsultation()"
-      >
-        Book Consultation
-      </button>
-      <div class="pricing">
-        <span class="price">{{ model.price }}</span>
+  <div class="consultation-sidebar-wrapper">
+    <div class="coach-avatar card-content sidebar-content">
+      <img [src]="model.coach.imageUrl" />
+      <div class="rating-display">
+        <mat-icon class="star-icon">star</mat-icon>
+        <span class="rating-value">{{ coachRating }}</span>
+        <span class="reviews-count" *ngIf="model">({{ coachReviewsCount }})</span>
       </div>
     </div>
   </div>
 
-  <div class="consultation-sidebar">
-    <div
-      class="skills-section"
-      *ngIf="model.coach.skills && model.coach.skills.length > 0"
-    >
-      <h4>Skills</h4>
-      <div class="skills-list">
-        <mat-chip-set>
-          <mat-chip *ngFor="let skill of model.coach.skills">{{
-            skill
-          }}</mat-chip>
-        </mat-chip-set>
+  <div class="consultation-body-wrapper">
+    <div class="consultation-content card-content body-card-content">
+      <div class="content-header">
+        <h2 class="consultation-title">{{ model.title }}</h2>
+        <div class="coach-info">
+          <h3 class="coach-name">{{ coachFullName }}</h3>
+          <span class="coach-position">{{ model.coach.position }} - {{ model.coach.companyName }}</span>
+        </div>
+      </div>
+
+      <div class="content-body">
+        <p class="consultation-description">
+          {{ model.description }}
+        </p>
+      </div>
+
+      <div class="content-footer">
+        <button mat-raised-button color="primary" class="book-button" (click)="onBookConsultation()">
+          Book Consultation
+        </button>
+        <div class="pricing">
+          <span class="price">{{ model.price }} {{ model.currency }}</span>
+          <div class="consultation-meta">
+            <span class="duration" *ngIf="model.duration">
+              <mat-icon>schedule</mat-icon>
+              {{ model.duration }} min
+            </span>
+          </div>
+        </div>
       </div>
     </div>
+  </div>
 
-    <div
-      class="topics-section"
-      *ngIf="model.coach.topics && model.coach.topics.length > 0"
-    >
-      <h4>Topics</h4>
-      <div class="topics-list">
-        <mat-chip-set>
-          <mat-chip *ngFor="let topic of model.coach.topics" color="accent">{{
-            topic
-          }}</mat-chip>
-        </mat-chip-set>
+  <div class="consultation-sidebar-wrapper">
+    <div class="consultation-sidebar card-content sidebar-content">
+      <div class="skills-section" *ngIf="model.coach.skills && model.coach.skills.length > 0">
+        <h4>Skills</h4>
+        <div class="skills-list">
+          <mat-chip-set>
+            <mat-chip *ngFor="let skill of model.coach.skills">
+              {{ skill }}
+            </mat-chip>
+          </mat-chip-set>
+        </div>
       </div>
-    </div>
 
-    <div class="languages-section" *ngIf="model.coach.languages">
-      <h4>Languages</h4>
-      <div class="languages-list">
-        <span
-          class="language-item"
-          *ngFor="let language of model.coach.languages"
-        >
-          {{ language | languageFlag }}
-        </span>
+      <div class="topics-section" *ngIf="model.coach.topics && model.coach.topics.length > 0">
+        <h4>Topics</h4>
+        <div class="topics-list">
+          <mat-chip-set>
+            <mat-chip *ngFor="let topic of model.coach.topics" color="accent">
+              {{ topic }}
+            </mat-chip>
+          </mat-chip-set>
+        </div>
+      </div>
+
+      <div class="languages-section" *ngIf="model.coach.languages">
+        <h4>Languages</h4>
+        <div class="languages-list">
+          <span class="language-item" *ngFor="let language of model.coach.languages">
+            {{ language | languageFlag }}
+          </span>
+        </div>
       </div>
     </div>
   </div>

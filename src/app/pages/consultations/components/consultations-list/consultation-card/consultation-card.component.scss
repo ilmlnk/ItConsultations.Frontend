@@ -5,7 +5,7 @@
   -webkit-backdrop-filter: var(--consultation-card-backdrop-blur) !important;
   box-shadow: var(--consultation-card-shadow) !important;
   border-radius: 6px !important;
-  padding: 24px !important;
+  padding: 0 !important;
   overflow: hidden;
   transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
   position: relative;
@@ -42,6 +42,7 @@
   }
 
   .coach-avatar {
+    padding: 24px;
     grid-area: avatar;
     display: flex;
     gap: 14px;
@@ -156,17 +157,36 @@
 
     .content-footer {
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       justify-content: space-between;
       margin-top: auto;
-      padding-top: 16px;
+      padding-top: 28px;
       border-top: 1px solid #e9ecef;
 
       .pricing {
         .price {
           font-size: 1.4em;
           font-weight: 700;
-          color: #27ae60;
+          background-color: #27ae60;
+          color: white;
+          border-radius: 6px;
+          padding: 8px;
+        }
+      }
+
+      .consultation-meta {
+        .duration {
+          justify-content: flex-end;
+          display: flex;
+          align-items: center;
+          margin-top: 8px;
+
+          mat-icon {
+            gap: 8px;
+            font-size: 18px;
+            width: 18px;
+            height: 18px;
+          }
         }
       }
 
@@ -186,10 +206,26 @@
     }
   }
 
+  .consultation-sidebar-wrapper {
+    min-width: 150px;
+    background-color: rgba(230, 238, 250, 0.55); 
+  }
+
+  .body-card-content {
+    padding-left: 24px;
+    padding-top: 24px;
+    padding-right: 24px;
+    padding-bottom: 0;
+  }
+
+  .sidebar-content {
+    padding: 24px;
+  }
+
   .consultation-sidebar {
     grid-area: sidebar;
     padding-left: 20px;
-    border-left: 2px solid #e9ecef;
+    border-left: 1px solid #e9ecef;
 
     h4 {
       margin: 0 0 12px 0;
@@ -301,7 +337,7 @@
     .consultation-sidebar {
       padding-left: 0;
       border-left: none;
-      border-top: 2px solid #e9ecef;
+      border-top: 1px solid #e9ecef;
       padding-top: 20px;
       text-align: left;
     }
@@ -407,20 +443,6 @@
             }
           }
         }
-
-        .consultation-meta {
-          .duration {
-            display: flex;
-            align-items: center;
-            gap: 5px;
-
-            mat-icon {
-              font-size: 18px;
-              width: 18px;
-              height: 18px;
-            }
-          }
-        }
       }
 
       .consultation-form {
@@ -437,9 +459,20 @@
   transform: translateY(0);
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1260px) {
   .mat-mdc-card {
     display: flex;
     flex-direction: column;
+  }
+}
+
+@media (max-width: 1260px) {
+  .consultation-sidebar {
+    padding-bottom: 20px;
+    border-left: none;
+  }
+
+  .body-card-content {
+    padding: 0 24px 0 24px;
   }
 }

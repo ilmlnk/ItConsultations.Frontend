@@ -5,6 +5,7 @@ export interface Consultation {
     title: string;
     description: string;
     price: number;
+    currency: string;
     thumbnailUrl: string;
     coachImageUrl: string;
     duration: number;

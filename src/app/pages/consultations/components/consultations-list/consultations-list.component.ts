@@ -1,10 +1,17 @@
-import { Component, Input } from '@angular/core';
+import { Component, ElementRef, Input, ViewChild } from '@angular/core';
 import { Consultation } from '../../../../shared/models/consultation';
 import { ConsultationsService } from '../../../../shared/services/consultations/consultations.service';
 import { ToasterNotificationsService } from '../../../../shared/services/notifications/toaster-notifications.service';
 import { ViewMode } from '../../../../shared/enums/view-mode.enum';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Coach } from '../../../../shared/models/coach';
+import { MatChipSelectionChange } from '@angular/material/chips';
+
+interface TopicSkill {
+  value: string;
+  label: string;
+  selected: boolean;
+}
 
 @Component({
   selector: 'cons-consultations-list',
@@ -15,12 +22,31 @@ import { Coach } from '../../../../shared/models/coach';
 export class ConsultationsListComponent {
   @Input() consultations: Consultation[];
 
+  @ViewChild('topicInput') topicInput!: ElementRef<HTMLInputElement>;
+
   filteredConsultations: Consultation[] = [];
   availableCoaches: Coach[] = [];
   filtersForm: FormGroup;
-  viewMode: ViewMode;
+  viewMode: ViewMode = ViewMode.Detailed;
   showFiltersPanel: boolean = false;
   availableCategories: string[] = [];
+  newTopicValue: string = '';
+  
+  defaultTopics: TopicSkill[] = [
+    { value: 'leadership', label: 'Leadership', selected: false },
+    { value: 'communication', label: 'Communication', selected: false },
+    { value: 'project-management', label: 'Project Management', selected: false },
+    { value: 'teamwork', label: 'Teamwork', selected: false },
+    { value: 'problem-solving', label: 'Problem Solving', selected: false },
+    { value: 'time-management', label: 'Time Management', selected: false },
+    { value: 'public-speaking', label: 'Public Speaking', selected: false },
+    { value: 'negotiation', label: 'Negotiation', selected: false },
+    { value: 'emotional-intelligence', label: 'Emotional Intelligence', selected: false },
+    { value: 'decision-making', label: 'Decision Making', selected: false },
+    { value: 'conflict-resolution', label: 'Conflict Resolution', selected: false },
+    { value: 'mentoring', label: 'Mentoring', selected: false }
+  ];
+  customTopics: TopicSkill[] = [];
 
   constructor(
     private _consultationsService: ConsultationsService,
@@ -29,18 +55,23 @@ export class ConsultationsListComponent {
   ) {}
 
   ngOnInit() {
-    this.viewMode = ViewMode.Detailed;
     this.initList();
     this.initViewMode();
     this.initializeFiltersForm();
   }
 
   setDetailedView() {
-
+    if (this.viewMode !== ViewMode.Detailed) {
+      this.viewMode = ViewMode.Detailed;
+      localStorage.setItem('consultationsViewMode', this.viewMode.toString());
+    }
   }
 
   setCompactView() {
-
+    if (this.viewMode !== ViewMode.Compact) {
+      this.viewMode = ViewMode.Compact;
+      localStorage.setItem('consultationsViewMode', this.viewMode.toString());
+    }
   }
 
   toggleViewMode() {
@@ -75,13 +106,51 @@ export class ConsultationsListComponent {
     return this.viewMode === ViewMode.Compact;
   }
 
+  onTopicSelectionChange(event: MatChipSelectionChange, topic: TopicSkill) {
+
+  }
+
+  onCustomTopicSelectionChange(event: MatChipSelectionChange, topic: TopicSkill) {
+
+  }
+
+  removeCustomTopic(customTopic: TopicSkill) {
+
+  }
+
+  addSuggestedTopic() {
+
+  }
+
+  addCustomTopic() {
+
+  }
+
+  cancelAddingTopic() {
+
+  }
+
+  trackByTopic(index: number, topic: TopicSkill): string {
+    return topic.value;
+  }
+
+  get addInput() {
+    return true;
+  }
+
   private initList() {
 
   }
 
   private initViewMode() {
     const savedViewMode = localStorage.getItem('consultationsViewMode');
-    this.viewMode = savedViewMode ? ViewMode[savedViewMode as keyof typeof ViewMode] : ViewMode.Detailed;
+    if (this.isViewMode(savedViewMode)) {
+      this.viewMode = savedViewMode;
+    }
+  }
+  
+  private isViewMode(value: any): value is ViewMode {
+    return Object.values(ViewMode).includes(value as ViewMode);
   }
 
   private initializeFiltersForm() {

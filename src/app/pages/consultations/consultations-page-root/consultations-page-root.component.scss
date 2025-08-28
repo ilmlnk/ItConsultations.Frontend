@@ -20,7 +20,7 @@
     --button-color: rgb(200, 200, 200);
   }
 
-  .header {
+  .cons-header {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -69,5 +69,11 @@
 @media (max-width: 768px) {
   .main-content {
     margin: 0;
+  }
+}
+
+@media (min-width: 1024px) {
+  .main-content {
+    margin: 5% 10% 5% 15%;
   }
 }

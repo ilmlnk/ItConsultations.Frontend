@@ -16,6 +16,7 @@ export class ConsultationsListPageComponent {
       title: 'Example',
       description: 'Example',
       price: 150,
+      currency: 'USD',
       thumbnailUrl: 'https://example.com',
       coachImageUrl: 'https://example.com',
       duration: 50,
@@ -47,6 +48,7 @@ export class ConsultationsListPageComponent {
       thumbnailUrl: 'https://example.com',
       coachImageUrl: 'https://example.com',
       duration: 50,
+      currency: 'USD',
       coach: {
         id: 1,
         firstName: 'John',
@@ -77,6 +79,7 @@ export class ConsultationsListPageComponent {
       title: 'Example',
       description: 'Example',
       price: 200,
+      currency: 'USD',
       thumbnailUrl: 'https://example.com',
       coachImageUrl: 'https://example.com',
       duration: 50,
