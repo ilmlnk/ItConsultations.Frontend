@@ -31,6 +31,8 @@ export class ConsultationsListComponent {
   showFiltersPanel: boolean = false;
   availableCategories: string[] = [];
   newTopicValue: string = '';
+  selectedConsultation: Consultation;
+  isBookingModalOpen: boolean = false;
   
   defaultTopics: TopicSkill[] = [
     { value: 'leadership', label: 'Leadership', selected: false },
@@ -128,6 +130,15 @@ export class ConsultationsListComponent {
 
   cancelAddingTopic() {
 
+  }
+
+  onOpenBookingModal(consultation: Consultation) {
+    this.selectedConsultation = consultation;
+    this.isBookingModalOpen = true;
+  }
+
+  onCloseBookingModal() {
+    this.isBookingModalOpen = false;
   }
 
   trackByTopic(index: number, topic: TopicSkill): string {

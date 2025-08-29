@@ -10,9 +10,12 @@ import { MatListModule } from '@angular/material/list';
 import { ToasterNotificationsService } from './services/notifications/toaster-notifications.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
+import { ModalWindowComponent } from './components/modal-window/modal-window.component';
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    ModalWindowComponent
+  ],
   imports: [
     MatIconModule,
     MatButtonModule,

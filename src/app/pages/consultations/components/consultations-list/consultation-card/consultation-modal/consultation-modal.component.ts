@@ -1,73 +1,116 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { ApplicationRef, Component, ComponentFactoryResolver, ComponentRef, EmbeddedViewRef, EventEmitter, Injector, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Consultation } from '../../../../../../shared/models/consultation';
 import { ToasterNotificationsService } from '../../../../../../shared/services/notifications/toaster-notifications.service';
+import { ModalWindowComponent } from '../../../../../../shared/components/modal-window/modal-window.component';
+import { animate, state, style, transition, trigger } from '@angular/animations';
 
 @Component({
   selector: 'cons-consultation-modal',
   standalone: false,
-  
+
   templateUrl: './consultation-modal.component.html',
-  styleUrl: './consultation-modal.component.scss'
+  styleUrl: './consultation-modal.component.scss',
+  animations: [
+    trigger('modalAnimation', [
+      state('void', style({
+        opacity: 0,
+        transform: 'scale(0.8) translateY(-20px)'
+      })),
+      state('*', style({
+        opacity: 1,
+        transform: 'scale(1) translateY(0)'
+      })),
+      
+      transition('void => *', [
+        animate('300ms cubic-bezier(0.35, 0, 0.25, 1)')
+      ]),
+      transition('* => void', [
+        animate('200ms cubic-bezier(0.35, 0, 0.25, 1)')
+      ])
+    ])
+  ]
 })
-export class ConsultationModalComponent {
-  @Input() model: Consultation;
-  @Input() isOpen: boolean = false;
+export class ConsultationModalComponent extends ModalWindowComponent implements OnInit, OnDestroy {
+  @Input() model!: Consultation;
+  @Output() bookConsultationSubmit = new EventEmitter<any>();
 
-  @Output() close = new EventEmitter<void>();
-  @Output() bookConsultationSubmit = new EventEmitter();
-
-  isLoading: boolean = false;
   consultationForm!: FormGroup;
+
+  private openModals: ComponentRef<ConsultationModalComponent>[] = [];
 
   constructor(
     public notificationService: ToasterNotificationsService,
-    private fb: FormBuilder
-  ) {}
-  
-  ngOnInit() {
+    private fb: FormBuilder,
+    private appRef: ApplicationRef,
+    private injector: Injector,
+    private resolver: ComponentFactoryResolver
+  ) {
+    super();
+  }
+
+  override ngOnInit() {
+    super.ngOnInit();
     this.initForm();
   }
 
-  ngOnDestroy() {
-    document.body.style.overflow = 'auto';
+  override ngOnDestroy() {
+    super.ngOnDestroy();
   }
 
-  onClose() {
-    this.isOpen = false;
+  protected override initializeModal(): void {}
+
+  protected override cleanupModal(): void {
+    if (this.consultationForm) {
+      this.consultationForm.reset();
+    }
+  }
+
+  protected override onModalOpen(): void {
+    super.onModalOpen();
+    this.resetFormErrors();
+  }
+  
+  protected override onModalClose(): void {
+    super.onModalClose();
     this.resetForm();
   }
 
-  onModalOpen() {
-    this.isOpen = true;
-    document.body.style.overflow = 'hidden';
+  protected override canCloseOnOverlayClick(): boolean {
+    return !this.isFormDirty();
   }
 
-  onModalClick(event: Event) {
-    event.stopPropagation();
+  protected override canCloseOnEscape(): boolean {
+    return !this.isLoading;
   }
 
-  onOverlayClick() {
-    this.onClose();
-  }
-
-  onSubmit() {
+  public onSubmit(): void {
     if (this.consultationForm.valid) {
-      this.isLoading = true;
+      this.setLoading(true);
+
       const formData = {
         ...this.consultationForm.value,
         consultationId: this.model.id
       };
 
-      this.bookConsultationSubmit.emit();
-      this.isLoading = false;
+      this.bookConsultationSubmit.emit(formData);
+      this.setLoading(false);
+
       this.notificationService.showSuccess(
-        'Consultations.Sucess',
+        'Consultations.Success',
         'Consultations.SuccessMessage'
       );
-      this.onClose();
+
+      this.hideWindow();
     } else {
       this.markFormGroupTouched();
+    }
+  }
+
+  public onClose(): void {
+    if (this.canCloseModal()) {
+      this.close.emit();
+      this.hideWindow();
     }
   }
 
@@ -84,7 +127,7 @@ export class ConsultationModalComponent {
   }
 
   get coachFullName() {
-    return `${this.model.coach.firstName} ${this.model.coach.lastName}`; 
+    return `${this.model.coach.firstName} ${this.model.coach.lastName}`;
   }
 
   private resetForm() {
@@ -106,5 +149,31 @@ export class ConsultationModalComponent {
       const control = this.consultationForm.get(key);
       control?.markAsTouched();
     });
+  }
+
+  private resetFormErrors(): void {
+    if (this.consultationForm) {
+      Object.keys(this.consultationForm.controls).forEach(key => {
+        this.consultationForm.get(key)?.setErrors(null);
+        this.consultationForm.get(key)?.markAsUntouched();
+        this.consultationForm.get(key)?.markAsPristine();
+      });
+    }
+  }
+
+  private isFormDirty(): boolean {
+    return this.consultationForm?.dirty;
+  }
+
+  private canCloseModal(): boolean {
+    if (this.isLoading) {
+      return false;
+    }
+    
+    if (this.isFormDirty()) {
+      return confirm('You have unsaved changes. Are you sure you want to close?');
+    }
+    
+    return true;
   }
 }

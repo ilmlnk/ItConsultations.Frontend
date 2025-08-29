@@ -9,20 +9,17 @@ import { EventEmitter } from '@angular/core';
   styleUrl: './consultation-card.component.scss'
 })
 export class ConsultationCardComponent {
-  @Input() model: Consultation;
+  @Input() model!: Consultation;
 
-  @Output() close = new EventEmitter<void>();
   @Output() openBookingModal = new EventEmitter<Consultation>();
-  @Output() bookingRequested = new EventEmitter<{consultation: any, formData: any}>();
-
-  isOpenModal: boolean = false;
+  @Output() bookingRequested = new EventEmitter<any>();
 
   constructor() {}
 
   ngOnInit() {
   }
 
-  onBookConsultation(): void {
+  openBookingConsultation() {
     this.openBookingModal.emit(this.model);
   }
 

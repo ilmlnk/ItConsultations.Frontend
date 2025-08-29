@@ -1,121 +1,93 @@
 <div class="modal-overlay" 
-     [class.modal-open]="isOpen" 
      *ngIf="isOpen"
-     (click)="onOverlayClick()"
-     (@modalAnimation.start)="onModalOpen()">
-  <div class="modal" (click)="onModalClick($event)">
+     [class.modal-open]="isOpen" 
+     (click)="onOverlayClick()">
+     
+  <div class="modal-container" (click)="onModalClick($event)">
     <div class="modal-header">
-      <div class="modal-header-title">Book Consultation</div>
-      <button mat-icon-button 
-              class="modal-close-button" 
-              (click)="onClose()"
-              type="button">
-        <mat-icon>close</mat-icon>
+      <h3 class="modal-title">Book Consultation</h3>
+      <button type="button" 
+              class="modal-close-btn"
+              (click)="onClose()">
+        ✕
       </button>
     </div>
-    
+  
     <div class="modal-body">
-      <mat-card class="consultation-info" *ngIf="model">
-        <div class="consultation-details">
-          <h3>{{ model.title }}</h3>
-          <div class="coach-info">
-            <img [src]="model.coach.imageUrl" 
-                 class="coach-avatar" 
-                 [alt]="coachFullName"
-                 onerror="this.src='assets/images/default-avatar.png'" />
-            <div class="coach-details">
-              <span class="coach-name">{{ coachFullName }}</span>
-              <span class="coach-position">
-                {{ model.coach.position }} - {{ model.coach.companyName }}
-              </span>
+      <div class="consultation-info" *ngIf="model">
+        <h4>{{ model.title }}</h4>
+        <div class="coach-info" *ngIf="model.coach">
+          <span class="coach-name">{{ coachFullName }}</span>
+          <span class="coach-position">{{ model.coach.position }}</span>
+        </div>
+        <div class="consultation-meta">
+          <span *ngIf="model.duration">Duration: {{ model.duration }}</span>
+          <span *ngIf="model.price">Price: {{ model.price }}</span>
+        </div>
+      </div>
+
+      <form [formGroup]="consultationForm" (ngSubmit)="onSubmit()" *ngIf="consultationForm">
+        <div class="form-group">
+          <label for="email">Email *</label>
+          <input type="email" 
+                 id="email"
+                 formControlName="email"
+                 placeholder="your@email.com">
+          <div class="error" *ngIf="isFieldInvalid('email')">
+            {{ getFieldError('email') }}
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="date">Date *</label>
+            <input type="date" 
+                   id="date"
+                   formControlName="date">
+            <div class="error" *ngIf="isFieldInvalid('date')">
+              Date is required
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="time">Time *</label>
+            <input type="time" 
+                   id="time"
+                   formControlName="time">
+            <div class="error" *ngIf="isFieldInvalid('time')">
+              Time is required
             </div>
           </div>
         </div>
-        <div class="consultation-meta">
-          <div class="duration">
-            <mat-icon>schedule</mat-icon>
-            <span>{{ model.duration }}</span>
-          </div>
-          <div class="price">
-            <mat-icon>attach_money</mat-icon>
-            <span>{{ model.price }}</span>
-          </div>
-        </div>
-      </mat-card>
 
-      <form class="consultation-form"
-            [formGroup]="consultationForm"
-            (ngSubmit)="onSubmit()"
-            novalidate>
-        
-        <div class="form-row">
-          <mat-form-field appearance="outline" class="full-width">
-            <mat-label>Email</mat-label>
-            <input matInput 
-                   type="email" 
-                   formControlName="email"
-                   placeholder="your@email.com">
-            <mat-error *ngIf="isFieldInvalid('email')">
-              {{ getFieldError('email') }}
-            </mat-error>
-          </mat-form-field>
+        <div class="form-group">
+          <label for="phone">Phone</label>
+          <input type="tel" 
+                 id="phone"
+                 formControlName="phone"
+                 placeholder="+1 (555) 123-4567">
         </div>
 
-        <div class="form-row">
-          <mat-form-field appearance="outline" class="half-width">
-            <mat-label>Date</mat-label>
-            <input matInput 
-                   type="date" 
-                   formControlName="date">
-            <mat-error *ngIf="isFieldInvalid('date')">
-              Date is required
-            </mat-error>
-          </mat-form-field>
-
-          <mat-form-field appearance="outline" class="half-width">
-            <mat-label>Time</mat-label>
-            <input matInput 
-                   type="time" 
-                   formControlName="time">
-            <mat-error *ngIf="isFieldInvalid('time')">
-              Time is required
-            </mat-error>
-          </mat-form-field>
-        </div>
-
-        <div class="form-row">
-          <mat-form-field appearance="outline" class="full-width">
-            <mat-label>Phone (Optional)</mat-label>
-            <input matInput 
-                   type="tel" 
-                   formControlName="phone"
-                   placeholder="+1 (555) 123-4567">
-          </mat-form-field>
-        </div>
-
-        <div class="form-row">
-          <mat-form-field appearance="outline" class="full-width">
-            <mat-label>Message (Optional)</mat-label>
-            <textarea matInput 
-                      formControlName="message"
-                      rows="3"
-                      placeholder="Tell us about your goals or questions..."></textarea>
-          </mat-form-field>
+        <div class="form-group">
+          <label for="message">Message</label>
+          <textarea id="message"
+                    formControlName="message"
+                    rows="3"
+                    placeholder="Tell us about your goals..."></textarea>
         </div>
 
         <div class="form-actions">
-          <button mat-button 
-                  type="button" 
+          <button type="button" 
+                  class="btn btn-secondary" 
                   (click)="onClose()"
-                  class="cancel-button">
+                  [disabled]="isLoading">
             Cancel
           </button>
-          <button mat-raised-button 
-                  color="primary" 
-                  type="submit"
-                  [disabled]="consultationForm.invalid"
-                  class="submit-button">
-            Book Consultation
+          <button type="submit" 
+                  class="btn btn-primary"
+                  [disabled]="consultationForm.invalid || isLoading">
+            <span *ngIf="isLoading">Loading...</span>
+            <span>Book Consultation</span>
           </button>
         </div>
       </form>
