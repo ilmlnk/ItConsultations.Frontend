@@ -2,6 +2,15 @@
   <mat-card class="consultations-list">
     <cons-consultations-list
     [consultations]="consultations"
+    (openBookingModal)="onOpenBookingModal($event)"
     ></cons-consultations-list>
   </mat-card>
 </div>
+
+<cons-consultation-modal
+    *ngIf="isBookingModalOpen"
+    [model]="selectedConsultation"
+    [isOpen]="isBookingModalOpen"
+    (close)="onCloseBookingModal()"
+>
+</cons-consultation-modal>

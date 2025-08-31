@@ -1,1 +1,3 @@
-<p>modal-window works!</p>
+<div class="modal-overlay" *ngIf="isOpen" [class.modal-open]="isOpen" [@modalAnimation] (click)="onOverlayClick()">
+    <ng-content></ng-content>
+</div>

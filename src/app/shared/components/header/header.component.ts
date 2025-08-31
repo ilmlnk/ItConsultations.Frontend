@@ -101,8 +101,8 @@ languages: Language[] = [
     this.themeService.toggleTheme();
   }
 
-  markAllAsRead() {
-
+  markAllAsRead(event: Event) {
+    event?.stopPropagation();
   }
 
   openNotification(notification: any) {
@@ -117,8 +117,8 @@ languages: Language[] = [
 
   }
 
-  viewAllNotifications() {
-
+  viewAllNotifications(event: Event) {
+    event.stopPropagation();
   }
 
   navigateToProfile() {

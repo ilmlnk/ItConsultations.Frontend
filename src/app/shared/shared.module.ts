@@ -10,12 +10,10 @@ import { MatListModule } from '@angular/material/list';
 import { ToasterNotificationsService } from './services/notifications/toaster-notifications.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
-import { ModalWindowComponent } from './components/modal-window/modal-window.component';
+import { ModalService } from './services/modal/modal.service';
 
 @NgModule({
-  declarations: [
-    ModalWindowComponent
-  ],
+  declarations: [],
   imports: [
     MatIconModule,
     MatButtonModule,
@@ -30,7 +28,8 @@ import { ModalWindowComponent } from './components/modal-window/modal-window.com
   exports: [],
   providers: [
     ConsultationsService,
-    ToasterNotificationsService
+    ToasterNotificationsService,
+    ModalService
   ]
 })
 export class SharedModule { }

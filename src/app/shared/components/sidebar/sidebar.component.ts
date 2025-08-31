@@ -22,14 +22,14 @@ export class SidebarComponent {
     { title: 'Dashboard', route: '/dashboard', icon: 'dashboard', tooltip: 'Dashboard' },
     { 
       title: 'Consultations', 
-      icon: 'support_agent', 
+      icon: 'connect_without_contact', 
       tooltip: 'Consultations',
       children: [
-        { title: 'Consultations', route: '/consultations-list', icon: 'support_agent', tooltip: 'Consultations' },
+        { title: 'Consultations', route: '/consultations-list', icon: 'connect_without_contact', tooltip: 'Consultations' },
         { title: 'Favorites', route: '/favorites', icon: 'favorite', tooltip: 'Favorites' }
       ]
     },
-    { title: 'Coaches', route: '/coaches', icon: 'sports_handball', tooltip: 'Coaches' },
+    { title: 'Coaches', route: '/coaches', icon: 'group', tooltip: 'Coaches' },
     { title: 'Students', route: '/students', icon: 'school', tooltip: 'Students' },
     { 
       title: 'Calendar', 
@@ -42,7 +42,7 @@ export class SidebarComponent {
       ]
     },
     { title: 'Achievements', route: '/achievements', icon: 'emoji_events', tooltip: 'Achievements' },
-    { title: 'Network', route: '/network', icon: 'groups', tooltip: 'Network' },
+    { title: 'Network', route: '/network', icon: 'diversity_3', tooltip: 'Network' },
     { title: 'Messenger', route: '/messenger', icon: 'chat', tooltip: 'Messenger' },
     { 
       title: 'E-learning',  

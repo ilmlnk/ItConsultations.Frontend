@@ -1,6 +1,7 @@
 import { Component, Input, Output } from '@angular/core';
 import { Consultation } from '../../../../../shared/models/consultation';
 import { EventEmitter } from '@angular/core';
+import { ConsultationsService } from '../../../../../shared/services/consultations/consultations.service';
 
 @Component({
   selector: 'cons-consultation-card',
@@ -14,9 +15,10 @@ export class ConsultationCardComponent {
   @Output() openBookingModal = new EventEmitter<Consultation>();
   @Output() bookingRequested = new EventEmitter<any>();
 
-  constructor() {}
+  constructor(private _consultationService: ConsultationsService) {}
 
   ngOnInit() {
+    this.loadFavoriteStatus();
   }
 
   openBookingConsultation() {
@@ -34,5 +36,10 @@ export class ConsultationCardComponent {
 
   get coachReviewsCount() {
     return this.model.coach.reviews.length;
+  }
+
+  private loadFavoriteStatus() {
+    this._consultationService.getFavoriteStatus(this.model.consId)
+      .subscribe(status => this.model.isFavorite = status);
   }
 }

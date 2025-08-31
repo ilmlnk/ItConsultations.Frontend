@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { Consultation } from '../../../shared/models/consultation';
 import { ConsultationsService } from '../../../shared/services/consultations/consultations.service';
 import { Language } from '../../../shared/enums/language.enum';
@@ -10,9 +10,13 @@ import { Language } from '../../../shared/enums/language.enum';
   styleUrl: './consultations-list-page.component.scss',
 })
 export class ConsultationsListPageComponent {
+  isBookingModalOpen: boolean = false;
+  selectedConsultation!: Consultation;
+
   consultations: Consultation[] = [
     {
       id: 1,
+      consId: '123465789',
       title: 'Example',
       description: 'Example',
       price: 150,
@@ -20,6 +24,7 @@ export class ConsultationsListPageComponent {
       thumbnailUrl: 'https://example.com',
       coachImageUrl: 'https://example.com',
       duration: 50,
+      isFavorite: true,
       coach: {
         id: 1,
         firstName: 'John',
@@ -42,6 +47,7 @@ export class ConsultationsListPageComponent {
     },
     {
       id: 2,
+      consId: '1234657888',
       title: 'Example',
       description: 'Example',
       price: 150,
@@ -49,6 +55,7 @@ export class ConsultationsListPageComponent {
       coachImageUrl: 'https://example.com',
       duration: 50,
       currency: 'USD',
+      isFavorite: false,
       coach: {
         id: 1,
         firstName: 'John',
@@ -76,6 +83,7 @@ export class ConsultationsListPageComponent {
     },
     {
       id: 2,
+      consId: '12346578874',
       title: 'Example',
       description: 'Example',
       price: 200,
@@ -83,6 +91,7 @@ export class ConsultationsListPageComponent {
       thumbnailUrl: 'https://example.com',
       coachImageUrl: 'https://example.com',
       duration: 50,
+      isFavorite: false,
       coach: {
         id: 1,
         firstName: 'John',
@@ -123,5 +132,40 @@ export class ConsultationsListPageComponent {
       .subscribe((consultations: Consultation[]) => {
         this.consultations = consultations;
       });
+  }
+
+  ngOnDestroy() {
+    this.enableBodyScroll();
+  }
+
+  onOpenBookingModal(consultation: Consultation) {
+    this.selectedConsultation = consultation;
+    this.isBookingModalOpen = true;
+    
+    this.disableBodyScroll();
+  }
+
+  onCloseBookingModal() {
+    this.isBookingModalOpen = false;
+    
+    this.enableBodyScroll();
+  }
+
+  private disableBodyScroll() {
+    const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+    document.body.classList.add('modal-open');
+    document.body.style.setProperty('--scrollbar-width', `${scrollbarWidth}px`);
+  }
+
+  private enableBodyScroll() {
+    document.body.classList.remove('modal-open');
+    document.body.style.removeProperty('--scrollbar-width');
+  }
+
+  @HostListener('document:keydown.escape', ['$event'])
+  onEscapeKey(event: KeyboardEvent) {
+    if (this.isBookingModalOpen) {
+      this.onCloseBookingModal();
+    }
   }
 }

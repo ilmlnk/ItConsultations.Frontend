@@ -35,7 +35,6 @@
     background-size: cover;
     background-position: center;
     transition: all 0.3s ease;
-    padding-bottom: 4em;
 
     background-attachment: fixed;
     
@@ -64,6 +63,15 @@
 
 .main-content {
     margin: 5% 17% 0 17%;
+}
+
+.cons-footer {
+  flex: 1;
+}
+
+.layout {
+  min-height: 100vh;
+  padding-bottom: 4em;
 }
 
 @media (max-width: 768px) {

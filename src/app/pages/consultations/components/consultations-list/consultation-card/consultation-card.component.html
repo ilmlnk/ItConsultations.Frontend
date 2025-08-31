@@ -15,17 +15,18 @@
       <div class="content-header">
         <h2 class="consultation-title">{{ model.title }}</h2>
         <div class="coach-info">
-          <h3 class="coach-name">{{ coachFullName }}</h3>
-          <span class="coach-position">{{ model.coach.position }} - {{ model.coach.companyName }}</span>
+          <div class="content-body">
+            <h3 class="coach-name">{{ coachFullName }}</h3>
+            <span class="coach-position">{{ model.coach.position }} - {{ model.coach.companyName }}</span>
+            <p class="consultation-description">
+              {{ model.description }}
+            </p>
+            <div>
+              <mat-icon>favorite</mat-icon>
+            </div>
+          </div>
         </div>
       </div>
-
-      <div class="content-body">
-        <p class="consultation-description">
-          {{ model.description }}
-        </p>
-      </div>
-
       <div class="content-footer">
         <button mat-raised-button color="primary" class="book-button" (click)="openBookingConsultation()">
           Book

@@ -12,21 +12,20 @@
                 </button>
                 <mat-menu #notificationsMenu="matMenu" class="notifications-menu header-menu" panelClass="header-menu-panel">
                     <div class="menu-header">
-                        <h3>Notifications</h3>
-                        <button mat-button color="primary" (click)="markAllAsRead()">
+                        <div *ngIf="notifications.length === 0" class="no-notifications">
+                            <mat-icon>notifications_off</mat-icon>
+                            <span>No notifications</span>
+                        </div>
+                        <button mat-button color="primary" (click)="markAllAsRead($event)">
                             Mark all as read
                         </button>
                     </div>
                     <mat-divider></mat-divider>
                     <mat-divider *ngIf="notifications.length > 0"></mat-divider>
-                    <button mat-menu-item (click)="viewAllNotifications()">
+                    <button mat-menu-item (click)="viewAllNotifications($event)">
                         <mat-icon>list</mat-icon>
                         <span>View all notifications</span>
                     </button>
-                    <div *ngIf="notifications.length === 0" class="no-notifications">
-                        <mat-icon>notifications_off</mat-icon>
-                        <span>No notifications</span>
-                    </div>
                 </mat-menu>
             </li>
             <li>

@@ -1,4 +1,4 @@
-import { Component, ElementRef, Input, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { Consultation } from '../../../../shared/models/consultation';
 import { ConsultationsService } from '../../../../shared/services/consultations/consultations.service';
 import { ToasterNotificationsService } from '../../../../shared/services/notifications/toaster-notifications.service';
@@ -22,6 +22,8 @@ interface TopicSkill {
 export class ConsultationsListComponent {
   @Input() consultations: Consultation[];
 
+  @Output() openBookingModal = new EventEmitter<Consultation>();
+
   @ViewChild('topicInput') topicInput!: ElementRef<HTMLInputElement>;
 
   filteredConsultations: Consultation[] = [];
@@ -31,9 +33,9 @@ export class ConsultationsListComponent {
   showFiltersPanel: boolean = false;
   availableCategories: string[] = [];
   newTopicValue: string = '';
-  selectedConsultation: Consultation;
   isBookingModalOpen: boolean = false;
-  
+  selectedConsultation: Consultation;
+
   defaultTopics: TopicSkill[] = [
     { value: 'leadership', label: 'Leadership', selected: false },
     { value: 'communication', label: 'Communication', selected: false },
@@ -60,6 +62,10 @@ export class ConsultationsListComponent {
     this.initList();
     this.initViewMode();
     this.initializeFiltersForm();
+  }
+
+  onOpenBookingModal(consultation: Consultation) {
+    this.openBookingModal.emit(consultation);
   }
 
   setDetailedView() {
@@ -130,15 +136,6 @@ export class ConsultationsListComponent {
 
   cancelAddingTopic() {
 
-  }
-
-  onOpenBookingModal(consultation: Consultation) {
-    this.selectedConsultation = consultation;
-    this.isBookingModalOpen = true;
-  }
-
-  onCloseBookingModal() {
-    this.isBookingModalOpen = false;
   }
 
   trackByTopic(index: number, topic: TopicSkill): string {

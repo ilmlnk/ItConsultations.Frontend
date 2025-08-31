@@ -4,6 +4,7 @@ import { Consultation } from '../../../../../../shared/models/consultation';
 import { ToasterNotificationsService } from '../../../../../../shared/services/notifications/toaster-notifications.service';
 import { ModalWindowComponent } from '../../../../../../shared/components/modal-window/modal-window.component';
 import { animate, state, style, transition, trigger } from '@angular/animations';
+import { ConsultationsService } from '../../../../../../shared/services/consultations/consultations.service';
 
 @Component({
   selector: 'cons-consultation-modal',
@@ -36,15 +37,12 @@ export class ConsultationModalComponent extends ModalWindowComponent implements 
   @Output() bookConsultationSubmit = new EventEmitter<any>();
 
   consultationForm!: FormGroup;
-
-  private openModals: ComponentRef<ConsultationModalComponent>[] = [];
+  competencies: string[] = [];
 
   constructor(
     public notificationService: ToasterNotificationsService,
-    private fb: FormBuilder,
-    private appRef: ApplicationRef,
-    private injector: Injector,
-    private resolver: ComponentFactoryResolver
+    private _consultationService: ConsultationsService,
+    private fb: FormBuilder
   ) {
     super();
   }
@@ -52,6 +50,7 @@ export class ConsultationModalComponent extends ModalWindowComponent implements 
   override ngOnInit() {
     super.ngOnInit();
     this.initForm();
+    this.competencies = [...this.model.coach.topics, ...this.model.coach.skills];
   }
 
   override ngOnDestroy() {
@@ -126,8 +125,16 @@ export class ConsultationModalComponent extends ModalWindowComponent implements 
     return '';
   }
 
+  sendRequest() {
+    
+  }
+
   get coachFullName() {
     return `${this.model.coach.firstName} ${this.model.coach.lastName}`;
+  }
+
+  get competenciesList(): string[] {
+    return this.competencies;
   }
 
   private resetForm() {

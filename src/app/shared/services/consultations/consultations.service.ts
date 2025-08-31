@@ -39,4 +39,8 @@ export class ConsultationsService {
     return new Observable<Consultation[]>();
     // return this.http.get<Consultation[]>(`${this.apiUrl}/recent/${userId}`)
   }
+
+  getFavoriteStatus(consId: string): Observable<boolean> {
+    return this.http.get<boolean>(`${this.apiUrl}/favorite/${consId}`);
+  }
 }

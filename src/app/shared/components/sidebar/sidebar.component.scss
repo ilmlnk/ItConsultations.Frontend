@@ -2,8 +2,9 @@
     position: fixed;
     left: var(--sidebar-position-left);
     width: var(--sidebar-width);
-    top: 50%;
+    top: 50vh;
     transform: translateY(-50%);
+    max-height: calc(100vh - 200px);
 
     background: rgba(240, 245, 250, 0.4);
     border: 1px solid rgba(255, 255, 255, 0.2);
@@ -11,7 +12,6 @@
     backdrop-filter: blur(18px);
     -webkit-backdrop-filter: blur(18px);
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.06);
-    filter: url(#glass);
     padding: 0.5rem 0;
 
     ul {

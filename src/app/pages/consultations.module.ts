@@ -61,6 +61,7 @@ import { ToasterNotificationComponent } from '../shared/components/toaster-notif
 import { BrowserModule } from '@angular/platform-browser';
 import { LanguageFlagPipe } from '../shared/pipes/language-flag.pipe';
 import { TranslatePipe } from '../shared/pipes/translate.pipe';
+import { ModalWindowComponent } from '../shared/components/modal-window/modal-window.component';
 
 @NgModule({
   declarations: [
@@ -100,6 +101,7 @@ import { TranslatePipe } from '../shared/pipes/translate.pipe';
     RecentNotesComponent,
     PersonalizedAchievementsComponent,
     ToasterNotificationComponent,
+    ModalWindowComponent
   ],
   imports: [
     FormsModule,
