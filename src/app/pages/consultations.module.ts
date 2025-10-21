@@ -62,6 +62,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { LanguageFlagPipe } from '../shared/pipes/language-flag.pipe';
 import { TranslatePipe } from '../shared/pipes/translate.pipe';
 import { ModalWindowComponent } from '../shared/components/modal-window/modal-window.component';
+import { LandingPageComponent } from './consultations/landing-page/landing-page.component';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
@@ -101,7 +105,8 @@ import { ModalWindowComponent } from '../shared/components/modal-window/modal-wi
     RecentNotesComponent,
     PersonalizedAchievementsComponent,
     ToasterNotificationComponent,
-    ModalWindowComponent
+    ModalWindowComponent,
+    LandingPageComponent
   ],
   imports: [
     FormsModule,
@@ -122,6 +127,7 @@ import { ModalWindowComponent } from '../shared/components/modal-window/modal-wi
     MatDatepickerModule,
     MatNativeDateModule,
     MatButtonModule,
+    MatCheckboxModule,
     MatRadioModule,
     BrowserAnimationsModule,
     MatAutocompleteModule,
@@ -134,9 +140,10 @@ import { ModalWindowComponent } from '../shared/components/modal-window/modal-wi
     BrowserAnimationsModule,
     BrowserModule,
     LanguageFlagPipe,
-    TranslatePipe
+    TranslatePipe,
+    FontAwesomeModule,
+    MatProgressSpinnerModule
   ],
-  
   exports: [
     MatDialogModule,
     MatChipsModule,

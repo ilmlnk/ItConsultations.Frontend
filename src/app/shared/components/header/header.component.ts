@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Subject, takeUntil } from 'rxjs';
 import { DarkModeService } from '../../services/dark-mode/dark-mode.service';
 import { Language } from '../../models/language';
+import { AuthService } from '../../services/auth/auth.service';
 
 @Component({
   selector: 'cons-header',
@@ -69,7 +70,10 @@ languages: Language[] = [
     { code: 'BE', name: 'Беларуская', countryCode: 'BY' }
   ];
 
-  constructor(public themeService: DarkModeService) {
+  constructor(
+    public themeService: DarkModeService,
+    private _authService: AuthService
+  ) {
     this.themeService.isDarkMode$
       .pipe(takeUntil(this.destroy$))
       .subscribe(isDark => {
@@ -139,5 +143,9 @@ languages: Language[] = [
 
   get beta() {
     return "BETA";
+  }
+
+  get isAuthenticated(): boolean {
+    return this._authService.isAuthenticated;
   }
 }

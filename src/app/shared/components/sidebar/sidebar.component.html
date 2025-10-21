@@ -1,4 +1,4 @@
-<div class="sidebar">
+<div *ngIf="isAuthenticated" class="sidebar">
     <nav>
         <ul class="sidebar-links">
             <li *ngFor="let item of items; let i = index; trackBy: trackByFn" 

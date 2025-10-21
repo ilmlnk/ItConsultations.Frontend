@@ -4,7 +4,7 @@
             <h3 class="logo-text">WaveIT.dev</h3>
         </div>
         <ul class="header-buttons">
-            <li>
+            <li *ngIf="isAuthenticated">
                 <button mat-icon-button [matMenuTriggerFor]="notificationsMenu">
                     <mat-icon [matBadge]="notificationCount" matBadgeColor="warn" matBadgeSize="small">
                         notifications
@@ -53,7 +53,7 @@
                     <mat-icon>report</mat-icon>
                 </button>
             </li>
-            <li>
+            <li *ngIf="isAuthenticated">
                 <button mat-icon-button [matMenuTriggerFor]="userMenu">
                     <mat-icon>person</mat-icon>
                 </button>
@@ -86,6 +86,7 @@
                     </button>
                 </mat-menu>
             </li>
+            <button *ngIf="!isAuthenticated" mat-button routerLink="/login">Login</button>
         </ul>
     </header>
 </div>

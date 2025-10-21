@@ -11,6 +11,7 @@ import { ToasterNotificationsService } from './services/notifications/toaster-no
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { ModalService } from './services/modal/modal.service';
+import { AuthService } from './services/auth/auth.service';
 
 @NgModule({
   declarations: [],
@@ -23,13 +24,14 @@ import { ModalService } from './services/modal/modal.service';
     MatDatepickerModule,
     MatListModule,
     BrowserAnimationsModule,
-    BrowserModule,
+    BrowserModule
   ],
   exports: [],
   providers: [
     ConsultationsService,
     ToasterNotificationsService,
-    ModalService
+    ModalService,
+    AuthService
   ]
 })
 export class SharedModule { }

@@ -9,12 +9,11 @@ import { ToasterNotification } from '../../models/toaster-notification';
 export class ToasterNotificationsService {
   private notifications$ = new BehaviorSubject<ToasterNotification[]>([]);
   private visibleNotifications$ = new BehaviorSubject<ToasterNotification[]>([]);
-  private readonly maxVisibleNotifications = 3;
 
-  constructor() {}
+  constructor() { }
 
   get visibleNotifications(): Observable<ToasterNotification[]> {
-    return this.visibleNotifications$.asObservable();
+    return this.notifications$.asObservable();
   }
 
   get allNotifications(): Observable<ToasterNotification[]> {
@@ -59,120 +58,82 @@ export class ToasterNotificationsService {
 
   closeNotification(id: string) {
     const allNotifications = this.notifications$.value;
-    const notificationToRemove = allNotifications.find((n) => n.id === id);
-
-    if (notificationToRemove?.timeoutId) {
-      clearTimeout(notificationToRemove.timeoutId);
-    }
-
     const filteredNotifications = allNotifications.filter((n) => n.id !== id);
     this.notifications$.next(filteredNotifications);
-
-    this.updateVisibleNotifications();
   }
 
   closeAllNotifications() {
     this.notifications$.next([]);
     this.visibleNotifications$.next([]);
   }
-
   resumeNotification(id: string) {
-    const allNotifications = this.notifications$.value;
-    const notification = allNotifications.find((n) => n.id === id);
+    const allNotifications = [...this.notifications$.value];
+    const notificationIndex = allNotifications.findIndex((n) => n.id === id);
 
-    if (
-      notification?.isPaused &&
-      notification.pausedAt &&
-      notification.duration
-    ) {
-      const elapsed = notification.pausedAt - notification.timestamp.getTime();
-      const remaining = notification.duration - elapsed;
+    if (notificationIndex > -1) {
+      const notification = allNotifications[notificationIndex];
 
-      if (remaining > 0) {
-        notification.timeoutId = setTimeout(() => {
+      if (notification.isPaused && notification.duration) {
+        const now = Date.now();
+        const elapsed = notification.elapsedBeforePause || 0;
+        const remaining = notification.duration - elapsed;
+
+        if (remaining > 0) {
+          notification.isPaused = false;
+          notification.startTimestamp = now;
+          notification.pausedAt = undefined;
+          notification.timeoutId = setTimeout(() => {
+            this.closeNotification(id);
+          }, remaining);
+
+          this.notifications$.next(allNotifications);
+        } else {
           this.closeNotification(id);
-        }, remaining);
+        }
       }
-
-      notification.isPaused = false;
-      delete notification.pausedAt;
-
-      this.updateNotificationInArray(notification);
     }
   }
 
   pauseNotification(id: string) {
-    const allNotifications = this.notifications$.value;
-    const notification = allNotifications.find((n) => n.id === id);
+    const allNotifications = [...this.notifications$.value];
+    const notificationIndex = allNotifications.findIndex((n) => n.id === id);
 
-    if (notification?.timeoutId) {
-      clearTimeout(notification.timeoutId);
-      notification.isPaused = true;
-      notification.pausedAt = Date.now();
+    if (notificationIndex > -1) {
+      const notification = allNotifications[notificationIndex];
 
-      this.updateNotificationInArray(notification);
+      if (!notification.isPaused) {
+        notification.isPaused = true;
+        this.notifications$.next(allNotifications);
+      }
     }
   }
 
   private addNotification(
-    notification: Omit<ToasterNotification, 'id' | 'timestamp'>
+    notification: Omit<ToasterNotification, 'id' | 'timestamp' | 'count'>
   ): string {
-    const id = this.generateId();
+    let allNotifications = [...this.notifications$.value];
+    const now = Date.now();
+
     const newNotification: ToasterNotification = {
       ...notification,
-      id,
-      timestamp: new Date(),
-      duration: 8000
+      id: this.generateId(),
+      timestamp: new Date(now),
+      duration: 8000,
+      startTimestamp: now,
+      elapsedBeforePause: 0
     };
 
-    const allNotifications = [...this.notifications$.value, newNotification];
-    this.notifications$.next(allNotifications);
-
-    this.updateVisibleNotifications();
-
     if (newNotification.duration && newNotification.duration > 0) {
-      const timeoutId = setTimeout(() => {
-        this.closeNotification(id);
+      newNotification.timeoutId = setTimeout(() => {
+        this.closeNotification(newNotification.id);
       }, newNotification.duration);
-
-      this.updateNotificationInArray({ ...newNotification, timeoutId });
     }
 
-    return id; 
-  }
+    allNotifications.push(newNotification);
 
-  private showNotificationWithAction(
-    title: string,
-    message: string,
-    actionText: string,
-    actionCallback: () => void,
-    type: NotificationType.Info,
-    duration: number = 0
-  ) {
-    return this.addNotification({
-      title,
-      message,
-      type,
-      duration,
-      action: {
-        text: actionText,
-        callback: actionCallback,
-      },
-    });
-  }
-
-  private updateNotificationInArray(updatedNotification: ToasterNotification) {
-    const allNotifications = this.notifications$.value.map((n) =>
-      n.id === updatedNotification.id ? { ...updatedNotification } : n
-    );
     this.notifications$.next(allNotifications);
-    this.updateVisibleNotifications();
-  }
 
-  private updateVisibleNotifications() {
-    const allNotifications = this.notifications$.value;
-    const newestNotifications = allNotifications.slice(-this.maxVisibleNotifications);
-    this.visibleNotifications$.next(newestNotifications);
+    return newNotification.id;
   }
 
   private generateId() {

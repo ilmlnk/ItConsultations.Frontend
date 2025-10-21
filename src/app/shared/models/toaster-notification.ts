@@ -10,9 +10,8 @@ export interface ToasterNotification {
   isVisible?: boolean;
   isPaused?: boolean;
   pausedAt?: number;
+  count?: number;
+  startTimestamp?: number;
+  elapsedBeforePause?: number;
   timeoutId?: any;
-  action?: {
-    text: string;
-    callback: () => void;
-  };
 }

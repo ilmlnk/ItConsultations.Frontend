@@ -18,6 +18,8 @@
 }
 
 .notifications-wrapper {
+  position: relative;
+  isolation: isolate;
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -31,12 +33,59 @@
 }
 
 .notification-item {
+  width: 100%;
   background-color: var(--glass-bg-primary);
   backdrop-filter: blur(18px);
   border-radius: 8px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   position: relative;
   transition: transform 0.2s ease;
+}
+
+.unique-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  z-index: 10; 
+  position: relative;
+}
+
+.grouped-stack {
+  margin-top: 12px; 
+  position: relative;
+  min-height: 90px;
+  margin-bottom: 12px;
+
+  .grouped-notification-item {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    transition: all 0.4s cubic-bezier(0.21, 1.02, 0.73, 1);
+
+    &:nth-last-child(1) {
+      transform: scale(1) translateY(0);
+      opacity: 1;
+      z-index: 3;
+    }
+
+    &:nth-last-child(2) {
+      transform: scale(0.95) translateY(-10px);
+      opacity: 0.8;
+      z-index: 2;
+    }
+
+    &:nth-last-child(3) {
+      transform: scale(0.90) translateY(-20px);
+      opacity: 0.6;
+      z-index: 1;
+    }
+
+    &:nth-last-child(n + 4) {
+      transform: scale(0.85) translateY(-30px);
+      opacity: 0;
+      z-index: 0;
+    }
+  }
 }
 
 .notification-item:hover {
@@ -97,7 +146,7 @@
 
   .notification-timestamp {
     font-size: 12px;
-    color: #999;
+    color: #333;
     flex-shrink: 0;
     white-space: nowrap;
   }
@@ -130,7 +179,7 @@
 
 .notification-header {
   display: flex;
-  align-items: stretch;
+  align-items: center;
   justify-content: space-between;
   width: 100%;
 }
@@ -139,6 +188,25 @@
   display: flex;
   align-items: center;
   gap: 8px;
+}
+
+.notification-header-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  .notification-count {
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    background-color: #212529;
+    color: white;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+  }
 }
 
 .notification-close-btn {
@@ -167,59 +235,8 @@
   right: 0;
   height: 3px;
   background: rgba(0, 0, 0, 0.1);
+  border-radius: 0 0 0 4px;
   overflow: hidden;
-}
-
-.notification-progress-bar {
-  height: 100%;
-  width: 100%;
-  background: linear-gradient(90deg,
-      rgba(255, 255, 255, 0.8) 0%,
-      rgba(255, 255, 255, 0.4) 100%);
-  border-radius: 0 4px 4px 6px;
-  animation: progressBar linear forwards;
-}
-
-.notification-progress-bar.paused {
-  animation-play-state: paused;
-}
-
-.notification-success .notification-progress-bar {
-  background: linear-gradient(90deg,
-      rgba(76, 175, 80, 0.8) 0%,
-      rgba(76, 175, 80, 0.6) 100%);
-}
-
-.notification-error .notification-progress-bar {
-  background: linear-gradient(90deg,
-      rgba(244, 67, 54, 0.8) 0%,
-      rgba(244, 67, 54, 0.6) 100%);
-}
-
-.notification-warning .notification-progress-bar {
-  background: linear-gradient(90deg,
-      rgba(255, 152, 0, 0.8) 0%,
-      rgba(255, 152, 0, 0.6) 100%);
-}
-
-.notification-info .notification-progress-bar {
-  background: linear-gradient(90deg,
-      rgba(33, 150, 243, 0.8) 0%,
-      rgba(33, 150, 243, 0.6) 100%);
-}
-
-.notification-item:hover .notification-progress-bar {
-  animation-play-state: paused;
-}
-
-@keyframes progressBar {
-  from {
-    width: 100%;
-  }
-
-  to {
-    width: 0%;
-  }
 }
 
 .notification-success {

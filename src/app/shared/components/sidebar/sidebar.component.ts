@@ -1,5 +1,6 @@
-import { Component, Input, QueryList, ViewChildren } from '@angular/core';
+import { Component, inject, Input, QueryList, ViewChildren } from '@angular/core';
 import { MatMenuTrigger } from '@angular/material/menu';
+import { AuthService } from '../../services/auth/auth.service';
 
 export interface MenuItem {
   title: string;
@@ -55,6 +56,8 @@ export class SidebarComponent {
       ]}
   ];
 
+  private _authService: AuthService = inject(AuthService);
+
   getMenuId(index: number): string {
     return `menu-${index}`;
   }
@@ -98,5 +101,9 @@ export class SidebarComponent {
 
   onMenuAction(item: any) {
 
+  }
+
+  get isAuthenticated(): boolean {
+    return this._authService.isAuthenticated;
   }
 }

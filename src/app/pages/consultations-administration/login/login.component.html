@@ -1,5 +1,61 @@
-<div>
-    <div>
-        <h1>Login</h1>
+<div class="login-page">
+    <div class="login-container" [ngSwitch]="currentStep">
+        <ng-container *ngSwitchCase="'Login'">
+            <h1>Welcome back!</h1>
+            <label>Log in to your account using...</label>
+            <div class="third-party-login">
+                <button (click)="thirdPartyLogin('google')">
+                    <fa-icon [icon]="faGoogle"></fa-icon>
+                    <span>Google</span>
+                </button>
+                <button (click)="thirdPartyLogin('facebook')">
+                    <fa-icon [icon]="faFacebook">facebook</fa-icon>
+                    <span>Facebook</span>
+                </button>
+                <button (click)="thirdPartyLogin('github')">
+                    <fa-icon [icon]="faGithub"></fa-icon>
+                    <span>Github</span>
+                </button>
+            </div>
+            <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                <div class="form-group">
+                    <input type="text" id="loginIdentity" formControlName="loginIdentity"
+                        placeholder="Email or Username">
+                </div>
+                <div class="form-group">
+                    <input type="password" id="password" formControlName="password" placeholder="Password">
+                </div>
+                <div class="form-options">
+                    <mat-checkbox formControlName="rememberMe" color="primary">
+                        Remember me
+                    </mat-checkbox>
+
+                    <a class="forgot-link" (click)="onExampleError()">Forgot your password?</a>
+                </div>
+                <button type="submit" [disabled]="!loginForm.valid">Login</button>
+            </form>
+        </ng-container>
+        
+        <ng-container *ngSwitchCase="'RoleSelection'">
+            <h1>One last step!</h1>
+            <label>Are you joining as a Student or a Coach?</label>
+
+            <div class="role-selection">
+                <button mat-flat-button color="primary" (click)="onRoleSelected(studentRole)">
+                    I am a Student
+                </button>
+                <button mat-stroked-button color="primary" (click)="onRoleSelected(coachRole)">
+                    I am a Coach
+                </button>
+            </div>
+        </ng-container>
+
+        <ng-container *ngSwitchCase="'Loading'">
+            <div class="loading-container">
+                <mat-spinner diameter="28"></mat-spinner>
+                <label>Loading, please wait...</label>
+            </div>
+        </ng-container>
     </div>
 </div>
+<cons-toaster-notification></cons-toaster-notification>
