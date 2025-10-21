@@ -4,7 +4,7 @@ import { CoachesListPageComponent } from './consultations/coaches-list-page/coac
 import { ConsultationsListPageComponent } from './consultations/consultations-list-page/consultations-list-page.component';
 import { ConsultationsRoutingModule } from './consultations-routing.module';
 import { CreateCoachPageComponent } from './consultations-administration/create-coach-page/create-coach-page.component';
-import { RegisterStudentPageComponent } from './consultations-administration/register-student-page/register-student-page.component';
+import { RegisterStudentPageComponent } from './consultations-administration/register-page/register-page.component';
 import { LoginComponent } from './consultations-administration/login/login.component';
 import { ConsultationsPageRootComponent } from './consultations/consultations-page-root/consultations-page-root.component';
 import { HeaderComponent } from '../shared/components/header/header.component';

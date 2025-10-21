@@ -1,5 +1,5 @@
 import { inject, Injectable } from '@angular/core';
-import { BehaviorSubject, catchError, firstValueFrom, from, Observable, of, switchMap, throwError } from 'rxjs';
+import { BehaviorSubject, catchError, firstValueFrom, from, Observable, of, switchMap, tap, throwError } from 'rxjs';
 import { Router } from '@angular/router';
 import { UserRegisterModel } from '../../models/user-register-model';
 import { HttpClient } from '@angular/common/http';
@@ -17,12 +17,13 @@ import {
   UserCredential,
   onAuthStateChanged,
   RecaptchaVerifier,
-  User,
+  User as FirebaseUser,
   ConfirmationResult,
   signInWithPhoneNumber,
   sendPasswordResetEmail,
   signInWithRedirect,
-  getRedirectResult
+  getRedirectResult,
+  UserProfile
 } from 'firebase/auth';
 import { Environment } from '../../../../environment';
 import { UserRole } from '../../enums/user-role';
@@ -42,14 +43,12 @@ export class AuthService {
   private _http: HttpClient = inject(HttpClient);
   private _router: Router = inject(Router);
   private _appSettings: SettingsService = inject(SettingsService);
-  private _currentUserSubject = new BehaviorSubject<User | null>(null);
+  private _currentUserSubject = new BehaviorSubject<FirebaseUser | null>(null);
   private _recaptchaVerifier: RecaptchaVerifier | undefined;
+  private _userProfileSubject = new BehaviorSubject<UserProfile | null>(null);
 
-  public currentUser$: Observable<User | null> = this._currentUserSubject.asObservable();
-
-  get currentUser(): User | null {
-    return this._currentUserSubject.value;
-  }
+  public currentUser$: Observable<FirebaseUser | null> = this._currentUserSubject.asObservable();
+  public userProfile$: Observable<UserProfile | null> = this._userProfileSubject.asObservable();
 
   constructor() {
     this._app = initializeApp(Environment.firebaseConfig);
@@ -57,6 +56,12 @@ export class AuthService {
 
     onAuthStateChanged(this._auth, (user) => {
       this._currentUserSubject.next(user);
+
+      if (user) {
+        this.fetchAndSetUserProfile(user.uid).subscribe();
+      } else {
+        this._userProfileSubject.next(null);
+      }
     });
   }
 
@@ -66,7 +71,7 @@ export class AuthService {
     ).pipe(
       switchMap((userCredential) => {
         const dto = ConsultationsMapper.mapUserRegistrationModel(formData, userCredential);
-        return this._http.post<User>(`${this._appSettings.currentAppSettings.serviceUrl}${this._apiUrlPost}/register`, dto);
+        return this._http.post<FirebaseUser>(`${this._appSettings.currentAppSettings.serviceUrl}${this._apiUrlPost}/register`, dto);
       })
     )
   }
@@ -113,7 +118,7 @@ export class AuthService {
   async syncUserWithBackend(
     userCredential: UserCredential,
     role: UserRole
-  ): Promise<void> {
+  ): Promise<UserProfile | null> {
     const user = userCredential.user;
 
     const firstName = user.displayName?.split(' ')[0] || '';
@@ -130,9 +135,10 @@ export class AuthService {
     const registerUrl = `${this._appSettings.currentAppSettings.serviceUrl}${this._apiUrlPost}/register`; // Use your register endpoint
 
     try {
-      await firstValueFrom(this._http.post<any>(registerUrl, dto));
+      const createdProfile = await firstValueFrom(this._http.post<UserProfile>(registerUrl, dto));
+      this._userProfileSubject.next(createdProfile);
+      return createdProfile;
     } catch (backendError) {
-      console.error('Backend sync failed: ', backendError);
       const message = (backendError as any)?.error?.message;
       throw new Error(message);
     }
@@ -205,30 +211,51 @@ export class AuthService {
     await this._auth.signOut();
     this._router.navigate(['/']);
   }
-
+/*
   async getIdToken(): Promise<string | null> {
-    if (this.currentUser) {
-      return await this.currentUser.getIdToken();
+    const user = this.currentUser$;
+
+    if (user) {
+      const { getIdToken } = await import('firebase/auth');
+      return await getIdToken(user);
     }
 
     return null;
   }
 
   async updateProfile(displayName: string, photoUrl: string): Promise<void> {
-    if (this.currentUser) {
+    if (this.currentUser$) {
       const { updateProfile } = await import('firebase/auth');
-      await updateProfile(this.currentUser, {
-        displayName: displayName || this.currentUser.displayName,
-        photoURL: photoUrl || this.currentUser.photoURL
+      await updateProfile(this.currentUser$, {
+        displayName: displayName || this.currentUser$.displayName,
+        photoURL: photoUrl || this.currentUser$.photoURL
       })
     }
   }
-
+*/
   handleRedirectResult(): Promise<UserCredential | null> {
     return getRedirectResult(this._auth);
   }
 
+  private fetchAndSetUserProfile(firebaseUid: string): Observable<UserProfile | null> {
+    const url = `${this._appSettings.currentAppSettings.serviceUrl}${this._apiUrlGet}/profile/${firebaseUid}`;
+
+    return this._http.get<UserProfile>(url).pipe(
+      tap(profile => {
+        this._userProfileSubject.next(profile);
+      }),
+      catchError(error => {
+        this._userProfileSubject.next(null);
+        return of(null);
+      })
+    );
+  }
+
   get isAuthenticated(): boolean {
     return !!this._currentUserSubject.value;
+  }
+
+  get currentUserProfile(): UserProfile | null {
+    return this._userProfileSubject.value;
   }
 }

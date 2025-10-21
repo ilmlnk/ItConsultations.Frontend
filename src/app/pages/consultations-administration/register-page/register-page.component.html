@@ -1,0 +1,115 @@
+<div class="page-container">
+    <div class="page-wrapper">
+        <div class="glass-form">
+            <h1 class="form-title">Create Your Account</h1>
+            <p class="form-subtitle">Join our community and start your learning journey!</p>
+            <form>
+                <div class="form-layout">
+                    <div class="form-column-left">
+                        <div class="form-row">
+                            <mat-form-field appearance="outline">
+                                <mat-label>First name</mat-label>
+                                <input matInput placeholder="e.g., Ivan">
+                            </mat-form-field>
+                            <mat-form-field appearance="outline">
+                                <mat-label>Last name</mat-label>
+                                <input matInput placeholder="e.g., Kovalenko">
+                            </mat-form-field>
+                        </div>
+
+                        <div class="form-row">
+                            <mat-form-field appearance="outline">
+                                <mat-label>Birth date</mat-label>
+                                <input matInput [matDatepicker]="picker">
+                                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                <mat-datepicker #picker></mat-datepicker>
+                            </mat-form-field>
+
+                            <mat-form-field appearance="outline">
+                                <mat-label>Country</mat-label>
+                                <input matInput
+                                       type="text" 
+                                       [(ngModel)]="countryInput"
+                                       (ngModelChange)="onCountryInputChanged($event)"
+                                       [ngModelOptions]="{standalone: true}"
+                                       placeholder="Start typing your country..."
+                                       [matAutocomplete]="auto">
+                                <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayCountry" (optionSelected)="onCountrySelected($event.option.value)">
+                                    <mat-option *ngFor="let country of filteredCountries" [value]="country">
+                                        {{ country.name }}
+                                    </mat-option>
+                                    <mat-option *ngIf="filteredCountries.length === 0 && countryInput">
+                                        No countries found matching "{{countryInput}}"
+                                    </mat-option>
+                                </mat-autocomplete>
+                                <mat-error *ngIf="hasError('country', 'required')">
+                                    Country is required
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div class="radio-group">
+                            <div class="radios">
+                                <label class="group-label">Gender</label>
+                                <mat-radio-group aria-label="Select a gender">
+                                    <mat-radio-button value="male">Male</mat-radio-button>
+                                    <mat-radio-button value="female">Female</mat-radio-button>
+                                    <mat-radio-button value="other">Other</mat-radio-button>
+                                </mat-radio-group>
+                            </div>
+                            <div class="radios">
+                                <label class="group-label">Role</label>
+                                <mat-radio-group aria-label="Select a gender">
+                                    <mat-radio-button value="student">Student</mat-radio-button>
+                                    <mat-radio-button value="coach">Coach</mat-radio-button>
+                                </mat-radio-group>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <mat-form-field appearance="outline">
+                                <mat-label>Email</mat-label>
+                                <input matInput type="email" placeholder="you@example.com">
+                                <mat-error *ngIf="registrationForm.hasError('email')">Incorrect email</mat-error>
+                            </mat-form-field>
+                            <mat-form-field appearance="outline">
+                                <mat-label>Username</mat-label>
+                                <input matInput placeholder="your_username">
+                                <mat-error *ngIf="registrationForm.hasError('username')">Username is already taken</mat-error>
+                                <mat-error *ngIf="registrationForm.hasError('username')">Username is already taken</mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div class="form-row">
+                            <mat-form-field appearance="outline">
+                                <mat-label>Password</mat-label>
+                                <input matInput type="password" placeholder="••••••••">
+                            </mat-form-field>
+                            <mat-form-field appearance="outline">
+                                <mat-label>Confirm password</mat-label>
+                                <input matInput type="password" placeholder="••••••••">
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="form-column-right">
+                        <label for="file-upload" class="photo-upload-section">
+                            <div id="upload-prompt"
+                                style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                                <mat-icon class="upload-icon"
+                                    style="font-size: 3rem; width: auto; height: auto;">cloud_upload</mat-icon>
+                                <p style="margin-top: 0.5rem; font-size: 0.875rem; color: rgba(255,255,255,0.7);">Click
+                                    to upload photo or drag and drop</p>
+                                <p style="font-size: 0.75rem; color: rgba(255,255,255,0.5);">PNG, JPG up to 10MB</p>
+                            </div>
+                            <img *ngIf="isImageUploaded" id="image-preview" class="hidden photo-preview"
+                                alt="Image preview" />
+                            <input id="file-upload" type="file" onchange="previewFile(event)" accept="image/*">
+                        </label>
+                    </div>
+                </div>
+                <div class="submit-container">
+                    <button type="submit" class="submit-button" mat-raised-button>Sign Up</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+<cons-toaster-notification></cons-toaster-notification>

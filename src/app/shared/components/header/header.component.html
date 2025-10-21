@@ -86,6 +86,7 @@
                     </button>
                 </mat-menu>
             </li>
+            <button *ngIf="!isAuthenticated" mat-button routerLink="/register-student">Register</button>
             <button *ngIf="!isAuthenticated" mat-button routerLink="/login">Login</button>
         </ul>
     </header>

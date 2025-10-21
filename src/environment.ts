@@ -1,5 +1,6 @@
 export class Environment {
     static serviceUrl = 'http://localhost:5103';
+    static countryListUrl = 'https://restcountries.com/v3.1/all?fields=name,cca2';
 
     static firebaseConfig = {
         apiKey: "AIzaSyC0XO07rxC7bDsw40KdJhBXmXPem_a63PU",

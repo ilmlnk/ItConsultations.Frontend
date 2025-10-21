@@ -4,7 +4,7 @@ import { CoachesListPageComponent } from './consultations/coaches-list-page/coac
 import { RouterModule, Routes } from '@angular/router';
 import { ConsultationsPageRootComponent } from './consultations/consultations-page-root/consultations-page-root.component';
 import { CreateCoachPageComponent } from './consultations-administration/create-coach-page/create-coach-page.component';
-import { RegisterStudentPageComponent } from './consultations-administration/register-student-page/register-student-page.component';
+import { RegisterStudentPageComponent } from './consultations-administration/register-page/register-page.component';
 import { FavoritesConsultationsPageComponent } from './consultations/favorites-consultations-page/favorites-consultations-page.component';
 import { MeetingRecordingsPageComponent } from './consultations/meeting-recordings-page/meeting-recordings-page.component';
 import { NotesPageComponent } from './consultations/notes-page/notes-page.component';
