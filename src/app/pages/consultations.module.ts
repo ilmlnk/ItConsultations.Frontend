@@ -64,7 +64,6 @@ import { TranslatePipe } from '../shared/pipes/translate.pipe';
 import { ModalWindowComponent } from '../shared/components/modal-window/modal-window.component';
 import { LandingPageComponent } from './consultations/landing-page/landing-page.component';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
@@ -141,7 +140,6 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     BrowserModule,
     LanguageFlagPipe,
     TranslatePipe,
-    FontAwesomeModule,
     MatProgressSpinnerModule
   ],
   exports: [

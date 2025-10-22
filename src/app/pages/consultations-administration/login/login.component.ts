@@ -3,7 +3,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../../shared/services/auth/auth.service';
 import { Subscription, switchMap, take } from 'rxjs';
-import { faGoogle, faGithub, faFacebook } from '@fortawesome/free-brands-svg-icons';
 import { ToasterNotificationsService } from '../../../shared/services/notifications/toaster-notifications.service';
 import { UserCredential } from 'firebase/auth';
 import { UserRole } from '../../../shared/enums/user-role';
@@ -211,8 +210,4 @@ export class LoginComponent {
   get coachRole() {
     return UserRole.Coach;
   }
-
-  faGoogle = faGoogle;
-  faGithub = faGithub;
-  faFacebook = faFacebook;
 }
