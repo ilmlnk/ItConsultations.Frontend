@@ -3,13 +3,17 @@
         <div class="glass-form">
             <h1 class="form-title">Create Your Account</h1>
             <p class="form-subtitle">Join our community and start your learning journey!</p>
-            <form>
+            <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
                 <div class="form-layout">
                     <div class="form-column-left">
                         <div class="form-row">
                             <mat-form-field appearance="outline">
                                 <mat-label>First name</mat-label>
-                                <input matInput placeholder="e.g., Ivan">
+                                <input matInput placeholder="e.g., Ivan" formControlName="firstName">
+                                <cons-validation
+                                    [show]="hasError('firstName', 'required')"
+                                    [message]="'First name is required'">
+                                </cons-validation>
                             </mat-form-field>
                             <mat-form-field appearance="outline">
                                 <mat-label>Last name</mat-label>
@@ -20,9 +24,13 @@
                         <div class="form-row">
                             <mat-form-field appearance="outline">
                                 <mat-label>Birth date</mat-label>
-                                <input matInput [matDatepicker]="picker">
+                                <input matInput [matDatepicker]="picker" formControlName="birthDate">
                                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                                 <mat-datepicker #picker></mat-datepicker>
+                                <cons-validation
+                                    [show]="hasError('birthDate', 'required')"
+                                    [message]="'Birth date is required'">
+                                </cons-validation>
                             </mat-form-field>
 
                             <mat-form-field appearance="outline">
@@ -31,9 +39,9 @@
                                        type="text" 
                                        [(ngModel)]="countryInput"
                                        (ngModelChange)="onCountryInputChanged($event)"
-                                       [ngModelOptions]="{standalone: true}"
                                        placeholder="Start typing your country..."
-                                       [matAutocomplete]="auto">
+                                       [matAutocomplete]="auto"
+                                       formControlName="country">
                                 <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayCountry" (optionSelected)="onCountrySelected($event.option.value)">
                                     <mat-option *ngFor="let country of filteredCountries" [value]="country">
                                         {{ country.name }}
@@ -42,9 +50,10 @@
                                         No countries found matching "{{countryInput}}"
                                     </mat-option>
                                 </mat-autocomplete>
-                                <mat-error *ngIf="hasError('country', 'required')">
-                                    Country is required
-                                </mat-error>
+                                <cons-validation
+                                    [show]="hasError('country', 'required')"
+                                    [message]="'Country is required'">
+                                </cons-validation>
                             </mat-form-field>
                         </div>
                         <div class="radio-group">
@@ -67,24 +76,37 @@
                         <div class="form-row">
                             <mat-form-field appearance="outline">
                                 <mat-label>Email</mat-label>
-                                <input matInput type="email" placeholder="you@example.com">
-                                <mat-error *ngIf="registrationForm.hasError('email')">Incorrect email</mat-error>
+                                <input matInput type="email" placeholder="you@example.com" formControlName="email">
+                                <cons-validation
+                                    [show]="hasError('email', 'required')"
+                                    [message]="'Email is required'">
+                                </cons-validation>
                             </mat-form-field>
                             <mat-form-field appearance="outline">
                                 <mat-label>Username</mat-label>
-                                <input matInput placeholder="your_username">
-                                <mat-error *ngIf="registrationForm.hasError('username')">Username is already taken</mat-error>
-                                <mat-error *ngIf="registrationForm.hasError('username')">Username is already taken</mat-error>
+                                <input matInput placeholder="your_username" formControlName="username">
+                                <cons-validation
+                                    [show]="hasError('username', 'required')"
+                                    [message]="'Username is required'">
+                                </cons-validation>
                             </mat-form-field>
                         </div>
                         <div class="form-row">
                             <mat-form-field appearance="outline">
                                 <mat-label>Password</mat-label>
-                                <input matInput type="password" placeholder="••••••••">
+                                <input matInput type="password" placeholder="••••••••" formControlName="password">
+                                <cons-validation
+                                    [show]="hasError('password', 'required')"
+                                    [message]="'Password is required'">
+                                </cons-validation>
                             </mat-form-field>
                             <mat-form-field appearance="outline">
                                 <mat-label>Confirm password</mat-label>
-                                <input matInput type="password" placeholder="••••••••">
+                                <input matInput type="password" placeholder="••••••••" formControlName="confirmPassword">
+                                <cons-validation
+                                    [show]="hasError('confirmPassword', 'required')"
+                                    [message]="'Confirm password is required'">
+                                </cons-validation>
                             </mat-form-field>
                         </div>
                     </div>
@@ -107,7 +129,6 @@
                 <div class="submit-container">
                     <button type="submit" class="submit-button" mat-raised-button>Sign Up</button>
                 </div>
-
             </form>
         </div>
     </div>

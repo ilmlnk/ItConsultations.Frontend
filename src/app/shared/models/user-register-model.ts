@@ -8,6 +8,7 @@ export interface UserRegisterModel {
     lastName?: string;
     username: string;
     country: string;
+    gender: string;
     email: string;
     password: string;
     birthDate?: Date;

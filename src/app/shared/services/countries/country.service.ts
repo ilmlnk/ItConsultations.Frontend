@@ -1,22 +1,28 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { catchError, map, Observable, of, shareReplay } from 'rxjs';
+import { catchError, map, Observable, of, tap } from 'rxjs';
 import { Country } from '../../models/country';
 import { Environment } from '../../../../environment';
+import { CacheService } from '../cache/cache.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CountryService {
   private _http = inject(HttpClient);
+  private _cacheService = inject(CacheService);
 
-  private countries$: Observable<Country[]> | undefined;
+  private _cacheKey = 'countriesList';
+  private _cacheTtl = 60 * 60 * 1000;
 
   constructor() { }
 
   getCountries(): Observable<Country[]> {
-    if (!this.countries$) {
-      this.countries$ = this._http.get<any[]>(Environment.countryListUrl).pipe(
+    const cachedCountries = this._cacheService.get<Country[]>(this._cacheKey);
+
+    return cachedCountries ?
+      of(cachedCountries) :
+      this._http.get<any[]>(Environment.countryListUrl).pipe(
         map(response => {
           return response
             .map(country => ({
@@ -25,13 +31,10 @@ export class CountryService {
             }))
             .sort((a, b) => a.name.localeCompare(b.name));
         }),
-        shareReplay(1),
+        tap(countries => this._cacheService.set(this._cacheKey, countries, this._cacheTtl)),
         catchError(error => {
           return of([]);
         })
       );
-    }
-
-    return this.countries$;
   }
 }

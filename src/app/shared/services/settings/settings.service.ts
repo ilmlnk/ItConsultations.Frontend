@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { AppSettingsDto } from '../models/app-settings-dto';
-import { Environment } from '../../../environment';
+import { AppSettingsDto } from '../../models/app-settings-dto';
+import { Environment } from '../../../../environment';
 
 @Injectable({
   providedIn: 'root'

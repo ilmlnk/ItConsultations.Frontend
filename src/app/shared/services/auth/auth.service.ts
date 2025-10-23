@@ -3,7 +3,7 @@ import { BehaviorSubject, catchError, firstValueFrom, from, Observable, of, swit
 import { Router } from '@angular/router';
 import { UserRegisterModel } from '../../models/user-register-model';
 import { HttpClient } from '@angular/common/http';
-import { SettingsService } from '../settings.service';
+import { SettingsService } from '../settings/settings.service';
 import { ConsultationsMapper } from '../../mappers/consultations-mapper';
 import { initializeApp, FirebaseApp } from 'firebase/app';
 import {

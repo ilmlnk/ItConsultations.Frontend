@@ -3,8 +3,7 @@ import { CommonModule } from '@angular/common';
 import { CoachesListPageComponent } from './consultations/coaches-list-page/coaches-list-page.component';
 import { ConsultationsListPageComponent } from './consultations/consultations-list-page/consultations-list-page.component';
 import { ConsultationsRoutingModule } from './consultations-routing.module';
-import { CreateCoachPageComponent } from './consultations-administration/create-coach-page/create-coach-page.component';
-import { RegisterStudentPageComponent } from './consultations-administration/register-page/register-page.component';
+import { RegisterPageComponent } from './consultations-administration/register-page/register-page.component';
 import { LoginComponent } from './consultations-administration/login/login.component';
 import { ConsultationsPageRootComponent } from './consultations/consultations-page-root/consultations-page-root.component';
 import { HeaderComponent } from '../shared/components/header/header.component';
@@ -65,13 +64,13 @@ import { ModalWindowComponent } from '../shared/components/modal-window/modal-wi
 import { LandingPageComponent } from './consultations/landing-page/landing-page.component';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { ConsValidationComponent } from '../shared/components/cons-validation/cons-validation.component';
 
 @NgModule({
   declarations: [
     CoachesListPageComponent,
     ConsultationsListPageComponent,
-    CreateCoachPageComponent,
-    RegisterStudentPageComponent,
+    RegisterPageComponent,
     LoginComponent,
     ConsultationsPageRootComponent,
     HeaderComponent,
@@ -105,7 +104,8 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     PersonalizedAchievementsComponent,
     ToasterNotificationComponent,
     ModalWindowComponent,
-    LandingPageComponent
+    LandingPageComponent,
+    ConsValidationComponent
   ],
   imports: [
     FormsModule,
