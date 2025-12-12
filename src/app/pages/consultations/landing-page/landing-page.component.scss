@@ -1,0 +1,1838 @@
+// --- Base Palette ---
+$white: #ffffff;
+$gray: #a0a0b0;
+$dark-base: #12121f;      // Main dark page background
+$dark-surface: #1c1c2e;   // Panels/Buttons surface color
+$dark-inner: #151525;     // Inner card background
+$dark-chat: #191929;      // Chat background
+
+// Accent Colors
+$cyan: #00e5ff;           // Electric Blue
+$magenta: #ff0055;        // Vibrant Magenta
+$gold: #FFD700;
+$orange: #FFA500;
+$purple: #7928CA;
+$pink: #FF0080;
+
+// --- Typography ---
+$text-main: $white;
+$text-secondary: $gray;
+$text-inverse: $dark-surface; // Dark text for light buttons
+
+// --- Backgrounds ---
+$bg-body: $dark-base;
+$bg-panel: $dark-surface;
+$bg-chat: $dark-chat;
+$card-inner: $dark-inner;
+
+// Transparent Backgrounds (Glassmorphism)
+$card-bg: rgba(255, 255, 255, 0.05);       // Standard transparency
+$card-bg-light: rgba(255, 255, 255, 0.03); // Lighter variation
+$bubble-bg: rgba(255, 255, 255, 0.05);
+
+// --- Buttons & Accents ---
+$accent-color: $cyan;
+$active-border: $magenta;
+
+$btn-primary-bg: $white;
+$btn-primary-text: $dark-surface;
+
+// --- Gradients ---
+// Vibrant gradient base colors
+$gradient-vibrant-colors: $magenta, $cyan; 
+$vibrant-gradient: linear-gradient(135deg, $magenta, $cyan); 
+
+$mentor-gradient: linear-gradient(45deg, $purple, $pink);
+$star-gradient: linear-gradient(180deg, $gold, $orange);
+$vibrant-border: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+
+// --- Misc ---
+$star-color: $gold;
+
+
+.info-section {
+    padding: 80px 20px;
+    background-color: $dark-base;
+    text-align: center;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.header-content {
+    max-width: 700px;
+    margin: 0 auto 60px;
+
+    h2 {
+        font-size: 2.5rem;
+        color: $text-main;
+        margin-bottom: 20px;
+
+        .highlight {
+            /* Градієнтний текст для акценту */
+            background: linear-gradient(90deg, #ff0055, #00e5ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 800;
+        }
+    }
+
+    .subtitle {
+        font-size: 1.1rem;
+        color: $text-secondary;
+        line-height: 1.6;
+    }
+}
+
+/* --- Сітка інфографіки --- */
+.process-grid {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 20px;
+    flex-wrap: wrap;
+    position: relative;
+}
+
+/* Картка кроку */
+.process-card {
+    background: $card-bg;
+    backdrop-filter: blur(10px);
+    /* Ефект скла */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 24px;
+    padding: 40px 30px;
+    width: 300px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    z-index: 2;
+
+    &:hover {
+        transform: translateY(-10px);
+        border-color: rgba(255, 255, 255, 0.3);
+        box-shadow: 0 15px 30px rgba(0, 229, 255, 0.15);
+
+        .icon-box {
+            transform: scale(1.1) rotate(5deg);
+            background: $accent-color;
+            color: #000;
+        }
+    }
+
+    h3 {
+        color: $text-main;
+        margin: 20px 0 10px;
+        font-size: 1.3rem;
+    }
+
+    p {
+        color: $text-secondary;
+        font-size: 0.95rem;
+        line-height: 1.5;
+    }
+}
+
+/* Іконка в колі */
+.icon-box {
+    width: 70px;
+    height: 70px;
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    color: $accent-color;
+    transition: all 0.4s ease;
+
+    .icon {
+        font-style: normal;
+    }
+}
+
+/* --- Декоративна лінія (Connector) --- */
+.connector {
+    width: 60px;
+    height: 2px;
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0.1), $accent-color, rgba(255, 255, 255, 0.1));
+    margin-top: 75px;
+    /* Вирівнювання по центру іконок */
+    opacity: 0.6;
+}
+
+/* Адаптивність */
+@media (max-width: 900px) {
+    .process-grid {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .connector {
+        width: 2px;
+        height: 40px;
+        /* Вертикальна лінія на мобільному */
+        margin: 0;
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.1), $accent-color, rgba(255, 255, 255, 0.1));
+    }
+
+    .process-card {
+        width: 100%;
+        max-width: 350px;
+    }
+}
+
+/* Змінні (ті ж самі, що і раніше) */
+$bg-dark: #12121f;
+$color-primary: #ff0055;
+/* Малиновий */
+$color-secondary: #00e5ff;
+/* Блакитний */
+$text-white: #ffffff;
+
+.cta-wrapper {
+    padding: 60px 0;
+    background-color: $bg-dark;
+    display: flex;
+    justify-content: center;
+}
+
+.cta-card {
+    position: relative;
+    width: 100%;
+    background: linear-gradient(135deg, #1c1c2e, #2a2a40);
+    border-radius: 40px;
+    /* Сильніше заокруглення */
+    padding: 80px 40px;
+    text-align: center;
+    overflow: hidden;
+    /* Щоб сяйво не виходило за межі */
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+
+    /* Тонка рамка градієнтом */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* --- Ефект заднього плану (Aurora Glow) --- */
+.glow-bg {
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at center, rgba(255, 0, 85, 0.15) 0%, rgba(0, 229, 255, 0.15) 40%, transparent 70%);
+    animation: rotateGlow 15s linear infinite;
+    z-index: 1;
+    pointer-events: none;
+}
+
+@keyframes rotateGlow {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* --- Контент --- */
+.content {
+    position: relative;
+    z-index: 2;
+    /* Щоб текст був над фоном */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.cta-title {
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 3.5rem;
+    font-weight: 800;
+    color: $text-white;
+    margin-bottom: 15px;
+    letter-spacing: -1px;
+}
+
+.cta-subtitle {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 1.1rem;
+    margin-bottom: 40px;
+    max-width: 500px;
+}
+
+/* --- Кнопка CTA (Особлива) --- */
+.btn-cta {
+    background: $text-white;
+    color: $dark-surface;
+    font-size: 1.2rem;
+    font-weight: bold;
+    padding: 18px 45px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.7);
+
+    /* Анімація пульсації, щоб привернути увагу */
+    animation: pulseWhite 2s infinite;
+}
+
+.arrow {
+    transition: transform 0.3s ease;
+}
+
+.btn-cta:hover {
+    background: $color-secondary;
+    /* Блакитний при наведенні */
+    color: #000;
+    transform: scale(1.05);
+    box-shadow: 0 10px 30px rgba(0, 229, 255, 0.5);
+    animation: none;
+    /* Зупиняємо пульсацію при наведенні */
+
+    .arrow {
+        transform: translateX(5px);
+        /* Стрілочка їде вправо */
+    }
+}
+
+/* Анімація пульсації тіні */
+@keyframes pulseWhite {
+    0% {
+        box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.4);
+    }
+
+    70% {
+        box-shadow: 0 0 0 15px rgba(255, 255, 255, 0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+    }
+}
+
+/* Мобільна адаптивність */
+@media (max-width: 600px) {
+    .cta-title {
+        font-size: 2.2rem;
+    }
+
+    .cta-card {
+        padding: 50px 20px;
+        border-radius: 25px;
+    }
+
+    .btn-cta {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+/* Змінні (узгоджені з попередніми блоками) */
+
+
+.partners-block {
+    background-color: $bg-dark;
+    padding: 60px 0;
+    text-align: center;
+    overflow: hidden;
+    /* Щоб нічого не вилазило за межі */
+}
+
+.block-title {
+    color: $text-main;
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 2rem;
+    margin-bottom: 40px;
+    font-weight: 300;
+}
+
+/* --- Карусель --- */
+.carousel-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    overflow: hidden;
+    padding: 20px 0;
+
+    /* Маска для м'яких країв (сучасний спосіб) */
+    mask-image: linear-gradient(to right,
+            transparent,
+            black 10%,
+            black 90%,
+            transparent);
+}
+
+.carousel-track {
+    display: flex;
+    gap: 40px;
+    /* Відстань між елементами */
+    width: max-content;
+    /* Ширина залежить від контенту */
+
+    /* Анімація руху */
+    animation: scroll 30s linear infinite;
+
+    /* Пауза при наведенні мишкою (мануальний контроль) */
+    &:hover {
+        animation-play-state: paused;
+    }
+}
+
+/* Окремий елемент компанії */
+.company-item {
+    background: $card-bg;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    /* Заокруглені краї */
+    padding: 15px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    cursor: default;
+    white-space: nowrap;
+
+    .company-text {
+        font-family: 'Segoe UI', sans-serif;
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: rgba(255, 255, 255, 0.6);
+        /* Напівпрозорий текст за замовчуванням */
+        transition: all 0.3s ease;
+    }
+
+    /* Vibrant ефект при ховері на конкретний елемент */
+    &:hover {
+        transform: translateY(-5px);
+        border-color: rgba(255, 255, 255, 0.3);
+        background: rgba(255, 255, 255, 0.1);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+
+        .company-text {
+            color: transparent;
+            background: $vibrant-gradient;
+            -webkit-background-clip: text;
+            background-clip: text;
+            opacity: 1;
+        }
+    }
+}
+
+/* --- Анімація --- */
+@keyframes scroll {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+.fade-overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100px;
+    z-index: 2;
+    pointer-events: none;
+}
+
+/* Адаптивність */
+@media (max-width: 768px) {
+    .carousel-track {
+        gap: 20px;
+        animation-duration: 20s;
+        /* Швидше на мобільних */
+    }
+
+    .company-item {
+        padding: 10px 25px;
+
+        .company-text {
+            font-size: 1.2rem;
+        }
+    }
+}
+
+/* Змінні */
+
+
+.use-cases-section {
+    padding: 80px 20px;
+    background-color: $bg-dark;
+    color: $text-white;
+}
+
+.section-title {
+    text-align: center;
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 2.5rem;
+    margin-bottom: 60px;
+}
+
+/* Контейнер для табів */
+.tabs-container {
+    display: flex;
+    max-width: 1000px;
+    margin: 0 auto;
+    gap: 40px;
+    /* Відстань між сайдбаром і контентом */
+
+    /* На мобільних будемо ставити стовпчиком */
+    @media (max-width: 768px) {
+        flex-direction: column;
+    }
+}
+
+/* --- САЙДБАР --- */
+.sidebar {
+    flex: 1;
+    /* Займає 1 частину ширини */
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.tab-item {
+    padding: 20px 30px;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 20px;
+    /* Заокруглені кути */
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid transparent;
+
+    .tab-title {
+        font-size: 1.2rem;
+        font-weight: 600;
+    }
+
+    /* Ховер ефект для неактивних */
+    &:hover:not(.active) {
+        background: rgba(255, 255, 255, 0.1);
+        transform: translateX(5px);
+    }
+
+    /* АКТИВНИЙ СТАН */
+    &.active {
+        background: $vibrant-gradient;
+        /* Яскравий градієнт */
+        color: white;
+        box-shadow: 0 10px 30px rgba(0, 229, 255, 0.3);
+        border-color: transparent;
+        transform: scale(1.02);
+        /* Трохи збільшуємо */
+
+        .arrow {
+            font-weight: bold;
+            animation: slideRight 0.5s infinite alternate;
+        }
+    }
+}
+
+@keyframes slideRight {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(5px);
+    }
+}
+
+.content-panel {
+    flex: 1.5;
+    background: $dark-surface;
+    border-radius: 30px;
+    padding: 40px;
+    position: relative;
+    min-height: 300px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.content-wrapper {
+    animation: fadeInRight 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+
+    h2 {
+        font-size: 2rem;
+        margin-bottom: 20px;
+        background: $vibrant-gradient;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    .description {
+        font-size: 1.1rem;
+        line-height: 1.6;
+        color: $text-secondary;
+        margin-bottom: 30px;
+    }
+}
+
+/* Список послуг (Теги) */
+.tags-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.tag {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 15px 20px;
+    border-radius: 15px;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: transform 0.2s;
+
+    &:hover {
+        background: rgba(255, 255, 255, 0.1);
+        transform: translateX(5px);
+    }
+}
+
+@keyframes fadeInRight {
+    from {
+        opacity: 0;
+        transform: translateX(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.categories-section {
+    padding: 80px 20px;
+    background-color: $bg-dark;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.main-title {
+    text-align: center;
+    font-size: 3rem;
+    color: $text-white;
+    margin-bottom: 60px;
+}
+
+.top-tier-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto 80px;
+}
+
+.hero-card {
+    background: $card-bg;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 30px;
+    /* Заокруглені кути */
+    padding: 40px;
+    text-align: center;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+
+    /* Контент */
+    .icon-large {
+        font-size: 4rem;
+        margin-bottom: 20px;
+        transition: transform 0.3s ease;
+    }
+
+    h3 {
+        color: $text-white;
+        font-size: 1.8rem;
+        margin-bottom: 10px;
+    }
+
+    p {
+        color: $text-secondary;
+        font-size: 1rem;
+        margin-bottom: 30px;
+    }
+
+    .arrow-btn {
+        display: inline-block;
+        color: $text-white;
+        font-weight: bold;
+        opacity: 0;
+        transform: translateY(10px);
+        transition: all 0.3s ease;
+    }
+
+    /* --- HOVER EFFECT --- */
+    &:hover {
+        transform: translateY(-10px);
+        /* Підняття вгору */
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.0) 100%);
+
+        /* Використовуємо змінну кольору для кордону та тіні */
+        border-color: transparent;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5),
+            inset 0 0 0 2px var(--hover-color);
+        /* Внутрішня кольорова рамка */
+
+        .icon-large {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .arrow-btn {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+}
+
+
+/* --- Розділювач --- */
+.divider {
+    text-align: center;
+    margin-bottom: 40px;
+    position: relative;
+
+    span {
+        background: $bg-dark;
+        padding: 0 20px;
+        color: $text-secondary;
+        font-size: 1.2rem;
+        position: relative;
+        z-index: 2;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+    }
+
+    &::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 10%;
+        right: 10%;
+        height: 1px;
+        background: rgba(255, 255, 255, 0.1);
+        z-index: 1;
+    }
+}
+
+
+/* --- Secondary Grid (Tech Pills) --- */
+.tech-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.tech-pill {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 12px 25px;
+    border-radius: 50px;
+    /* Повністю круглі боки */
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    .tech-icon {
+        font-size: 1.4rem;
+    }
+
+    .tech-name {
+        color: $text-secondary;
+        font-weight: 500;
+        font-size: 1rem;
+        transition: color 0.3s;
+    }
+
+    /* Vibrant hover для маленьких карток */
+    &:hover {
+        background: rgba(255, 255, 255, 0.1);
+        border-color: #00e5ff;
+        /* Ваш фірмовий блакитний */
+        transform: translateY(-3px) scale(1.05);
+        box-shadow: 0 5px 15px rgba(0, 229, 255, 0.2);
+
+        .tech-name {
+            color: $text-white;
+        }
+    }
+}
+
+/* Змінні */
+$bg-dark: #12121f;
+$panel-bg: #1c1c2e;
+$vibrant-gradient: linear-gradient(135deg, #ff0055, #00e5ff);
+$text-white: #ffffff;
+$text-secondary: #a0a0b0;
+$border-color: rgba(255, 255, 255, 0.1);
+
+.experts-section {
+    padding: 80px 20px;
+    background-color: $bg-dark;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 2.5rem;
+    color: $text-white;
+    margin-bottom: 50px;
+}
+
+.experts-container {
+    display: flex;
+    max-width: 1100px;
+    margin: 0 auto;
+    gap: 30px;
+    min-height: 500px;
+    /* Фіксуємо мінімальну висоту */
+
+    @media (max-width: 850px) {
+        flex-direction: column;
+    }
+}
+
+/* --- САЙДБАР --- */
+.sidebar-list {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.expert-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 15px 20px;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
+    position: relative;
+    overflow: hidden;
+
+    /* Аватарка в списку */
+    .avatar-small {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 2px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .expert-info {
+        .name {
+            color: $text-white;
+            font-size: 1.1rem;
+            margin: 0;
+        }
+
+        .company {
+            color: $text-secondary;
+            font-size: 0.9rem;
+        }
+    }
+
+    /* Hover */
+    &:hover:not(.active) {
+        background: rgba(255, 255, 255, 0.08);
+    }
+
+    /* Active State */
+    &.active {
+        background: linear-gradient(90deg, rgba(255, 0, 85, 0.1), transparent);
+        border-color: rgba(255, 0, 85, 0.3);
+
+        .avatar-small {
+            border-color: #ff0055;
+        }
+
+        .active-indicator {
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: $vibrant-gradient;
+        }
+    }
+}
+
+/* --- ПРОФІЛЬ --- */
+.profile-panel {
+    flex: 2;
+    background: $panel-bg;
+    border-radius: 30px;
+    padding: 40px;
+    border: 1px solid $border-color;
+    position: relative;
+}
+
+.profile-content {
+    animation: fadeIn 0.5s ease;
+}
+
+.profile-header {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    margin-bottom: 30px;
+
+    .profile-photo {
+        width: 100px;
+        height: 100px;
+        border-radius: 20px;
+        object-fit: cover;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .header-text {
+        h2 {
+            color: $text-white;
+            font-size: 2rem;
+            margin: 0 0 5px 0;
+        }
+
+        .role-badge {
+            display: inline-block;
+            background: rgba(0, 229, 255, 0.1);
+            color: #00e5ff;
+            padding: 5px 15px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+    }
+}
+
+.bio-section {
+    margin-bottom: 30px;
+
+    h3 {
+        color: $text-secondary;
+        font-size: 1rem;
+        text-transform: uppercase;
+        margin-bottom: 10px;
+    }
+
+    p {
+        color: $text-white;
+        line-height: 1.6;
+        font-size: 1.1rem;
+    }
+}
+
+.skills-section {
+    margin-bottom: 40px;
+
+    h3 {
+        color: $text-secondary;
+        font-size: 1rem;
+        text-transform: uppercase;
+        margin-bottom: 10px;
+    }
+
+    .skills-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .skill-tag {
+        background: rgba(255, 255, 255, 0.05);
+        color: $text-secondary;
+        padding: 8px 16px;
+        border-radius: 12px;
+        font-size: 0.9rem;
+        transition: 0.3s;
+
+        &:hover {
+            color: $text-white;
+            background: rgba(255, 0, 85, 0.2);
+        }
+    }
+}
+
+.btn-book {
+    background: $text-white;
+    color: #12121f;
+    font-weight: bold;
+    font-size: 1.1rem;
+    padding: 15px 40px;
+    border-radius: 50px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s;
+
+    &:hover {
+        background: $vibrant-gradient;
+        color: white;
+        transform: translateY(-3px);
+        box-shadow: 0 10px 25px rgba(255, 0, 85, 0.4);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Адаптив для мобілок */
+@media (max-width: 600px) {
+    .profile-header {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .btn-book {
+        width: 100%;
+    }
+}
+
+/* Змінні */
+
+
+.roadmap-section {
+    padding: 80px 20px;
+    background-color: $bg-dark;
+    overflow: hidden;
+}
+
+.section-title {
+    text-align: center;
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 2.5rem;
+    color: $text-white;
+    margin-bottom: 80px;
+}
+
+.timeline-container {
+    position: relative;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px 0;
+}
+
+/* --- Центральна лінія --- */
+.timeline-line {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 4px;
+    height: 100%;
+    background: $vibrant-gradient;
+    /* Лінія градієнтом */
+    box-shadow: 0 0 15px rgba(0, 229, 255, 0.5);
+    /* Світіння */
+    border-radius: 4px;
+    z-index: 1;
+}
+
+/* --- Елемент таймлайну --- */
+.timeline-item {
+    position: relative;
+    width: 50%;
+    /* Займає половину ширини контейнера */
+    padding: 20px 40px;
+    box-sizing: border-box;
+    z-index: 2;
+
+    /* Лівий бік */
+    &.left {
+        left: 0;
+        text-align: right;
+        /* Текст притиснутий до лінії */
+
+        .step-card {
+            margin-left: auto;
+        }
+
+        /* Притискаємо картку вправо всередині блока */
+        .timeline-dot {
+            right: -50px;
+        }
+
+        /* Крапка на лінії */
+
+        .features-grid {
+            justify-content: flex-end;
+        }
+    }
+
+    /* Правий бік */
+    &.right {
+        left: 50%;
+        text-align: left;
+
+        .timeline-dot {
+            left: -50px;
+        }
+
+        .features-grid {
+            justify-content: flex-start;
+        }
+    }
+}
+
+/* --- Маркер (Крапка) --- */
+.timeline-dot {
+    position: absolute;
+    top: 40px;
+    /* Вирівнювання по верху картки */
+    width: 20px;
+    height: 20px;
+    background: $bg-dark;
+    border: 2px solid $accent-color;
+    border-radius: 50%;
+    z-index: 3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0 10px $accent-color;
+
+    .dot-inner {
+        width: 8px;
+        height: 8px;
+        background: $accent-color;
+        border-radius: 50%;
+        animation: pulse 2s infinite;
+    }
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    50% {
+        transform: scale(1.5);
+        opacity: 0.5;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* --- Картка --- */
+.step-card {
+    background: $card-bg;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 30px;
+    position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    max-width: 450px;
+
+    &:hover {
+        transform: translateY(-5px);
+        border-color: rgba(255, 255, 255, 0.3);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+
+        .step-number {
+            color: rgba(255, 255, 255, 0.1);
+            /* Трохи яскравіше при ховері */
+        }
+    }
+
+    .step-icon {
+        font-size: 2.5rem;
+        margin-bottom: 15px;
+    }
+
+    h3 {
+        color: $text-white;
+        font-size: 1.5rem;
+        margin-bottom: 10px;
+    }
+
+    p {
+        color: $text-secondary;
+        line-height: 1.5;
+        margin-bottom: 20px;
+    }
+
+    .step-number {
+        position: absolute;
+        top: 10px;
+        right: 20px;
+        font-size: 4rem;
+        font-weight: 900;
+        color: rgba(255, 255, 255, 0.03);
+        /* Дуже прозорий */
+        pointer-events: none;
+    }
+}
+
+/* --- Особливі фічі (Tags) --- */
+.features-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.feature-tag {
+    background: rgba(0, 229, 255, 0.1);
+    color: #00e5ff;
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    border: 1px solid rgba(0, 229, 255, 0.2);
+}
+
+/* --- Кнопка Recurring --- */
+.action-btn {
+    background: $text-white;
+    color: #12121f;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 50px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 15px;
+    transition: 0.3s;
+
+    &:hover {
+        background: #ff0055;
+        color: white;
+        box-shadow: 0 5px 15px rgba(255, 0, 85, 0.4);
+    }
+}
+
+/* --- Адаптивність (Mobile) --- */
+@media (max-width: 768px) {
+    .timeline-line {
+        left: 20px;
+        /* Лінія зсувається вліво */
+    }
+
+    .timeline-item {
+        width: 100%;
+        padding-left: 50px;
+        /* Місце для лінії */
+        padding-right: 0;
+        margin-bottom: 30px;
+
+        /* Скидаємо стилі left/right, робимо все зліва */
+        &.left,
+        &.right {
+            left: 0;
+            text-align: left;
+
+            .timeline-dot {
+                left: 10px;
+                /* Крапка на лінії зліва */
+                right: auto;
+            }
+
+            .step-card {
+                margin-left: 0;
+            }
+
+            .features-grid {
+                justify-content: flex-start;
+            }
+        }
+    }
+}
+
+/* Змінні */
+
+.why-us-section {
+    padding: 80px 20px;
+    background-color: $bg-dark;
+    text-align: center;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.header-content {
+    margin-bottom: 60px;
+
+    .title {
+        font-size: 2.5rem;
+        color: $text-white;
+        margin-bottom: 10px;
+    }
+
+    .subtitle {
+        color: $text-secondary;
+        font-size: 1.1rem;
+    }
+}
+
+/* --- GRID --- */
+.benefits-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+/* --- CARD --- */
+.benefit-card {
+    background: $card-bg;
+    border-radius: 20px;
+    padding: 30px 20px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    position: relative;
+    overflow: hidden;
+
+    /* Легкий градієнт зверху для об'єму */
+    background-image: linear-gradient(180deg, rgba(255, 255, 255, 0.05) 0%, transparent 100%);
+
+    h3 {
+        color: $text-white;
+        font-size: 1.4rem;
+        margin-bottom: 15px;
+        font-weight: 600;
+    }
+
+    .description {
+        color: $text-secondary;
+        font-size: 0.95rem;
+        line-height: 1.5;
+    }
+
+    /* Hover ефект для картки */
+    &:hover {
+        transform: translateY(-10px);
+        background: rgba(255, 255, 255, 0.08);
+        border-color: rgba(255, 255, 255, 0.2);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+
+        /* Коли наводимо на картку, зірки починають "танцювати" знову */
+        .star {
+            color: #ffcc00;
+            /* Стають яскравішими */
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.6);
+        }
+    }
+}
+
+/* --- STARS --- */
+.star-rating {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+}
+
+.star {
+    font-size: 1.5rem;
+    display: inline-block;
+
+    /* Градієнтний текст для зірок (підтримується сучасними браузерами) */
+    background: $star-gradient;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    /* Фоллбек для старих браузерів */
+    color: $star-color;
+
+    /* Анімація появи */
+    opacity: 0;
+    transform: scale(0);
+    animation: starPop 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+
+    /* Затримка береться з HTML змінної --delay */
+    animation-delay: var(--delay);
+}
+
+@keyframes starPop {
+    0% {
+        opacity: 0;
+        transform: scale(0) rotate(-45deg);
+    }
+
+    70% {
+        transform: scale(1.4) rotate(0deg);
+        /* Трохи збільшується */
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1) rotate(0deg);
+    }
+}
+
+/* Адаптивність */
+@media (max-width: 600px) {
+    .benefits-grid {
+        grid-template-columns: 1fr;
+        /* Одна колонка на мобільному */
+    }
+}
+
+/* Змінні */
+
+
+.coach-cta-section {
+    padding: 40px 0 80px;
+    /* Відступи */
+    background-color: $bg-dark;
+    display: flex;
+    justify-content: center;
+}
+
+.glow-border-card {
+    position: relative;
+    background: $card-inner;
+    width: 100%;
+    border-radius: 20px;
+    padding: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+    overflow: hidden;
+    z-index: 1;
+
+    /* Створення градієнтної рамки через псевдо-елемент */
+    &::before {
+        content: "";
+        position: absolute;
+        inset: -2px;
+        /* Рамка виступає на 2px */
+        border-radius: 22px;
+        background: $mentor-gradient;
+        z-index: -1;
+        /* Ховаємо під картку */
+        animation: borderRotate 4s linear infinite;
+        /* Анімація переливання */
+        opacity: 0.6;
+        /* Не надто яскраво */
+        filter: blur(5px);
+        /* Легке розмиття для світіння */
+    }
+
+    /* Ще один шар, щоб закрити центр картки темним кольором */
+    &::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: $card-inner;
+        border-radius: 20px;
+        z-index: -1;
+    }
+}
+
+@keyframes borderRotate {
+    0% {
+        filter: hue-rotate(0deg) blur(5px);
+    }
+
+    100% {
+        filter: hue-rotate(360deg) blur(5px);
+    }
+}
+
+/* --- Текстова частина --- */
+.text-content {
+    flex: 1;
+    z-index: 2;
+
+    .badge {
+        display: inline-block;
+        background: rgba(121, 40, 202, 0.2);
+        color: #d6b3ff;
+        padding: 5px 12px;
+        border-radius: 6px;
+        font-size: 0.8rem;
+        font-weight: bold;
+        text-transform: uppercase;
+        margin-bottom: 15px;
+        letter-spacing: 1px;
+    }
+
+    h2 {
+        font-family: 'Segoe UI', sans-serif;
+        color: $text-white;
+        font-size: 2.2rem;
+        margin-bottom: 15px;
+    }
+
+    p {
+        color: $text-secondary;
+        font-size: 1.1rem;
+        line-height: 1.6;
+        max-width: 500px;
+    }
+}
+
+/* --- Кнопка --- */
+.action-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    z-index: 2;
+    min-width: 200px;
+}
+
+.btn-mentor {
+    background: transparent;
+    color: $text-white;
+    font-size: 1.1rem;
+    font-weight: bold;
+    padding: 15px 35px;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+
+    /* Ховер ефект: Заливка градієнтом */
+    &:hover {
+        border-color: transparent;
+        background: $mentor-gradient;
+        transform: scale(1.05);
+        box-shadow: 0 0 20px rgba(121, 40, 202, 0.5);
+    }
+
+    .icon {
+        font-style: normal;
+    }
+}
+
+.sub-text {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.4);
+}
+
+/* Адаптивність */
+@media (max-width: 768px) {
+    .glow-border-card {
+        flex-direction: column;
+        text-align: center;
+        padding: 30px;
+    }
+
+    .text-content p {
+        margin: 0 auto;
+    }
+}
+
+/* Змінні */
+
+.feedback-section {
+    padding: 80px 20px;
+    background-color: $bg-dark;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.section-title {
+    font-family: 'Segoe UI', sans-serif;
+    color: $text-white;
+    font-size: 2.5rem;
+    margin-bottom: 50px;
+    text-align: center;
+}
+
+.chat-interface {
+    width: 100%;
+    max-width: 600px;
+    /* Ширина як у мобілки або вузького вікна */
+    background: $bg-chat;
+    border-radius: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+    /* Щоб контент не вилазив за рамки */
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 40px;
+}
+
+/* Хедер (MacOS style dots) */
+.chat-header {
+    padding: 15px 20px;
+    background: rgba(255, 255, 255, 0.03);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    .header-dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+
+        &.red {
+            background: #ff5f56;
+        }
+
+        &.yellow {
+            background: #ffbd2e;
+        }
+
+        &.green {
+            background: #27c93f;
+        }
+    }
+
+    .header-title {
+        margin-left: auto;
+        font-size: 0.8rem;
+        color: $text-secondary;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+}
+
+/* Стрічка повідомлень */
+.messages-stream {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.message-row {
+    display: flex;
+    gap: 15px;
+    align-items: flex-start;
+
+    /* Анімація появи */
+    opacity: 0;
+    transform: translateY(20px);
+    animation: slideUp 0.6s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
+    animation-delay: var(--anim-delay);
+    /* Каскадна затримка */
+}
+
+@keyframes slideUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Аватарка */
+.avatar-container {
+    position: relative;
+
+    .avatar {
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+        border: 2px solid $bg-chat;
+    }
+}
+
+/* Бульбашка повідомлення */
+.message-bubble {
+    background: $bubble-bg;
+    padding: 15px 20px;
+    border-radius: 4px 20px 20px 20px;
+    /* Лівий верхній кут гострий */
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    max-width: 85%;
+    position: relative;
+    transition: transform 0.2s;
+
+    &:hover {
+        transform: scale(1.02);
+        background: rgba(255, 255, 255, 0.08);
+    }
+}
+
+.bubble-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+
+    .author-name {
+        color: $accent-color;
+        /* Блакитний колір імені */
+        font-weight: bold;
+        font-size: 0.9rem;
+    }
+
+    .timestamp {
+        color: rgba(255, 255, 255, 0.3);
+        font-size: 0.75rem;
+    }
+}
+
+.message-text {
+    color: $text-white;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* Фейковий інпут */
+.chat-input-area {
+    padding: 15px 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    opacity: 0.5;
+    /* Робимо напівпрозорим, щоб показати неактивність */
+
+    .fake-input {
+        flex: 1;
+        height: 40px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 10px;
+        color: rgba(255, 255, 255, 0.3);
+        font-size: 0.8rem;
+        padding: 10px;
+        display: flex;
+        align-items: center;
+    }
+
+    .send-icon {
+        border-radius: 10px;
+        text-align: center;
+        justify-content: center;
+        align-items: center;
+        display: flex;
+        width: 40px;
+        height: 40px;
+        background-color: rgba(255, 255, 255, 0.1);
+        color: $accent-color;
+    }
+}
+
+/* Адаптивність */
+@media (max-width: 600px) {
+    .chat-interface {
+        border-radius: 0;
+        /* На мобільному на всю ширину */
+        border-left: none;
+        border-right: none;
+    }
+
+    .section-title {
+        font-size: 2rem;
+    }
+}
+
+/* Змінні */
+
+
+.faq-section {
+  padding: 80px 0 40px;
+  background-color: $bg-dark;
+  min-height: 600px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+h1 {
+  text-align: center;
+  color: $text-white;
+  font-size: 2.5rem;
+  margin-bottom: 50px;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.content-wrapper {
+  width: 100%;
+  max-width: 800px;
+}
+
+::ng-deep .custom-panel {
+  background-color: $panel-bg !important;
+  color: $text-white !important;
+  box-shadow: none !important;
+  border-radius: 15px !important;
+  margin-bottom: 15px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: all 0.3s ease !important;
+
+  .mat-expansion-panel-header {
+    padding: 25px 25px !important;
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 500;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.05) !important;
+    }
+
+    .mat-expansion-panel-header-title {
+      color: $text-white;
+      margin-right: 20px;
+    }
+  }
+
+  .mat-expansion-panel-body {
+    padding: 0 25px 25px 25px !important;
+    color: $text-secondary;
+    line-height: 1.6;
+    font-size: 1rem;
+  }
+
+  &.mat-expanded {
+    background-color: rgba(255, 255, 255, 0.08) !important;
+    border-color: rgba(255, 255, 255, 0.2);
+    
+    .mat-expansion-panel-header-title {
+      color: $accent-color;
+      font-weight: bold;
+    }
+
+    .panel-icon {
+      transform: rotate(45deg);
+      color: $active-border;
+    }
+  }
+
+  .answer-text {
+    margin-top: 25px;
+  }
+}
+
+.panel-icon {
+  color: $text-secondary;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+
+

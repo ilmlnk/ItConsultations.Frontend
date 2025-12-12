@@ -52,7 +52,7 @@
       }
       
       &.light-theme {
-        background: rgb(151, 188, 243);
+        background: #12121f;
         background-blend-mode: multiply;
         background-repeat: no-repeat;
         background-size: cover;
@@ -60,10 +60,6 @@
         color: #333333;
       }
   }
-
-.main-content {
-    margin: 5% 17% 0 17%;
-}
 
 .cons-footer {
   flex: 1;
@@ -74,14 +70,13 @@
   padding-bottom: 4em;
 }
 
+.main-content {
+  flex: 1;
+  margin: 0 24px;
+}
+
 @media (max-width: 768px) {
   .main-content {
     margin: 0;
-  }
-}
-
-@media (min-width: 1024px) {
-  .main-content {
-    margin: 5% 10% 5% 15%;
   }
 }

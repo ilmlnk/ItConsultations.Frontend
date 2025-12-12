@@ -17,7 +17,7 @@
                             </mat-form-field>
                             <mat-form-field appearance="outline">
                                 <mat-label>Last name</mat-label>
-                                <input matInput placeholder="e.g., Kovalenko">
+                                <input matInput placeholder="e.g., Kovalenko" formControlName="lastName">
                             </mat-form-field>
                         </div>
 
@@ -27,12 +27,7 @@
                                 <input matInput [matDatepicker]="picker" formControlName="birthDate">
                                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                                 <mat-datepicker #picker></mat-datepicker>
-                                <cons-validation
-                                    [show]="hasError('birthDate', 'required')"
-                                    [message]="'Birth date is required'">
-                                </cons-validation>
                             </mat-form-field>
-
                             <mat-form-field appearance="outline">
                                 <mat-label>Country</mat-label>
                                 <input matInput
@@ -59,17 +54,17 @@
                         <div class="radio-group">
                             <div class="radios">
                                 <label class="group-label">Gender</label>
-                                <mat-radio-group aria-label="Select a gender">
-                                    <mat-radio-button value="male">Male</mat-radio-button>
-                                    <mat-radio-button value="female">Female</mat-radio-button>
-                                    <mat-radio-button value="other">Other</mat-radio-button>
+                                <mat-radio-group aria-label="Select a gender" formControlName="gender">
+                                    <mat-radio-button [value]="1">Male</mat-radio-button>
+                                    <mat-radio-button [value]="2">Female</mat-radio-button>
+                                    <mat-radio-button [value]="3">Other</mat-radio-button>
                                 </mat-radio-group>
                             </div>
                             <div class="radios">
                                 <label class="group-label">Role</label>
-                                <mat-radio-group aria-label="Select a gender">
-                                    <mat-radio-button value="student">Student</mat-radio-button>
-                                    <mat-radio-button value="coach">Coach</mat-radio-button>
+                                <mat-radio-group aria-label="Select a role" formControlName="role">
+                                    <mat-radio-button [value]="1">Student</mat-radio-button>
+                                    <mat-radio-button [value]="2">Coach</mat-radio-button>
                                 </mat-radio-group>
                             </div>
                         </div>
@@ -127,7 +122,7 @@
                     </div>
                 </div>
                 <div class="submit-container">
-                    <button type="submit" class="submit-button" mat-raised-button>Sign Up</button>
+                    <button type="submit" class="submit-button" mat-button>Sign Up</button>
                 </div>
             </form>
         </div>

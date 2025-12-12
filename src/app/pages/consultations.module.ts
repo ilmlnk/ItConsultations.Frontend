@@ -65,6 +65,7 @@ import { LandingPageComponent } from './consultations/landing-page/landing-page.
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { ConsValidationComponent } from '../shared/components/cons-validation/cons-validation.component';
+import { HeroSectionComponent } from './consultations/components/hero-section/hero-section.component';
 
 @NgModule({
   declarations: [
@@ -105,7 +106,8 @@ import { ConsValidationComponent } from '../shared/components/cons-validation/co
     ToasterNotificationComponent,
     ModalWindowComponent,
     LandingPageComponent,
-    ConsValidationComponent
+    ConsValidationComponent,
+    HeroSectionComponent
   ],
   imports: [
     FormsModule,

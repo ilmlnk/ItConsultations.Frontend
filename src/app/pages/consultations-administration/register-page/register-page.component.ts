@@ -12,6 +12,7 @@ import { ConsultationsMapper } from '../../../shared/mappers/consultations-mappe
 import { AuthService } from '../../../shared/services/auth/auth.service';
 import { Router } from '@angular/router';
 import { ConsultationsValidationHelper } from '../../../shared/validators/consultations-validation-helper';
+import { Gender } from '../../../shared/enums/gender.enum';
 
 @Component({
   selector: 'cons-register-page',
@@ -139,11 +140,11 @@ export class RegisterPageComponent {
 
   private initForm() {
     this.registrationForm = this.fb.group({
-      firstName: ['', Validators.required, Validators.maxLength(50)],
-      lastName: ['', Validators.required, Validators.maxLength(50)],
-      birthDate: [null, Validators.required],
+      firstName: ['', [Validators.required, Validators.maxLength(50)]],
+      lastName: ['', Validators.maxLength(50)],
+      birthDate: [null],
       country: [null as string | null, Validators.required],
-      gender: ['male', Validators.required],
+      gender: [Gender.Male, Validators.required],
       role: [UserRole.Student, Validators.required],
       email: ['', [Validators.required, Validators.email]],
       username: ['', Validators.required],
@@ -151,8 +152,8 @@ export class RegisterPageComponent {
       confirmPassword: ['', Validators.required]
     }, {
       validators: [
-        ConsultationsValidationHelper.passwordMatchValidator(),
-        ConsultationsValidationHelper.usernameValidator()
+        /*ConsultationsValidationHelper.passwordMatchValidator(),
+        ConsultationsValidationHelper.usernameValidator()*/
       ]
     });
   }

@@ -4,23 +4,23 @@
             <h1>Welcome back!</h1>
             <label>Log in to your account using...</label>
             <div class="third-party-login">
-                <button (click)="thirdPartyLogin('google')">
+                <button mat-button (click)="thirdPartyLogin('google')">
                     <span>Google</span>
                 </button>
-                <button (click)="thirdPartyLogin('facebook')">
+                <button mat-button (click)="thirdPartyLogin('facebook')">
                     <span>Facebook</span>
                 </button>
-                <button (click)="thirdPartyLogin('github')">
+                <button mat-button (click)="thirdPartyLogin('github')">
                     <span>Github</span>
                 </button>
             </div>
             <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
                 <div class="form-group">
-                    <input type="text" id="loginIdentity" formControlName="loginIdentity"
+                    <input matInput type="text" id="loginIdentity" formControlName="loginIdentity"
                         placeholder="Email or Username">
                 </div>
                 <div class="form-group">
-                    <input type="password" id="password" formControlName="password" placeholder="Password">
+                    <input matInput type="password" id="password" formControlName="password" placeholder="Password">
                 </div>
                 <div class="form-options">
                     <mat-checkbox formControlName="rememberMe" color="primary">
@@ -29,7 +29,7 @@
 
                     <a class="forgot-link" (click)="onExampleError()">Forgot your password?</a>
                 </div>
-                <button type="submit" [disabled]="!loginForm.valid">Login</button>
+                <button mat-button type="submit" [disabled]="!loginForm.valid">Login</button>
             </form>
         </ng-container>
         
