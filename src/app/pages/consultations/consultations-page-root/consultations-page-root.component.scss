@@ -38,7 +38,7 @@
 
     background-attachment: fixed;
     
-    background: rgb(151, 188, 243);
+    background: #333333;
     background-blend-mode: multiply;
     color: #333333;
     
@@ -52,7 +52,7 @@
       }
       
       &.light-theme {
-        background: #12121f;
+        background: #ffffff;
         background-blend-mode: multiply;
         background-repeat: no-repeat;
         background-size: cover;

@@ -66,6 +66,9 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { ConsValidationComponent } from '../shared/components/cons-validation/cons-validation.component';
 import { HeroSectionComponent } from './consultations/components/hero-section/hero-section.component';
+import { ThreeParticlesComponent } from './consultations/components/three-particles/three-particles.component';
+import { ThreeWarpLinesComponent } from './consultations/components/three-warp-lines/three-warp-lines.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -107,7 +110,9 @@ import { HeroSectionComponent } from './consultations/components/hero-section/he
     ModalWindowComponent,
     LandingPageComponent,
     ConsValidationComponent,
-    HeroSectionComponent
+    HeroSectionComponent,
+    ThreeParticlesComponent,
+    ThreeWarpLinesComponent
   ],
   imports: [
     FormsModule,
@@ -142,7 +147,8 @@ import { HeroSectionComponent } from './consultations/components/hero-section/he
     BrowserModule,
     LanguageFlagPipe,
     TranslatePipe,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    FontAwesomeModule
   ],
   exports: [
     MatDialogModule,

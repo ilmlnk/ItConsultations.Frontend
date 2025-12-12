@@ -1,4 +1,12 @@
-import { Component, ElementRef, Renderer2, ViewChild } from '@angular/core';
+import { Component } from '@angular/core';
+import {
+  faGoogle,
+  faFacebook,
+  faAmazon,
+  faMicrosoft,
+  faAirbnb,
+  faApple
+} from '@fortawesome/free-brands-svg-icons';
 
 @Component({
   selector: 'app-landing-page',
@@ -8,13 +16,14 @@ import { Component, ElementRef, Renderer2, ViewChild } from '@angular/core';
   styleUrl: './landing-page.component.scss'
 })
 export class LandingPageComponent {
-
-
+  scrollingCompanies: any[] = [];
   companies = [
-    'Google', 'Facebook', 'Amazon', 'Microsoft', 'Netflix', 'Airbnb'
+    { name: 'Google', icon: faGoogle, color: '#DB4437' },
+    { name: 'Facebook', icon: faFacebook, color: '#4267B2' },
+    { name: 'Amazon', icon: faAmazon, color: '#FF9900' },
+    { name: 'Microsoft', icon: faMicrosoft, color: '#00A4EF' },
+    { name: 'Airbnb', icon: faAirbnb, color: '#FF5A5F' }
   ];
-
-  scrollingCompanies = [...this.companies, ...this.companies];
 
   selectedIndex = 0;
 
@@ -83,7 +92,7 @@ export class LandingPageComponent {
       name: 'Marketing',
       icon: '📈',
       desc: 'SEO, ASO, PPC & Brand Strategy',
-      color: 'linear-gradient(135deg, #FFD700, #FF8C00)' // Помаранчевий градієнт
+      color: 'linear-gradient(135deg, #FFD700, #FF8C00)'
     }
   ];
 
@@ -202,6 +211,10 @@ export class LandingPageComponent {
       answer: 'Absolutely. Many of our experts offer "Mentorship Packages" which include weekly calls, code reviews, and roadmap planning at a discounted rate.'
     }
   ];
+
+  ngOnInit() {
+    this.scrollingCompanies = [...this.companies, ...this.companies, ...this.companies];
+  }
 
   selectTab(index: number): void {
     this.selectedIndex = index;

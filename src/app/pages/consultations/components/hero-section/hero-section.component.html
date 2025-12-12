@@ -1,13 +1,11 @@
-<div class="hero-container" (mousemove)="onMouseMove($event)" (mouseenter)="showSpot = true"
-        (mouseleave)="showSpot = false">
-        <div class="cursor-spot" *ngIf="showSpot" [style.left.px]="spotX" [style.top.px]="spotY">
-        </div>
-        <div class="content-wrapper">
-            <h1 class="hero-title">Become a Developer in 3 Months!</h1>
+<div class="hero-container">
+    <cons-three-particles></cons-three-particles>
+    <div class="content-wrapper">
+        <h1 class="hero-title">The journey to your professional growth starts here!</h1>
 
-            <div class="button-group">
-                <button class="btn btn-primary">Find a Coach</button>
-                <button class="btn btn-secondary">Become a Coach</button>
-            </div>
+        <div class="button-group">
+            <button class="btn btn-primary">Find a Coach</button>
+            <button class="btn btn-secondary">Become a Coach</button>
         </div>
     </div>
+</div>

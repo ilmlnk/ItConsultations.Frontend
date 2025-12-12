@@ -1,21 +1,22 @@
 // --- Base Palette ---
 $white: #ffffff;
+$black: #000;
 $gray: #a0a0b0;
-$dark-base: #12121f;      // Main dark page background
-$dark-surface: #1c1c2e;   // Panels/Buttons surface color
-$dark-inner: #151525;     // Inner card background
-$dark-chat: #191929;      // Chat background
+$dark-base: #12121f; // Main dark page background
+$dark-surface: #1c1c2e; // Panels/Buttons surface color
+$dark-inner: #151525; // Inner card background
+$dark-chat: #191929; // Chat background
 
 // Accent Colors
-$cyan: #00e5ff;           // Electric Blue
-$magenta: #ff0055;        // Vibrant Magenta
+$cyan: #00e5ff; // Electric Blue
+$magenta: #ff0055; // Vibrant Magenta
 $gold: #FFD700;
 $orange: #FFA500;
 $purple: #7928CA;
 $pink: #FF0080;
 
 // --- Typography ---
-$text-main: $white;
+$text-main: $black;
 $text-secondary: $gray;
 $text-inverse: $dark-surface; // Dark text for light buttons
 
@@ -26,7 +27,7 @@ $bg-chat: $dark-chat;
 $card-inner: $dark-inner;
 
 // Transparent Backgrounds (Glassmorphism)
-$card-bg: rgba(255, 255, 255, 0.05);       // Standard transparency
+$card-bg: #f8f9fc; // Standard transparency
 $card-bg-light: rgba(255, 255, 255, 0.03); // Lighter variation
 $bubble-bg: rgba(255, 255, 255, 0.05);
 
@@ -39,8 +40,8 @@ $btn-primary-text: $dark-surface;
 
 // --- Gradients ---
 // Vibrant gradient base colors
-$gradient-vibrant-colors: $magenta, $cyan; 
-$vibrant-gradient: linear-gradient(135deg, $magenta, $cyan); 
+$gradient-vibrant-colors: $magenta, $cyan;
+$vibrant-gradient: linear-gradient(135deg, $magenta, $cyan);
 
 $mentor-gradient: linear-gradient(45deg, $purple, $pink);
 $star-gradient: linear-gradient(180deg, $gold, $orange);
@@ -49,10 +50,19 @@ $vibrant-border: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255
 // --- Misc ---
 $star-color: $gold;
 
+.landing-page-container {
+    display: grid;
+    flex-direction: column;
+    gap: 20px;
+}
 
 .info-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
     padding: 80px 20px;
-    background-color: $dark-base;
     text-align: center;
     font-family: 'Segoe UI', sans-serif;
 }
@@ -67,7 +77,6 @@ $star-color: $gold;
         margin-bottom: 20px;
 
         .highlight {
-            /* Градієнтний текст для акценту */
             background: linear-gradient(90deg, #ff0055, #00e5ff);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -82,7 +91,6 @@ $star-color: $gold;
     }
 }
 
-/* --- Сітка інфографіки --- */
 .process-grid {
     display: flex;
     justify-content: center;
@@ -92,11 +100,9 @@ $star-color: $gold;
     position: relative;
 }
 
-/* Картка кроку */
 .process-card {
     background: $card-bg;
     backdrop-filter: blur(10px);
-    /* Ефект скла */
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 24px;
     padding: 40px 30px;
@@ -130,7 +136,6 @@ $star-color: $gold;
     }
 }
 
-/* Іконка в колі */
 .icon-box {
     width: 70px;
     height: 70px;
@@ -149,17 +154,14 @@ $star-color: $gold;
     }
 }
 
-/* --- Декоративна лінія (Connector) --- */
 .connector {
     width: 60px;
     height: 2px;
     background: linear-gradient(90deg, rgba(255, 255, 255, 0.1), $accent-color, rgba(255, 255, 255, 0.1));
     margin-top: 75px;
-    /* Вирівнювання по центру іконок */
     opacity: 0.6;
 }
 
-/* Адаптивність */
 @media (max-width: 900px) {
     .process-grid {
         flex-direction: column;
@@ -169,7 +171,6 @@ $star-color: $gold;
     .connector {
         width: 2px;
         height: 40px;
-        /* Вертикальна лінія на мобільному */
         margin: 0;
         background: linear-gradient(180deg, rgba(255, 255, 255, 0.1), $accent-color, rgba(255, 255, 255, 0.1));
     }
@@ -180,38 +181,30 @@ $star-color: $gold;
     }
 }
 
-/* Змінні (ті ж самі, що і раніше) */
 $bg-dark: #12121f;
 $color-primary: #ff0055;
-/* Малиновий */
 $color-secondary: #00e5ff;
-/* Блакитний */
 $text-white: #ffffff;
 
 .cta-wrapper {
     padding: 60px 0;
-    background-color: $bg-dark;
     display: flex;
     justify-content: center;
 }
 
 .cta-card {
+    z-index: 1;
     position: relative;
+    overflow: hidden;
+    background: #000;
     width: 100%;
-    background: linear-gradient(135deg, #1c1c2e, #2a2a40);
     border-radius: 40px;
-    /* Сильніше заокруглення */
     padding: 80px 40px;
     text-align: center;
-    overflow: hidden;
-    /* Щоб сяйво не виходило за межі */
     box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
-
-    /* Тонка рамка градієнтом */
     border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-/* --- Ефект заднього плану (Aurora Glow) --- */
 .glow-bg {
     position: absolute;
     top: -50%;
@@ -234,11 +227,9 @@ $text-white: #ffffff;
     }
 }
 
-/* --- Контент --- */
 .content {
     position: relative;
     z-index: 2;
-    /* Щоб текст був над фоном */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -260,7 +251,6 @@ $text-white: #ffffff;
     max-width: 500px;
 }
 
-/* --- Кнопка CTA (Особлива) --- */
 .btn-cta {
     background: $text-white;
     color: $dark-surface;
@@ -275,8 +265,6 @@ $text-white: #ffffff;
     gap: 10px;
     transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
     box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.7);
-
-    /* Анімація пульсації, щоб привернути увагу */
     animation: pulseWhite 2s infinite;
 }
 
@@ -286,20 +274,16 @@ $text-white: #ffffff;
 
 .btn-cta:hover {
     background: $color-secondary;
-    /* Блакитний при наведенні */
     color: #000;
     transform: scale(1.05);
     box-shadow: 0 10px 30px rgba(0, 229, 255, 0.5);
     animation: none;
-    /* Зупиняємо пульсацію при наведенні */
 
     .arrow {
         transform: translateX(5px);
-        /* Стрілочка їде вправо */
     }
 }
 
-/* Анімація пульсації тіні */
 @keyframes pulseWhite {
     0% {
         box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.4);
@@ -314,7 +298,6 @@ $text-white: #ffffff;
     }
 }
 
-/* Мобільна адаптивність */
 @media (max-width: 600px) {
     .cta-title {
         font-size: 2.2rem;
@@ -331,15 +314,10 @@ $text-white: #ffffff;
     }
 }
 
-/* Змінні (узгоджені з попередніми блоками) */
-
-
 .partners-block {
-    background-color: $bg-dark;
     padding: 60px 0;
     text-align: center;
     overflow: hidden;
-    /* Щоб нічого не вилазило за межі */
 }
 
 .block-title {
@@ -350,46 +328,29 @@ $text-white: #ffffff;
     font-weight: 300;
 }
 
-/* --- Карусель --- */
 .carousel-wrapper {
     position: relative;
     width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-    overflow: hidden;
-    padding: 20px 0;
-
-    /* Маска для м'яких країв (сучасний спосіб) */
-    mask-image: linear-gradient(to right,
-            transparent,
-            black 10%,
-            black 90%,
-            transparent);
+    overflow: hidden; 
 }
 
 .carousel-track {
     display: flex;
     gap: 40px;
-    /* Відстань між елементами */
     width: max-content;
-    /* Ширина залежить від контенту */
-
-    /* Анімація руху */
     animation: scroll 30s linear infinite;
 
-    /* Пауза при наведенні мишкою (мануальний контроль) */
     &:hover {
         animation-play-state: paused;
     }
 }
 
-/* Окремий елемент компанії */
 .company-item {
     background: $card-bg;
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 15px;
-    /* Заокруглені краї */
     padding: 15px 40px;
+    gap: 12px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -401,12 +362,10 @@ $text-white: #ffffff;
         font-family: 'Segoe UI', sans-serif;
         font-size: 1.5rem;
         font-weight: bold;
-        color: rgba(255, 255, 255, 0.6);
-        /* Напівпрозорий текст за замовчуванням */
+        color: rgb(165, 161, 161);
         transition: all 0.3s ease;
     }
 
-    /* Vibrant ефект при ховері на конкретний елемент */
     &:hover {
         transform: translateY(-5px);
         border-color: rgba(255, 255, 255, 0.3);
@@ -421,9 +380,12 @@ $text-white: #ffffff;
             opacity: 1;
         }
     }
+
+    .company-icon {
+        font-size: 1.8rem;
+    }
 }
 
-/* --- Анімація --- */
 @keyframes scroll {
     0% {
         transform: translateX(0);
@@ -436,19 +398,30 @@ $text-white: #ffffff;
 
 .fade-overlay {
     position: absolute;
-    top: 0;
+    top: -20px;
     bottom: 0;
-    width: 100px;
+    width: 250px;
+    height: 250px;
     z-index: 2;
     pointer-events: none;
 }
 
-/* Адаптивність */
+.fade-left {
+    left: -10px;
+    background: #fff;
+    filter: blur(6px);
+}
+
+.fade-right {
+    right: -10px;
+    background: #fff;
+    filter: blur(6px);
+}
+
 @media (max-width: 768px) {
     .carousel-track {
         gap: 20px;
         animation-duration: 20s;
-        /* Швидше на мобільних */
     }
 
     .company-item {
@@ -460,12 +433,9 @@ $text-white: #ffffff;
     }
 }
 
-/* Змінні */
-
 
 .use-cases-section {
     padding: 80px 20px;
-    background-color: $bg-dark;
     color: $text-white;
 }
 
@@ -476,24 +446,19 @@ $text-white: #ffffff;
     margin-bottom: 60px;
 }
 
-/* Контейнер для табів */
 .tabs-container {
     display: flex;
     max-width: 1000px;
     margin: 0 auto;
     gap: 40px;
-    /* Відстань між сайдбаром і контентом */
 
-    /* На мобільних будемо ставити стовпчиком */
     @media (max-width: 768px) {
         flex-direction: column;
     }
 }
 
-/* --- САЙДБАР --- */
 .sidebar {
     flex: 1;
-    /* Займає 1 частину ширини */
     display: flex;
     flex-direction: column;
     gap: 15px;
@@ -501,9 +466,9 @@ $text-white: #ffffff;
 
 .tab-item {
     padding: 20px 30px;
-    background: rgba(255, 255, 255, 0.03);
+    background: #f8f9fc;
     border-radius: 20px;
-    /* Заокруглені кути */
+    color: $black;
     cursor: pointer;
     transition: all 0.3s ease;
     display: flex;
@@ -516,16 +481,13 @@ $text-white: #ffffff;
         font-weight: 600;
     }
 
-    /* Ховер ефект для неактивних */
     &:hover:not(.active) {
         background: rgba(255, 255, 255, 0.1);
         transform: translateX(5px);
     }
 
-    /* АКТИВНИЙ СТАН */
     &.active {
         background: $vibrant-gradient;
-        /* Яскравий градієнт */
         color: white;
         box-shadow: 0 10px 30px rgba(0, 229, 255, 0.3);
         border-color: transparent;
@@ -1537,7 +1499,6 @@ $border-color: rgba(255, 255, 255, 0.1);
     color: rgba(255, 255, 255, 0.4);
 }
 
-/* Адаптивність */
 @media (max-width: 768px) {
     .glow-border-card {
         flex-direction: column;
@@ -1550,11 +1511,8 @@ $border-color: rgba(255, 255, 255, 0.1);
     }
 }
 
-/* Змінні */
-
 .feedback-section {
     padding: 80px 20px;
-    background-color: $bg-dark;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -1562,7 +1520,7 @@ $border-color: rgba(255, 255, 255, 0.1);
 
 .section-title {
     font-family: 'Segoe UI', sans-serif;
-    color: $text-white;
+    color: $black;
     font-size: 2.5rem;
     margin-bottom: 50px;
     text-align: center;
@@ -1571,7 +1529,6 @@ $border-color: rgba(255, 255, 255, 0.1);
 .chat-interface {
     width: 100%;
     max-width: 600px;
-    /* Ширина як у мобілки або вузького вікна */
     background: $bg-chat;
     border-radius: 24px;
     border: 1px solid rgba(255, 255, 255, 0.1);
@@ -1620,7 +1577,6 @@ $border-color: rgba(255, 255, 255, 0.1);
     }
 }
 
-/* Стрічка повідомлень */
 .messages-stream {
     padding: 20px;
     display: flex;
@@ -1633,12 +1589,10 @@ $border-color: rgba(255, 255, 255, 0.1);
     gap: 15px;
     align-items: flex-start;
 
-    /* Анімація появи */
     opacity: 0;
     transform: translateY(20px);
     animation: slideUp 0.6s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
     animation-delay: var(--anim-delay);
-    /* Каскадна затримка */
 }
 
 @keyframes slideUp {
@@ -1648,7 +1602,6 @@ $border-color: rgba(255, 255, 255, 0.1);
     }
 }
 
-/* Аватарка */
 .avatar-container {
     position: relative;
 
@@ -1660,12 +1613,10 @@ $border-color: rgba(255, 255, 255, 0.1);
     }
 }
 
-/* Бульбашка повідомлення */
 .message-bubble {
     background: $bubble-bg;
     padding: 15px 20px;
     border-radius: 4px 20px 20px 20px;
-    /* Лівий верхній кут гострий */
     backdrop-filter: blur(5px);
     border: 1px solid rgba(255, 255, 255, 0.05);
     max-width: 85%;
@@ -1703,7 +1654,6 @@ $border-color: rgba(255, 255, 255, 0.1);
     margin: 0;
 }
 
-/* Фейковий інпут */
 .chat-input-area {
     padding: 15px 20px;
     border-top: 1px solid rgba(255, 255, 255, 0.05);
@@ -1711,7 +1661,6 @@ $border-color: rgba(255, 255, 255, 0.1);
     align-items: center;
     gap: 15px;
     opacity: 0.5;
-    /* Робимо напівпрозорим, щоб показати неактивність */
 
     .fake-input {
         flex: 1;
@@ -1738,11 +1687,9 @@ $border-color: rgba(255, 255, 255, 0.1);
     }
 }
 
-/* Адаптивність */
 @media (max-width: 600px) {
     .chat-interface {
         border-radius: 0;
-        /* На мобільному на всю ширину */
         border-left: none;
         border-right: none;
     }
@@ -1752,87 +1699,80 @@ $border-color: rgba(255, 255, 255, 0.1);
     }
 }
 
-/* Змінні */
-
-
 .faq-section {
-  padding: 80px 0 40px;
-  background-color: $bg-dark;
-  min-height: 600px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+    padding: 80px 0 40px;
+    min-height: 600px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 h1 {
-  text-align: center;
-  color: $text-white;
-  font-size: 2.5rem;
-  margin-bottom: 50px;
-  font-family: 'Segoe UI', sans-serif;
+    text-align: center;
+    color: $black;
+    font-size: 2.5rem;
+    margin-bottom: 50px;
+    font-family: 'Segoe UI', sans-serif;
 }
 
 .content-wrapper {
-  width: 100%;
-  max-width: 800px;
+    width: 100%;
+    max-width: 800px;
 }
 
 ::ng-deep .custom-panel {
-  background-color: $panel-bg !important;
-  color: $text-white !important;
-  box-shadow: none !important;
-  border-radius: 15px !important;
-  margin-bottom: 15px;
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  transition: all 0.3s ease !important;
+    background-color: $panel-bg !important;
+    color: $text-white !important;
+    box-shadow: none !important;
+    border-radius: 15px !important;
+    margin-bottom: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: all 0.3s ease !important;
 
-  .mat-expansion-panel-header {
-    padding: 25px 25px !important;
-    font-family: 'Segoe UI', sans-serif;
-    font-size: 1.1rem;
-    font-weight: 500;
+    .mat-expansion-panel-header {
+        padding: 25px 25px !important;
+        font-family: 'Segoe UI', sans-serif;
+        font-size: 1.1rem;
+        font-weight: 500;
 
-    &:hover {
-      background: rgba(255, 255, 255, 0.05) !important;
+        &:hover {
+            background: rgba(255, 255, 255, 0.05) !important;
+        }
+
+        .mat-expansion-panel-header-title {
+            color: $text-white;
+            margin-right: 20px;
+        }
     }
 
-    .mat-expansion-panel-header-title {
-      color: $text-white;
-      margin-right: 20px;
-    }
-  }
-
-  .mat-expansion-panel-body {
-    padding: 0 25px 25px 25px !important;
-    color: $text-secondary;
-    line-height: 1.6;
-    font-size: 1rem;
-  }
-
-  &.mat-expanded {
-    background-color: rgba(255, 255, 255, 0.08) !important;
-    border-color: rgba(255, 255, 255, 0.2);
-    
-    .mat-expansion-panel-header-title {
-      color: $accent-color;
-      font-weight: bold;
+    .mat-expansion-panel-body {
+        padding: 0 25px 25px 25px !important;
+        color: $text-secondary;
+        line-height: 1.6;
+        font-size: 1rem;
     }
 
-    .panel-icon {
-      transform: rotate(45deg);
-      color: $active-border;
-    }
-  }
+    &.mat-expanded {
+        background-color: rgba(255, 255, 255, 0.08) !important;
+        border-color: rgba(255, 255, 255, 0.2);
 
-  .answer-text {
-    margin-top: 25px;
-  }
+        .mat-expansion-panel-header-title {
+            color: $accent-color;
+            font-weight: bold;
+        }
+
+        .panel-icon {
+            transform: rotate(45deg);
+            color: $active-border;
+        }
+    }
+
+    .answer-text {
+        margin-top: 25px;
+    }
 }
 
 .panel-icon {
-  color: $text-secondary;
-  transition: transform 0.3s ease, color 0.3s ease;
+    color: $text-secondary;
+    transition: transform 0.3s ease, color 0.3s ease;
 }
-
-
-

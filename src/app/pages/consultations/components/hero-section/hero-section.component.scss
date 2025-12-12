@@ -7,69 +7,46 @@ $bg-color: #12121f;
 $card-bg: rgba(255, 255, 255, 0.05);
 $accent-color: #00e5ff;
 
-.hero-container {
-    background: #1c1c2e;
-    border-radius: 10px;
-    padding: 80px 20px;
-    margin-top: 40px;
-    min-height: 80vh;
+.content {
     position: relative;
-    overflow: hidden;
+    z-index: 1;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    text-align: center;
-}
-
-.cursor-spot {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 250px;
-    height: 250px;
-    border-radius: 50%;
+    height: 100vh;
     pointer-events: none;
-    z-index: 1;
-    background-image: radial-gradient(circle,
-            #000000 1.5px,
-            transparent 1.5px);
-    background-size: 8px 8px;
-
-    mask-image: radial-gradient(circle,
-            black 0%,
-            transparent 70%
-        );
-    -webkit-mask-image: radial-gradient(circle,
-            black 0%,
-            transparent 70%);
-
-    will-change: transform;
 }
 
-/* Контент має бути вище за коло */
+.hero-container {
+    z-index: 1;
+    position: relative;
+    overflow: hidden;
+    background: #000;
+    border-radius: 36px;
+    padding: 80px 60px;
+    margin-top: 40px;
+    min-height: 80vh;
+    display: flex;
+    justify-content: flex-start;
+    align-items: end;
+    text-align: center;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+}
+
 .content-wrapper {
     position: relative;
-    z-index: 10;
-}
-
-/* --- Стиль динамічної точки (Particle) --- */
-/* Цей клас ми будемо додавати через JS, тому ::ng-deep може знадобитися, 
-   якщо ViewEncapsulation не None. Або додайте цей стиль у styles.scss (глобально) */
-::ng-deep .dark-particle {
-    position: absolute;
-    width: 6px;
-    /* Розмір точки */
-    height: 6px;
-    background-color: rgba(0, 0, 0, 0.6);
-    /* Темніший за фон, напівпрозорий */
-    border-radius: 50%;
-    pointer-events: none;
-    /* Щоб не заважали клікати */
     z-index: 1;
-    /* Нижче контенту */
+    height: 100%;
 
-    /* Анімація */
-    animation: riseAndFade 1.5s ease-out forwards;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+
+    padding-right: 20px;
+
+    max-width: 800px;
 }
 
 @keyframes riseAndFade {
@@ -113,24 +90,20 @@ $accent-color: #00e5ff;
 
 .hero-title {
     font-family: 'Segoe UI', sans-serif;
-    font-size: 3rem;
+    font-size: 4rem;
+    text-align: left;
     color: $text-color;
     margin-bottom: 40px;
 
-    /* Застосування анімації */
     animation: fadeInUp 1s ease-out forwards;
 }
 
-/* --- Стилі Кнопок --- */
 .button-group {
     display: flex;
     gap: 20px;
     justify-content: center;
-
-    /* Анімація кнопок з невеликою затримкою після тексту */
     animation: fadeInUp 1s ease-out 0.3s forwards;
     opacity: 0;
-    /* Приховано до початку анімації */
 }
 
 .btn {
@@ -139,11 +112,7 @@ $accent-color: #00e5ff;
     font-weight: bold;
     cursor: pointer;
     border: none;
-
-    /* Заокруглені краї кнопок */
     border-radius: 50px;
-
-    /* Плавний перехід для ховеру */
     transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 

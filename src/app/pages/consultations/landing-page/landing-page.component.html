@@ -1,4 +1,4 @@
-<div>
+<div class="landing-page-container">
     <cons-hero-section></cons-hero-section>
     <section class="info-section">
         <div class="header-content">
@@ -43,8 +43,7 @@
 
     <section class="cta-wrapper">
         <div class="cta-card">
-            <div class="glow-bg"></div>
-
+            <cons-three-warp-lines></cons-three-warp-lines>
             <div class="content">
                 <h2 class="cta-title">Try our service today!</h2>
                 <p class="cta-subtitle">Start your journey with us and boost your skills immediately.</p>
@@ -62,15 +61,14 @@
 
         <div class="carousel-wrapper">
             <div class="carousel-track">
-
                 <div *ngFor="let company of scrollingCompanies" class="company-item">
-                    <span class="company-text">{{ company }}</span>
+                    <fa-icon [icon]="company.icon" class="company-icon" [style.color]="company.color"> </fa-icon>
+                    <span class="company-text">{{ company.name }}</span>
                 </div>
-
             </div>
 
-            <div class="fade-overlay left"></div>
-            <div class="fade-overlay right"></div>
+            <div class="fade-overlay fade-left"></div>
+            <div class="fade-overlay fade-right"></div>
         </div>
     </section>
     <section class="use-cases-section">
