@@ -1,82 +1,31 @@
-:root {
-    --background-overlay: rgba(0, 0, 0, 0.1);
-    --background-blend: multiply;
-    --text-color: #333333;
-    --text-secondary: #666666;
-    
-    --header-bg: rgba(240, 245, 250, 0.4);
-    --header-border: rgba(0, 0, 0, 0.1);
-    --button-color: rgb(114, 114, 114);
-    --button-hover-bg: rgb(34, 151, 219);
-    --button-hover-color: white;
-  }
-  
-  body.dark-theme {
-    --background-overlay: rgba(0, 0, 0, 0.8); 
-    --text-color: rgb(114, 114, 114);
-    --text-secondary: #cccccc;
-    --header-bg: rgba(20, 25, 30, 0.7);
-    --header-border: rgba(255, 255, 255, 0.1);
-    --button-color: rgb(200, 200, 200);
-  }
-
-  .cons-header {
+/* Основний контейнер */
+.layout-wrapper {
     display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .background {
-    display: flex;
-    flex-direction: column;
-    background-repeat: no-repeat;
     min-height: 100vh;
     width: 100%;
-    background-size: cover;
-    background-position: center;
-    transition: all 0.3s ease;
-
-    background-attachment: fixed;
-    
-    background: #333333;
-    background-blend-mode: multiply;
-    color: #333333;
-    
-    &.dark-theme {
-        background: rgb(49, 49, 49);
-        background-blend-mode: multiply;
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-position: center;
-        color: #ffffff;
-      }
-      
-      &.light-theme {
-        background: #ffffff;
-        background-blend-mode: multiply;
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-position: center;
-        color: #333333;
-      }
-  }
-
-.cons-footer {
-  flex: 1;
+    overflow: hidden; /* Щоб уникнути подвійних скролів */
 }
 
-.layout {
-  min-height: 100vh;
-  padding-bottom: 4em;
+/* Права колонка (Хедер + Контент) */
+.main-column {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-width: 0; /* Важливо для flexbox, щоб контент не розпирав контейнер */
+}
+
+.cons-header {
+    height: 70px;
+    display: flex;
+    align-items: center; 
+    padding: 0 30px;
+    justify-content: flex-start; 
+    
+    background: var(--header-bg);
+    border-bottom: 1px solid #e0e0e0;
 }
 
 .main-content {
-  flex: 1;
-  margin: 0 24px;
-}
-
-@media (max-width: 768px) {
-  .main-content {
-    margin: 0;
-  }
+    flex: 1; 
+    overflow-y: auto;
 }

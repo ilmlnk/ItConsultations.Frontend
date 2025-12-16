@@ -65,10 +65,20 @@ import { LandingPageComponent } from './consultations/landing-page/landing-page.
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { ConsValidationComponent } from '../shared/components/cons-validation/cons-validation.component';
-import { HeroSectionComponent } from './consultations/components/hero-section/hero-section.component';
+import { HeroSectionComponent } from './consultations/components/landing/hero-section/hero-section.component';
 import { ThreeParticlesComponent } from './consultations/components/three-particles/three-particles.component';
 import { ThreeWarpLinesComponent } from './consultations/components/three-warp-lines/three-warp-lines.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { InfoSectionComponent } from './consultations/components/landing/info-section/info-section.component';
+import { CtaLandingSectionComponent } from './consultations/components/landing/cta-landing-section/cta-landing-section.component';
+import { PanelMenuModule } from 'primeng/panelmenu';
+import { CardModule } from 'primeng/card';
+import { SelectButtonModule } from 'primeng/selectbutton';
+import { InputTextModule } from 'primeng/inputtext';
+import { ButtonModule } from 'primeng/button';
+import { TableModule } from 'primeng/table';
+import { ChipModule } from 'primeng/chip';
+import { AvatarModule } from 'primeng/avatar';
 
 @NgModule({
   declarations: [
@@ -112,7 +122,9 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     ConsValidationComponent,
     HeroSectionComponent,
     ThreeParticlesComponent,
-    ThreeWarpLinesComponent
+    ThreeWarpLinesComponent,
+    InfoSectionComponent,
+    CtaLandingSectionComponent
   ],
   imports: [
     FormsModule,
@@ -148,7 +160,16 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     LanguageFlagPipe,
     TranslatePipe,
     MatProgressSpinnerModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    PanelMenuModule,
+    CardModule,
+    SelectButtonModule,
+    InputTextModule,
+    ButtonModule,
+    FormsModule,
+    TableModule,
+    ChipModule,
+    AvatarModule
   ],
   exports: [
     MatDialogModule,

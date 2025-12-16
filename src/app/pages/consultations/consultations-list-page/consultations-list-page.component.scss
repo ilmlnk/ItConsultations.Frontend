@@ -1,19 +1,202 @@
-.mat-mdc-card {
-    border-radius: 12px !important;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1) !important;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    background-color: var(--mdc-menu-container-color) !important;
-    backdrop-filter: blur(10px);
-    padding: 24px;
+$sidebar-bg: #ffffff;
+$body-bg: #f5f7fa; 
+$primary-blue: #007bff;
+$text-color: #333;
+$border-color: #e0e0e0;
+$sidebar-width: 260px;
+
+.layout-wrapper {
+  display: flex;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+.layout-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background-color: $body-bg;
+  overflow: hidden;
+}
 
-@media (max-width: 768px) {
-    .mat-mdc-card {
-        background: none !important;
-        box-shadow: none !important;
-        backdrop-filter: none !important;
-        padding: 0;
-        border: none;
+.layout-header {
+  height: 70px;
+  background-color: $body-bg;
+  display: flex;
+  align-items: center;
+  padding: 0 30px;
+  
+  h2 {
+    margin: 0;
+    font-size: 24px;
+    font-weight: 500;
+  }
+}
+
+.layout-content {
+  flex: 1;
+  padding: 30px;
+  overflow-y: auto;
+
+  .content-card {
+    ::ng-deep .p-card {
+      box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+      border-radius: 8px;
+      
+      .p-card-header {
+        padding: 20px 20px 0 20px;
+        font-size: 20px;
+        font-weight: 500;
+      }
+      
+      .p-card-body {
+        padding: 20px;
+      }
     }
+  }
+}
+
+.toolbar-container {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 20px;
+  flex-wrap: wrap; /* Щоб адаптувалось на малих екранах */
+  background: transparent;
+}
+
+.toolbar-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.search-group {
+  flex: 1;
+  min-width: 200px;
+
+  i {
+    position: absolute;
+    margin: 12px;
+    color: #999;
+  }
+}
+
+.w-100 {
+  width: 100%;
+}
+
+::ng-deep .custom-select-button {
+    min-height: 40px;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+  .p-button {
+    background: #ffffff;
+    border: 1px solid #e0e0e0;
+    color: #666;
+    font-weight: 500;
+    font-size: 14px;
+    padding: 8px 16px;
+    
+    &:focus {
+      box-shadow: none;
+    }
+
+    &.p-highlight {
+      background: #ffffff;
+      border-color: #333;
+      color: #000;
+      font-weight: 600;
+      z-index: 1;
+    }
+
+    &:first-child {
+      border-top-left-radius: 8px;
+      border-bottom-left-radius: 8px;
+    }
+    &:last-child {
+      border-top-right-radius: 8px;
+      border-bottom-right-radius: 8px;
+    }
+  }
+}
+
+.custom-search-input {
+  border-radius: 8px;
+  border: 1px solid #e0e0e0;
+  padding-left: 2.5rem;
+  height: 42px;
+  
+  &:focus {
+    border-color: #aaa;
+    box-shadow: none;
+  }
+}
+
+::ng-deep .custom-btn {
+  background: #ffffff;
+  border: 1px solid #e0e0e0;
+  color: #333;
+  border-radius: 8px;
+  font-weight: 500;
+  height: 42px;
+
+  &:enabled:hover {
+    background: #f9f9f9;
+    color: #000;
+    border-color: #ccc;
+  }
+
+  .p-button-icon {
+    font-size: 14px;
+    color: #666;
+  }
+}
+
+/* Квадратна кнопка сортування */
+::ng-deep .custom-btn-icon {
+  @extend .custom-btn;
+  width: 42px;
+  padding: 0;
+  justify-content: center;
+}
+
+/* 4. Pagination (Showing 10) */
+.pagination-control {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  
+  .label {
+    color: #666;
+    font-size: 14px;
+  }
+
+  ::ng-deep .custom-dropdown {
+    border-radius: 6px;
+    border: 1px solid #e0e0e0;
+    height: 42px;
+    align-items: center;
+
+    .p-dropdown-label {
+      padding: 10px;
+    }
+  }
+}
+
+.action-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+/* Адаптивність */
+@media (max-width: 1200px) {
+  .search-group {
+    order: 3; /* Переносимо пошук вниз на малих екранах, якщо треба */
+    width: 100%;
+    flex: 100%;
+  }
 }

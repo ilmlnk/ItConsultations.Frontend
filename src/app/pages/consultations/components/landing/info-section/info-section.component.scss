@@ -1,0 +1,175 @@
+$white: #ffffff;
+$black: #000;
+$gray: #a0a0b0;
+$dark-base: #12121f; // Main dark page background
+$dark-surface: #1c1c2e; // Panels/Buttons surface color
+$dark-inner: #151525; // Inner card background
+$dark-chat: #191929; // Chat background
+
+// Accent Colors
+$cyan: #00e5ff; // Electric Blue
+$magenta: #ff0055; // Vibrant Magenta
+$gold: #FFD700;
+$orange: #FFA500;
+$purple: #7928CA;
+$pink: #FF0080;
+
+// --- Typography ---
+$text-main: $black;
+$text-secondary: $gray;
+$text-inverse: $dark-surface; // Dark text for light buttons
+
+// --- Backgrounds ---
+$bg-body: $dark-base;
+$bg-panel: $dark-surface;
+$bg-chat: $dark-chat;
+$card-inner: $dark-inner;
+
+// Transparent Backgrounds (Glassmorphism)
+$card-bg: #f8f9fc; // Standard transparency
+$card-bg-light: rgba(255, 255, 255, 0.03); // Lighter variation
+$bubble-bg: rgba(255, 255, 255, 0.05);
+
+// --- Buttons & Accents ---
+$accent-color: $cyan;
+$active-border: $magenta;
+
+$btn-primary-bg: $white;
+$btn-primary-text: $dark-surface;
+
+// --- Gradients ---
+// Vibrant gradient base colors
+$gradient-vibrant-colors: $magenta, $cyan;
+$vibrant-gradient: linear-gradient(135deg, $magenta, $cyan);
+
+$mentor-gradient: linear-gradient(45deg, $purple, $pink);
+$star-gradient: linear-gradient(180deg, $gold, $orange);
+$vibrant-border: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+
+// --- Misc ---
+$star-color: $gold;
+
+.info-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 80px 20px;
+    text-align: center;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.header-content {
+    max-width: 700px;
+    margin: 0 auto 60px;
+
+    h2 {
+        font-size: 2.5rem;
+        color: #000;
+        margin-bottom: 20px;
+
+        .highlight {
+            background: linear-gradient(90deg, #ff0055, #00e5ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 800;
+        }
+    }
+
+    .subtitle {
+        font-size: 1.1rem;
+        color: #a3a3a3;
+        line-height: 1.6;
+    }
+}
+
+.process-grid {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 20px;
+    flex-wrap: wrap;
+    position: relative;
+}
+
+.process-card {
+    background: $card-bg;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 24px;
+    padding: 40px 30px;
+    width: 300px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    z-index: 2;
+
+    &:hover {
+        transform: translateY(-10px);
+        border-color: rgba(255, 255, 255, 0.3);
+        box-shadow: 0 15px 30px rgba(0, 229, 255, 0.15);
+
+        .icon-box {
+            transform: scale(1.1) rotate(5deg);
+            background: $accent-color;
+            color: #000;
+        }
+    }
+
+    h3 {
+        color: #000;
+        margin: 20px 0 10px;
+        font-size: 1.3rem;
+    }
+
+    p {
+        color: $text-secondary;
+        font-size: 0.95rem;
+        line-height: 1.5;
+    }
+}
+
+.icon-box {
+    width: 70px;
+    height: 70px;
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    color: $accent-color;
+    transition: all 0.4s ease;
+
+    .icon {
+        font-style: normal;
+    }
+}
+
+.connector {
+    width: 60px;
+    height: 2px;
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0.1), $accent-color, rgba(255, 255, 255, 0.1));
+    margin-top: 75px;
+    opacity: 0.6;
+}
+
+@media (max-width: 900px) {
+    .process-grid {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .connector {
+        width: 2px;
+        height: 40px;
+        margin: 0;
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.1), $accent-color, rgba(255, 255, 255, 0.1));
+    }
+
+    .process-card {
+        width: 100%;
+        max-width: 350px;
+    }
+}

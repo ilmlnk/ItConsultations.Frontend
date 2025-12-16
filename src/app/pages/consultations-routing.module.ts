@@ -24,9 +24,8 @@ import { authGuard } from '../shared/guards/auth.guard';
 const routes: Routes = [
   {
     path: '', component: ConsultationsPageRootComponent, children: [
-      { path: '', component: LandingPageComponent },
       { path: 'dashboard', component: DashboardPageComponent, canActivate: [authGuard] },
-      { path: 'consultations-list', component: ConsultationsListPageComponent, canActivate: [authGuard] },
+      { path: 'consultations-list', component: ConsultationsListPageComponent },
       { path: 'favorites', component: FavoritesConsultationsPageComponent, canActivate: [authGuard] },
       { path: 'recordings', component: MeetingRecordingsPageComponent, canActivate: [authGuard] },
       { path: 'notes', component: NotesPageComponent, canActivate: [authGuard] },
@@ -42,6 +41,7 @@ const routes: Routes = [
       { path: 'handbook', component: HandbookPageComponent, canActivate: [authGuard] }
     ]
   },
+  { path: 'start', component: LandingPageComponent },
   { path: 'login', component: LoginComponent},
   { path: 'register', component: RegisterPageComponent },
 ];

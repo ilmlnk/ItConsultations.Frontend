@@ -1,7 +1,7 @@
-import { Component, HostListener } from '@angular/core';
+import { Component } from '@angular/core';
 import { Consultation } from '../../../shared/models/consultation';
 import { ConsultationsService } from '../../../shared/services/consultations/consultations.service';
-import { Language } from '../../../shared/enums/language.enum';
+import { MenuItem } from 'primeng/api';
 
 @Component({
   selector: 'cons-consultations-list-page',
@@ -13,148 +13,113 @@ export class ConsultationsListPageComponent {
   isBookingModalOpen: boolean = false;
   selectedConsultation!: Consultation;
 
-  consultations: Consultation[] = [
+  items: MenuItem[] = [];
+  consultations: any[] = [
     {
       id: 1,
-      consId: '123465789',
-      title: 'Example',
-      description: 'Example',
-      price: 150,
-      currency: 'USD',
-      thumbnailUrl: 'https://example.com',
-      coachImageUrl: 'https://example.com',
-      duration: 50,
-      isFavorite: true,
-      coach: {
-        id: 1,
-        firstName: 'John',
-        lastName: 'Doe',
-        description: 'Experienced business coach',
-        position: 'Senior Coach',
-        imageUrl: 'https://example.com/image.jpg',
-        companyName: 'Coaching Inc',
-        languages: [Language.EN],
-        reviews: [
-          {
-            id: 1,
-            rating: 4.2,
-            comment: 'Example',
-          },
-        ],
-        topics: ['Composition', 'OOP', 'Architecture', 'Aggregation'],
-        skills: ['Java', 'JPA', 'Spring'],
-      },
+      fullName: 'John Doe',
+      position: 'Software Engineer',
+      company: 'Tech Corp',
+      topics: ['Angular', 'TypeScript'],
     },
     {
       id: 2,
-      consId: '1234657888',
-      title: 'Example',
-      description: 'Example',
-      price: 150,
-      thumbnailUrl: 'https://example.com',
-      coachImageUrl: 'https://example.com',
-      duration: 50,
-      currency: 'USD',
-      isFavorite: false,
-      coach: {
-        id: 1,
-        firstName: 'John',
-        lastName: 'Doe',
-        description: 'Experienced business coach',
-        position: 'Senior Coach',
-        imageUrl: 'https://example.com/image.jpg',
-        companyName: 'Coaching Inc',
-        languages: [Language.DE],
-        reviews: [
-          {
-            id: 2,
-            rating: 4.5,
-            comment: 'Example',
-          },
-          {
-            id: 2,
-            rating: 3,
-            comment: 'Example',
-          },
-        ],
-        topics: ['Composition', 'OOP', 'Architecture', 'Aggregation'],
-        skills: ['Java', 'JPA', 'Spring'],
-      },
+      fullName: 'John Doe',
+      position: 'Software Engineer',
+      company: 'Tech Corp',
+      topics: ['Angular', 'TypeScript'],
     },
     {
-      id: 2,
-      consId: '12346578874',
-      title: 'Example',
-      description: 'Example',
-      price: 200,
-      currency: 'USD',
-      thumbnailUrl: 'https://example.com',
-      coachImageUrl: 'https://example.com',
-      duration: 50,
-      isFavorite: false,
-      coach: {
-        id: 1,
-        firstName: 'John',
-        lastName: 'Doe',
-        description: 'Experienced business coach',
-        position: 'Senior Coach',
-        imageUrl: 'https://example.com/image.jpg',
-        companyName: 'Coaching Inc',
-        languages: [Language.IT],
-        reviews: [
-          {
-            id: 2,
-            rating: 4.5,
-            comment: 'Example',
-          },
-          {
-            id: 2,
-            rating: 3,
-            comment: 'Example',
-          },
-          {
-            id: 3,
-            rating: 2,
-            comment: 'Example',
-          },
-        ],
-        topics: ['Composition', 'OOP', 'Architecture', 'Aggregation'],
-        skills: ['Java', 'JPA', 'Spring'],
-      },
+      id: 3,
+      fullName: 'John Doe',
+      position: 'Software Engineer',
+      company: 'Tech Corp',
+      topics: ['Angular', 'TypeScript'],
     },
   ];
 
-  constructor(private _consultationService: ConsultationsService) {}
+  constructor(private _consultationService: ConsultationsService) { }
 
   ngOnInit() {
-    this._consultationService
-      .getConsultations()
-      .subscribe((consultations: Consultation[]) => {
-        this.consultations = consultations;
-      });
+    this.items = [
+      {
+        label: 'Dashboard',
+        icon: 'pi pi-fw pi-microsoft',
+        routerLink: '/dashboard'
+      },
+      {
+        label: 'Create a Consultation',
+        icon: 'pi pi-fw pi-plus',
+        expanded: false
+      },
+      {
+        label: 'Consultations',
+        icon: 'pi pi-fw pi-book',
+        expanded: true,
+        items: [
+          {
+            label: 'Manage Consultations',
+            icon: 'pi pi-fw pi-folder',
+            styleClass: 'active-menu-item'
+          },
+          {
+            label: 'Recordings',
+            icon: 'pi pi-fw pi-video'
+          },
+          {
+            label: 'Consultations List',
+            icon: 'pi pi-fw pi-graduation-cap'
+          },
+          {
+            label: 'Calendar',
+            icon: 'pi pi-fw pi-calendar'
+          }
+        ]
+      },
+      {
+        label: 'Communication',
+        icon: 'pi pi-fw pi-envelope',
+        expanded: true,
+        items: [
+          {
+            label: 'Messenger',
+            icon: 'pi pi-fw pi-send',
+            styleClass: 'active-menu-item'
+          },
+          {
+            label: 'Network',
+            icon: 'pi pi-fw pi-users'
+          },
+          {
+            label: 'Forum',
+            icon: 'pi pi-fw pi-globe'
+          }
+        ]
+      },
+      {
+        label: 'Handbook',
+        icon: 'pi pi-fw pi-address-book'
+      }
+    ];
+    this.loadConsultations();
   }
+  userTypes: any[] = [
+    { value: 'expanded', icon: 'pi pi-table' },
+    { value: 'compact', icon: 'pi pi-list' }
+  ];
+  selectedUserType: string = 'expanded';
 
-  ngOnDestroy() {
-    this.enableBodyScroll();
-  }
+  searchValue: string = '';
 
-  onOpenBookingModal(consultation: Consultation) {
-    this.selectedConsultation = consultation;
-    this.isBookingModalOpen = true;
-    
-    this.disableBodyScroll();
-  }
+  rowsOptions: number[] = [10, 20, 50];
+  selectedRows: number = 10;
+
+  selectedView: string = 'expanded';
 
   onCloseBookingModal() {
     this.isBookingModalOpen = false;
-    
-    this.enableBodyScroll();
-  }
 
-  private disableBodyScroll() {
-    const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
-    document.body.classList.add('modal-open');
-    document.body.style.setProperty('--scrollbar-width', `${scrollbarWidth}px`);
+    this.enableBodyScroll();
   }
 
   private enableBodyScroll() {
@@ -162,10 +127,9 @@ export class ConsultationsListPageComponent {
     document.body.style.removeProperty('--scrollbar-width');
   }
 
-  @HostListener('document:keydown.escape', ['$event'])
-  onEscapeKey(event: KeyboardEvent) {
-    if (this.isBookingModalOpen) {
-      this.onCloseBookingModal();
-    }
+  private loadConsultations() {
+    this._consultationService.getConsultations().subscribe((data: Consultation[]) => {
+      this.consultations = data;
+    });
   }
 }

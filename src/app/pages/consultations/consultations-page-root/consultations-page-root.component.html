@@ -1,13 +1,18 @@
 <div class="background" [class]="themeService.themeClass">
-    <cons-header class="cons-header"></cons-header>
-    <div class="layout">
-        <cons-sidebar></cons-sidebar>
-        <div class="main-content">
-            <div>
+    <div class="layout-wrapper">
+        
+        <cons-sidebar class="fixed-sidebar"></cons-sidebar>
+
+        <div class="main-column">
+            
+            <cons-header class="cons-header"></cons-header>
+
+            <div class="main-content">
                 <router-outlet></router-outlet>
                 <cons-toaster-notification></cons-toaster-notification>
             </div>
+
+            <cons-footer class="cons-footer"></cons-footer>
         </div>
     </div>
-    <cons-footer class="cons-footer"></cons-footer>
 </div>
