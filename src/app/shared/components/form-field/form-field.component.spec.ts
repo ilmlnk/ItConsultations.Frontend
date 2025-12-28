@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DashboardPageComponent } from './dashboard-page.component';
+import { FormFieldComponent } from './form-field.component';
 
-describe('DashboardPageComponent', () => {
-  let component: DashboardPageComponent;
-  let fixture: ComponentFixture<DashboardPageComponent>;
+describe('FormFieldComponent', () => {
+  let component: FormFieldComponent;
+  let fixture: ComponentFixture<FormFieldComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [DashboardPageComponent]
+      declarations: [FormFieldComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(DashboardPageComponent);
+    fixture = TestBed.createComponent(FormFieldComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

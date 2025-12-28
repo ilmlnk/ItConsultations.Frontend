@@ -1,10 +1,10 @@
 import { Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
-import { Consultation } from '../../../../shared/models/consultation';
+import { Consultation } from '../../../../shared/models/consultation.model';
 import { ConsultationsService } from '../../../../shared/services/consultations/consultations.service';
 import { ToasterNotificationsService } from '../../../../shared/services/notifications/toaster-notifications.service';
 import { ViewMode } from '../../../../shared/enums/view-mode.enum';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { Coach } from '../../../../shared/models/coach';
+import { Coach } from '../../../../shared/models/coach.model';
 import { MatChipSelectionChange } from '@angular/material/chips';
 
 interface TopicSkill {

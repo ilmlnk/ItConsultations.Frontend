@@ -1,7 +1,7 @@
 <mat-card class="consultation-card">
   <div class="consultation-sidebar-wrapper">
     <div class="coach-avatar card-content sidebar-content">
-      <img [src]="model.coach.imageUrl" />
+      <img [src]="model.coach.pictureUrl" />
       <div class="rating-display">
         <mat-icon class="star-icon">star</mat-icon>
         <span class="rating-value">{{ coachRating }}</span>
@@ -17,7 +17,7 @@
         <div class="coach-info">
           <div class="content-body">
             <h3 class="coach-name">{{ coachFullName }}</h3>
-            <span class="coach-position">{{ model.coach.position }} - {{ model.coach.companyName }}</span>
+            <span class="coach-position">{{ model.coach.companyPosition }} - {{ model.coach.companyName }}</span>
             <p class="consultation-description">
               {{ model.description }}
             </p>

@@ -1,4 +1,4 @@
 export enum ViewMode  {
-  Detailed = 'Detailed',
-  Compact = 'Compact'
+  Detailed = 0,
+  Compact = 1
 }

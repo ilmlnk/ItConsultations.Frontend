@@ -49,7 +49,7 @@ import { IndividualLessonsPageComponent } from './consultations/individual-lesso
 import { HandbookPageComponent } from './consultations/handbook-page/handbook-page.component';
 import { MeetingLinkWindowComponent } from './consultations/components/meeting-link-window/meeting-link-window.component';
 import { MatBadgeModule } from '@angular/material/badge';
-import { DashboardPageComponent } from './consultations/dashboard-page/dashboard-page.component';
+import { StudentDashboardPageComponent } from './consultations/dashboard-page/student-dashboard-page.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatListModule } from '@angular/material/list';
 import { RecentPeopleComponent } from './consultations/components/recent-people/recent-people.component';
@@ -64,7 +64,6 @@ import { ModalWindowComponent } from '../shared/components/modal-window/modal-wi
 import { LandingPageComponent } from './consultations/landing-page/landing-page.component';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { ConsValidationComponent } from '../shared/components/cons-validation/cons-validation.component';
 import { HeroSectionComponent } from './consultations/components/landing/hero-section/hero-section.component';
 import { ThreeParticlesComponent } from './consultations/components/three-particles/three-particles.component';
 import { ThreeWarpLinesComponent } from './consultations/components/three-warp-lines/three-warp-lines.component';
@@ -79,6 +78,18 @@ import { ButtonModule } from 'primeng/button';
 import { TableModule } from 'primeng/table';
 import { ChipModule } from 'primeng/chip';
 import { AvatarModule } from 'primeng/avatar';
+import { SelectModule } from 'primeng/select';
+import { RadioButtonModule } from 'primeng/radiobutton';
+import { DatePickerModule } from 'primeng/datepicker';
+import { PasswordModule } from 'primeng/password';
+import { AuthRootComponent } from './consultations-administration/auth-root/auth-root.component';
+import { CoachDashboardPageComponent } from './consultations/coach-dashboard-page/coach-dashboard-page.component';
+import { AdminDashboardPageComponent } from './consultations/admin-dashboard-page/admin-dashboard-page.component';
+import { ApplyFormComponent } from './consultations/apply-form/apply-form.component';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import { FormFieldComponent } from '../shared/components/form-field/form-field.component';
+import { FormFieldErrorComponent } from '../shared/components/form-field-error/form-field-error.component';
+import { ReportProblemPageComponent } from './consultations/report-problem-page/report-problem-page.component';
 
 @NgModule({
   declarations: [
@@ -112,19 +123,25 @@ import { AvatarModule } from 'primeng/avatar';
     IndividualLessonsPageComponent,
     HandbookPageComponent,
     MeetingLinkWindowComponent,
-    DashboardPageComponent,
+    StudentDashboardPageComponent,
     RecentPeopleComponent,
     RecentNotesComponent,
     PersonalizedAchievementsComponent,
     ToasterNotificationComponent,
     ModalWindowComponent,
     LandingPageComponent,
-    ConsValidationComponent,
     HeroSectionComponent,
     ThreeParticlesComponent,
     ThreeWarpLinesComponent,
     InfoSectionComponent,
-    CtaLandingSectionComponent
+    CtaLandingSectionComponent,
+    AuthRootComponent,
+    CoachDashboardPageComponent,
+    AdminDashboardPageComponent,
+    ApplyFormComponent,
+    FormFieldComponent,
+    FormFieldErrorComponent,
+    ReportProblemPageComponent
   ],
   imports: [
     FormsModule,
@@ -169,7 +186,12 @@ import { AvatarModule } from 'primeng/avatar';
     FormsModule,
     TableModule,
     ChipModule,
-    AvatarModule
+    AvatarModule,
+    SelectModule,
+    RadioButtonModule,
+    DatePickerModule,
+    PasswordModule,
+    ProgressSpinnerModule
   ],
   exports: [
     MatDialogModule,

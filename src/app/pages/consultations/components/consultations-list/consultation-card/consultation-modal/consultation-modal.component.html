@@ -12,7 +12,7 @@
         <h4>{{ model.title }}</h4>
         <div class="coach-info" *ngIf="model.coach">
           <span class="coach-name">{{ coachFullName }}</span>
-          <span class="coach-position">{{ model.coach.position }}</span>
+          <span class="coach-position">{{ model.coach.companyPosition }}</span>
         </div>
         <div class="consultation-meta">
           <span *ngIf="model.duration">Duration: {{ model.duration }}</span>

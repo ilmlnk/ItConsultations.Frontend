@@ -1,3 +1,5 @@
+$sidebar-width: 300px;
+
 :root {
     --glass-border-radius: 16px;
 }
@@ -22,7 +24,7 @@
 
 .footer-content {
     max-width: 1200px;
-    margin: 0 auto;
+    margin-left: calc(#{$sidebar-width} + 2rem); 
     display: flex;
     justify-content: space-between;
     align-items: center;

@@ -16,34 +16,137 @@ import { MeetingsPageComponent } from './consultations/meetings-page/meetings-pa
 import { ForumPageComponent } from './consultations/forum-page/forum-page.component';
 import { IndividualLessonsPageComponent } from './consultations/individual-lessons-page/individual-lessons-page.component';
 import { HandbookPageComponent } from './consultations/handbook-page/handbook-page.component';
-import { DashboardPageComponent } from './consultations/dashboard-page/dashboard-page.component';
 import { LandingPageComponent } from './consultations/landing-page/landing-page.component';
 import { LoginComponent } from './consultations-administration/login/login.component';
 import { authGuard } from '../shared/guards/auth.guard';
+import { AuthRootComponent } from './consultations-administration/auth-root/auth-root.component';
+import { ApplyFormComponent } from './consultations/apply-form/apply-form.component';
+import { CoachDashboardPageComponent } from './consultations/coach-dashboard-page/coach-dashboard-page.component';
+import { AdminDashboardPageComponent } from './consultations/admin-dashboard-page/admin-dashboard-page.component';
+import { StudentDashboardPageComponent } from './consultations/dashboard-page/student-dashboard-page.component';
+import { guestGuard } from '../shared/guards/guest.guard';
 
 const routes: Routes = [
   {
-    path: '', component: ConsultationsPageRootComponent, children: [
-      { path: 'dashboard', component: DashboardPageComponent, canActivate: [authGuard] },
-      { path: 'consultations-list', component: ConsultationsListPageComponent },
-      { path: 'favorites', component: FavoritesConsultationsPageComponent, canActivate: [authGuard] },
-      { path: 'recordings', component: MeetingRecordingsPageComponent, canActivate: [authGuard] },
-      { path: 'notes', component: NotesPageComponent, canActivate: [authGuard] },
-      { path: 'coaches', component: CoachesListPageComponent, canActivate: [authGuard] },
-      { path: 'students', component: StudentsListPageComponent, canActivate: [authGuard] },
-      { path: 'calendar', component: CalendarPageComponent, canActivate: [authGuard] },
-      { path: 'achievements', component: AchievementsPageComponent, canActivate: [authGuard] },
-      { path: 'network', component: NetworkPageComponent, canActivate: [authGuard] },
-      { path: 'messenger', component: MessengerPageComponent, canActivate: [authGuard] },
-      { path: 'meetings', component: MeetingsPageComponent, canActivate: [authGuard] },
-      { path: 'forum', component: ForumPageComponent, canActivate: [authGuard] },
-      { path: 'individual-lessons', component: IndividualLessonsPageComponent, canActivate: [authGuard] },
-      { path: 'handbook', component: HandbookPageComponent, canActivate: [authGuard] }
+    path: 'dashboard', component: ConsultationsPageRootComponent, children: [
+      { 
+        path: '', 
+        component: StudentDashboardPageComponent, 
+        canActivate: [authGuard],
+        data: { title: 'Dashboard' }
+      },
+      { 
+        path: 'admin', 
+        component: AdminDashboardPageComponent, 
+        canActivate: [authGuard],
+        data: { title: 'Dashboard' }
+      },
+      { 
+        path: 'coach', 
+        component: CoachDashboardPageComponent, 
+        canActivate: [authGuard],
+        data: { title: 'Dashboard' } 
+      },
+      { 
+        path: 'consultations-list', 
+        component: ConsultationsListPageComponent,
+        canActivate: [authGuard],
+        data: { title: 'Consultations' }
+       },
+      { 
+        path: 'favorites', 
+        component: FavoritesConsultationsPageComponent, 
+        canActivate: [authGuard],
+        data: { title: 'Favorite Consultations' }
+      },
+      { 
+        path: 'recordings', 
+        component: MeetingRecordingsPageComponent, 
+        canActivate: [authGuard] ,
+        data: { title: 'Recordings' }
+      },
+      { 
+        path: 'notes', 
+        component: NotesPageComponent, 
+        canActivate: [authGuard] ,
+        data: { title: 'Notes' }
+      },
+      { 
+        path: 'coaches', 
+        component: CoachesListPageComponent, 
+        canActivate: [authGuard],
+        data: { title: 'Coaches' }
+      },
+      { 
+        path: 'students', 
+        component: StudentsListPageComponent, 
+        canActivate: [authGuard],
+        data: { title: 'Students' }
+      },
+      { 
+        path: 'calendar', 
+        component: CalendarPageComponent, 
+        canActivate: [authGuard],
+        data: { title: 'Calendar' }
+      },
+      { 
+        path: 'achievements', 
+        component: AchievementsPageComponent, 
+        canActivate: [authGuard],
+        data: { title: 'Achievements' }
+      },
+      { 
+        path: 'network', 
+        component: NetworkPageComponent, 
+        canActivate: [authGuard],
+        data: { title: 'Network' }
+      },
+      { 
+        path: 'messenger', 
+        component: MessengerPageComponent, 
+        canActivate: [authGuard],
+        data: { title: 'Messenger' }
+      },
+      { 
+        path: 'meetings', 
+        component: MeetingsPageComponent, 
+        canActivate: [authGuard],
+        data: { title: 'Meetings' }
+      },
+      { 
+        path: 'forum', 
+        component: ForumPageComponent, 
+        canActivate: [authGuard],
+        data: { title: 'Forum' }
+      },
+      { 
+        path: 'individual-lessons', 
+        component: IndividualLessonsPageComponent, 
+        canActivate: [authGuard],
+        data: { title: 'Individual Lessons' }
+      },
+      { 
+        path: 'handbook', 
+        component: HandbookPageComponent, 
+        canActivate: [authGuard],
+        data: { title: 'Handbook' }
+      }
     ]
   },
-  { path: 'start', component: LandingPageComponent },
-  { path: 'login', component: LoginComponent},
-  { path: 'register', component: RegisterPageComponent },
+  { 
+    path: '', 
+    component: LandingPageComponent 
+  },
+  {
+    path: 'auth', 
+    component: AuthRootComponent, 
+    canActivate: [guestGuard], 
+    children: [
+      { path: 'login', component: LoginComponent },
+      { path: 'register', component: RegisterPageComponent },
+      { path: 'apply', component: ApplyFormComponent }
+    ]
+  }
 ];
 
 @NgModule({

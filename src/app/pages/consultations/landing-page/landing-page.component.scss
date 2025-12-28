@@ -2,14 +2,14 @@
 $white: #ffffff;
 $black: #000;
 $gray: #a0a0b0;
-$dark-base: #12121f; // Main dark page background
-$dark-surface: #1c1c2e; // Panels/Buttons surface color
-$dark-inner: #151525; // Inner card background
-$dark-chat: #191929; // Chat background
+$dark-base: #12121f;
+$dark-surface: #1c1c2e;
+$dark-inner: #151525; 
+$dark-chat: #191929;
 
 // Accent Colors
-$cyan: #00e5ff; // Electric Blue
-$magenta: #ff0055; // Vibrant Magenta
+$cyan: #00e5ff;
+$magenta: #ff0055;
 $gold: #FFD700;
 $orange: #FFA500;
 $purple: #7928CA;
@@ -18,7 +18,7 @@ $pink: #FF0080;
 // --- Typography ---
 $text-main: $black;
 $text-secondary: $gray;
-$text-inverse: $dark-surface; // Dark text for light buttons
+$text-inverse: $dark-surface;
 
 // --- Backgrounds ---
 $bg-body: $dark-base;
@@ -26,20 +26,16 @@ $bg-panel: $dark-surface;
 $bg-chat: $dark-chat;
 $card-inner: $dark-inner;
 
-// Transparent Backgrounds (Glassmorphism)
-$card-bg: #f8f9fc; // Standard transparency
-$card-bg-light: rgba(255, 255, 255, 0.03); // Lighter variation
+$card-bg: #f8f9fc;
+$card-bg-light: rgba(255, 255, 255, 0.03);
 $bubble-bg: rgba(255, 255, 255, 0.05);
 
-// --- Buttons & Accents ---
 $accent-color: $cyan;
 $active-border: $magenta;
 
 $btn-primary-bg: $white;
 $btn-primary-text: $dark-surface;
 
-// --- Gradients ---
-// Vibrant gradient base colors
 $gradient-vibrant-colors: $magenta, $cyan;
 $vibrant-gradient: linear-gradient(135deg, $magenta, $cyan);
 
@@ -285,7 +281,6 @@ $text-white: #ffffff;
         box-shadow: 0 10px 30px rgba(0, 229, 255, 0.3);
         border-color: transparent;
         transform: scale(1.02);
-        /* Трохи збільшуємо */
 
         .arrow {
             font-weight: bold;
@@ -333,7 +328,6 @@ $text-white: #ffffff;
     }
 }
 
-/* Список послуг (Теги) */
 .tags-list {
     display: flex;
     flex-direction: column;
@@ -394,7 +388,6 @@ $text-white: #ffffff;
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 30px;
-    /* Заокруглені кути */
     padding: 40px;
     text-align: center;
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -402,7 +395,6 @@ $text-white: #ffffff;
     overflow: hidden;
     cursor: pointer;
 
-    /* Контент */
     .icon-large {
         font-size: 4rem;
         margin-bottom: 20px;
@@ -430,17 +422,12 @@ $text-white: #ffffff;
         transition: all 0.3s ease;
     }
 
-    /* --- HOVER EFFECT --- */
     &:hover {
         transform: translateY(-10px);
-        /* Підняття вгору */
         background: linear-gradient(180deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.0) 100%);
-
-        /* Використовуємо змінну кольору для кордону та тіні */
         border-color: transparent;
         box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5),
             inset 0 0 0 2px var(--hover-color);
-        /* Внутрішня кольорова рамка */
 
         .icon-large {
             transform: scale(1.1) rotate(5deg);
@@ -453,8 +440,6 @@ $text-white: #ffffff;
     }
 }
 
-
-/* --- Розділювач --- */
 .divider {
     text-align: center;
     margin-bottom: 40px;
@@ -483,8 +468,6 @@ $text-white: #ffffff;
     }
 }
 
-
-/* --- Secondary Grid (Tech Pills) --- */
 .tech-grid {
     display: flex;
     flex-wrap: wrap;
@@ -502,7 +485,6 @@ $text-white: #ffffff;
     border: 1px solid rgba(255, 255, 255, 0.1);
     padding: 12px 25px;
     border-radius: 50px;
-    /* Повністю круглі боки */
     cursor: pointer;
     transition: all 0.3s ease;
 
@@ -517,11 +499,9 @@ $text-white: #ffffff;
         transition: color 0.3s;
     }
 
-    /* Vibrant hover для маленьких карток */
     &:hover {
         background: rgba(255, 255, 255, 0.1);
         border-color: #00e5ff;
-        /* Ваш фірмовий блакитний */
         transform: translateY(-3px) scale(1.05);
         box-shadow: 0 5px 15px rgba(0, 229, 255, 0.2);
 
@@ -531,7 +511,6 @@ $text-white: #ffffff;
     }
 }
 
-/* Змінні */
 $bg-dark: #12121f;
 $panel-bg: #1c1c2e;
 $vibrant-gradient: linear-gradient(135deg, #ff0055, #00e5ff);
@@ -558,14 +537,12 @@ $border-color: rgba(255, 255, 255, 0.1);
     margin: 0 auto;
     gap: 30px;
     min-height: 500px;
-    /* Фіксуємо мінімальну висоту */
 
     @media (max-width: 850px) {
         flex-direction: column;
     }
 }
 
-/* --- САЙДБАР --- */
 .sidebar-list {
     flex: 1;
     display: flex;
@@ -586,7 +563,6 @@ $border-color: rgba(255, 255, 255, 0.1);
     position: relative;
     overflow: hidden;
 
-    /* Аватарка в списку */
     .avatar-small {
         width: 50px;
         height: 50px;
@@ -608,12 +584,10 @@ $border-color: rgba(255, 255, 255, 0.1);
         }
     }
 
-    /* Hover */
     &:hover:not(.active) {
         background: rgba(255, 255, 255, 0.08);
     }
 
-    /* Active State */
     &.active {
         background: linear-gradient(90deg, rgba(255, 0, 85, 0.1), transparent);
         border-color: rgba(255, 0, 85, 0.3);
@@ -633,7 +607,6 @@ $border-color: rgba(255, 255, 255, 0.1);
     }
 }
 
-/* --- ПРОФІЛЬ --- */
 .profile-panel {
     flex: 2;
     background: $panel-bg;
@@ -759,7 +732,6 @@ $border-color: rgba(255, 255, 255, 0.1);
     }
 }
 
-/* Адаптив для мобілок */
 @media (max-width: 600px) {
     .profile-header {
         flex-direction: column;
@@ -770,9 +742,6 @@ $border-color: rgba(255, 255, 255, 0.1);
         width: 100%;
     }
 }
-
-/* Змінні */
-
 
 .roadmap-section {
     padding: 80px 20px;
@@ -795,7 +764,6 @@ $border-color: rgba(255, 255, 255, 0.1);
     padding: 20px 0;
 }
 
-/* --- Центральна лінія --- */
 .timeline-line {
     position: absolute;
     left: 50%;
@@ -803,45 +771,35 @@ $border-color: rgba(255, 255, 255, 0.1);
     width: 4px;
     height: 100%;
     background: $vibrant-gradient;
-    /* Лінія градієнтом */
     box-shadow: 0 0 15px rgba(0, 229, 255, 0.5);
-    /* Світіння */
     border-radius: 4px;
     z-index: 1;
 }
 
-/* --- Елемент таймлайну --- */
 .timeline-item {
     position: relative;
     width: 50%;
-    /* Займає половину ширини контейнера */
     padding: 20px 40px;
     box-sizing: border-box;
     z-index: 2;
 
-    /* Лівий бік */
     &.left {
         left: 0;
         text-align: right;
-        /* Текст притиснутий до лінії */
 
         .step-card {
             margin-left: auto;
         }
 
-        /* Притискаємо картку вправо всередині блока */
         .timeline-dot {
             right: -50px;
         }
-
-        /* Крапка на лінії */
 
         .features-grid {
             justify-content: flex-end;
         }
     }
 
-    /* Правий бік */
     &.right {
         left: 50%;
         text-align: left;
@@ -856,11 +814,9 @@ $border-color: rgba(255, 255, 255, 0.1);
     }
 }
 
-/* --- Маркер (Крапка) --- */
 .timeline-dot {
     position: absolute;
     top: 40px;
-    /* Вирівнювання по верху картки */
     width: 20px;
     height: 20px;
     background: $bg-dark;
@@ -898,7 +854,6 @@ $border-color: rgba(255, 255, 255, 0.1);
     }
 }
 
-/* --- Картка --- */
 .step-card {
     background: $card-bg;
     backdrop-filter: blur(10px);
@@ -916,7 +871,6 @@ $border-color: rgba(255, 255, 255, 0.1);
 
         .step-number {
             color: rgba(255, 255, 255, 0.1);
-            /* Трохи яскравіше при ховері */
         }
     }
 
@@ -944,12 +898,10 @@ $border-color: rgba(255, 255, 255, 0.1);
         font-size: 4rem;
         font-weight: 900;
         color: rgba(255, 255, 255, 0.03);
-        /* Дуже прозорий */
         pointer-events: none;
     }
 }
 
-/* --- Особливі фічі (Tags) --- */
 .features-grid {
     display: flex;
     flex-wrap: wrap;
@@ -967,7 +919,6 @@ $border-color: rgba(255, 255, 255, 0.1);
     border: 1px solid rgba(0, 229, 255, 0.2);
 }
 
-/* --- Кнопка Recurring --- */
 .action-btn {
     background: $text-white;
     color: #12121f;
@@ -986,21 +937,17 @@ $border-color: rgba(255, 255, 255, 0.1);
     }
 }
 
-/* --- Адаптивність (Mobile) --- */
 @media (max-width: 768px) {
     .timeline-line {
         left: 20px;
-        /* Лінія зсувається вліво */
     }
 
     .timeline-item {
         width: 100%;
         padding-left: 50px;
-        /* Місце для лінії */
         padding-right: 0;
         margin-bottom: 30px;
 
-        /* Скидаємо стилі left/right, робимо все зліва */
         &.left,
         &.right {
             left: 0;
@@ -1008,7 +955,6 @@ $border-color: rgba(255, 255, 255, 0.1);
 
             .timeline-dot {
                 left: 10px;
-                /* Крапка на лінії зліва */
                 right: auto;
             }
 
@@ -1022,8 +968,6 @@ $border-color: rgba(255, 255, 255, 0.1);
         }
     }
 }
-
-/* Змінні */
 
 .why-us-section {
     padding: 80px 20px;
@@ -1047,7 +991,6 @@ $border-color: rgba(255, 255, 255, 0.1);
     }
 }
 
-/* --- GRID --- */
 .benefits-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -1056,7 +999,6 @@ $border-color: rgba(255, 255, 255, 0.1);
     margin: 0 auto;
 }
 
-/* --- CARD --- */
 .benefit-card {
     background: $card-bg;
     border-radius: 20px;
@@ -1066,7 +1008,6 @@ $border-color: rgba(255, 255, 255, 0.1);
     position: relative;
     overflow: hidden;
 
-    /* Легкий градієнт зверху для об'єму */
     background-image: linear-gradient(180deg, rgba(255, 255, 255, 0.05) 0%, transparent 100%);
 
     h3 {
@@ -1082,23 +1023,19 @@ $border-color: rgba(255, 255, 255, 0.1);
         line-height: 1.5;
     }
 
-    /* Hover ефект для картки */
     &:hover {
         transform: translateY(-10px);
         background: rgba(255, 255, 255, 0.08);
         border-color: rgba(255, 255, 255, 0.2);
         box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
 
-        /* Коли наводимо на картку, зірки починають "танцювати" знову */
         .star {
             color: #ffcc00;
-            /* Стають яскравішими */
             text-shadow: 0 0 10px rgba(255, 215, 0, 0.6);
         }
     }
 }
 
-/* --- STARS --- */
 .star-rating {
     margin-bottom: 20px;
     display: flex;
@@ -1109,21 +1046,13 @@ $border-color: rgba(255, 255, 255, 0.1);
 .star {
     font-size: 1.5rem;
     display: inline-block;
-
-    /* Градієнтний текст для зірок (підтримується сучасними браузерами) */
     background: $star-gradient;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-
-    /* Фоллбек для старих браузерів */
     color: $star-color;
-
-    /* Анімація появи */
     opacity: 0;
     transform: scale(0);
     animation: starPop 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
-
-    /* Затримка береться з HTML змінної --delay */
     animation-delay: var(--delay);
 }
 
@@ -1135,7 +1064,6 @@ $border-color: rgba(255, 255, 255, 0.1);
 
     70% {
         transform: scale(1.4) rotate(0deg);
-        /* Трохи збільшується */
     }
 
     100% {
@@ -1144,20 +1072,14 @@ $border-color: rgba(255, 255, 255, 0.1);
     }
 }
 
-/* Адаптивність */
 @media (max-width: 600px) {
     .benefits-grid {
         grid-template-columns: 1fr;
-        /* Одна колонка на мобільному */
     }
 }
 
-/* Змінні */
-
-
 .coach-cta-section {
     padding: 40px 0 80px;
-    /* Відступи */
     background-color: $bg-dark;
     display: flex;
     justify-content: center;
@@ -1176,25 +1098,18 @@ $border-color: rgba(255, 255, 255, 0.1);
     overflow: hidden;
     z-index: 1;
 
-    /* Створення градієнтної рамки через псевдо-елемент */
     &::before {
         content: "";
         position: absolute;
         inset: -2px;
-        /* Рамка виступає на 2px */
         border-radius: 22px;
         background: $mentor-gradient;
         z-index: -1;
-        /* Ховаємо під картку */
         animation: borderRotate 4s linear infinite;
-        /* Анімація переливання */
         opacity: 0.6;
-        /* Не надто яскраво */
         filter: blur(5px);
-        /* Легке розмиття для світіння */
     }
 
-    /* Ще один шар, щоб закрити центр картки темним кольором */
     &::after {
         content: "";
         position: absolute;
@@ -1215,7 +1130,6 @@ $border-color: rgba(255, 255, 255, 0.1);
     }
 }
 
-/* --- Текстова частина --- */
 .text-content {
     flex: 1;
     z-index: 2;
@@ -1248,7 +1162,6 @@ $border-color: rgba(255, 255, 255, 0.1);
     }
 }
 
-/* --- Кнопка --- */
 .action-content {
     display: flex;
     flex-direction: column;
@@ -1274,7 +1187,6 @@ $border-color: rgba(255, 255, 255, 0.1);
     position: relative;
     overflow: hidden;
 
-    /* Ховер ефект: Заливка градієнтом */
     &:hover {
         border-color: transparent;
         background: $mentor-gradient;
@@ -1327,13 +1239,11 @@ $border-color: rgba(255, 255, 255, 0.1);
     border: 1px solid rgba(255, 255, 255, 0.1);
     box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
     overflow: hidden;
-    /* Щоб контент не вилазив за рамки */
     display: flex;
     flex-direction: column;
     margin-bottom: 40px;
 }
 
-/* Хедер (MacOS style dots) */
 .chat-header {
     padding: 15px 20px;
     background: rgba(255, 255, 255, 0.03);
@@ -1429,7 +1339,6 @@ $border-color: rgba(255, 255, 255, 0.1);
 
     .author-name {
         color: $accent-color;
-        /* Блакитний колір імені */
         font-weight: bold;
         font-size: 0.9rem;
     }

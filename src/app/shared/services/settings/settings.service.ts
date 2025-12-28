@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AppSettingsDto } from '../../models/app-settings-dto';
+import { AppSettingsDto } from '../../models/dto/app-settings.dto';
 import { Environment } from '../../../../environment';
 
 @Injectable({
@@ -16,5 +16,9 @@ export class SettingsService {
 
   public get currentAppSettings(): AppSettingsDto {
     return this._currentAppSettings;
+  }
+
+  public get serviceUrl(): string {
+    return this._currentAppSettings.serviceUrl;
   }
 }

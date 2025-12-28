@@ -36,10 +36,6 @@ export class DarkModeService {
     return this.isDarkModeSubject.value;
   }
 
-  public get themeIcon(): string {
-    return this.isDarkMode ? 'light_mode' : 'dark_mode';
-  }
-
   public get themeLabel(): string {
     return this.isDarkMode ? 'Toggle dark mode' : 'Toggle light mode';
   }

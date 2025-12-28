@@ -1,18 +1,16 @@
 import { Component, inject } from '@angular/core';
-import { LocalizationService } from '../../../shared/services/localization/localization.service';
 import { FormGroup, Validators } from '@angular/forms';
-import { Subscription } from 'rxjs';
+import { Subject, Subscription, takeUntil } from 'rxjs';
 import { FormBuilder } from '@angular/forms';
 import { ToasterNotificationsService } from '../../../shared/services/notifications/toaster-notifications.service';
 import { Country } from '../../../shared/models/country';
-import { HttpClient } from '@angular/common/http';
 import { CountryService } from '../../../shared/services/countries/country.service';
-import { UserRole } from '../../../shared/enums/user-role';
-import { ConsultationsMapper } from '../../../shared/mappers/consultations-mapper';
+import { UserRole } from '../../../shared/enums/user-role.enum';
 import { AuthService } from '../../../shared/services/auth/auth.service';
 import { Router } from '@angular/router';
+import { RegistrationStep } from '../../../shared/models/interfaces/registration-step';
 import { ConsultationsValidationHelper } from '../../../shared/validators/consultations-validation-helper';
-import { Gender } from '../../../shared/enums/gender.enum';
+import { DarkModeService } from '../../../shared/services/dark-mode/dark-mode.service';
 
 @Component({
   selector: 'cons-register-page',
@@ -29,17 +27,38 @@ export class RegisterPageComponent {
   allCountries: Country[] = [];
   countryInput: string = '';
   imagePreview: string | ArrayBuffer | null = null;
+  currentStepIndex: number = 0;
 
-  private _localizationService = inject(LocalizationService);
+  steps: RegistrationStep[] = [
+    {
+      value: 'personal',
+      label: 'Personal Info',
+      icon: 'pi pi-user',
+      fields: ['gender', 'firstName', 'lastName', 'email', 'github', 'linkedin', 'birthDate', 'country']
+    },
+    {
+      value: 'security',
+      label: 'Security',
+      icon: 'pi pi-shield',
+      fields: ['username', 'password', 'confirmPassword']
+    }
+  ]
+
+  private destroy$ = new Subject<void>();
+
   private _toasterNotificationService = inject(ToasterNotificationsService);
-  private _http = inject(HttpClient);
   private _countryService = inject(CountryService);
   private _authService = inject(AuthService);
   private _router = inject(Router);
 
   private countries$: Subscription;
 
-  constructor(private fb: FormBuilder) { }
+  constructor(
+    public themeService: DarkModeService,
+    private fb: FormBuilder
+  ) {
+    this.themeService.isDarkMode$.pipe(takeUntil(this.destroy$));
+  }
 
   ngOnInit() {
     this.initForm();
@@ -55,9 +74,23 @@ export class RegisterPageComponent {
     this.filteredCountries = this.filterCountries(this.allCountries, value);
   }
 
+  onNext() {
+    if (this.validateCurrentStep()) {
+      if (this.currentStepIndex < this.steps.length - 1) {
+        this.currentStepIndex++;
+      }
+    }
+  }
+
+  onBack() {
+    if (this.currentStepIndex > 0) {
+      this.currentStepIndex--;
+    }
+  }
+
   onCountrySelected(country: Country): void {
-      this.registrationForm.controls['country'].setValue(country.name);
-      this.registrationForm.get('country')?.setValue(country.name, { emitEvent: false });
+    this.registrationForm.controls['country'].setValue(country.name);
+    this.registrationForm.get('country')?.setValue(country.name, { emitEvent: false });
   }
 
   onFileSelected(event: Event): void {
@@ -93,22 +126,16 @@ export class RegisterPageComponent {
   }
 
   onSubmit() {
-    if (!this.registrationForm.valid) {
+    if (this.registrationForm.invalid) {
       this.registrationForm.markAllAsTouched();
       return;
     }
 
     this.isLoading = true;
-
-    const formData = this.registrationForm.value;
-    const registrationData = ConsultationsMapper.mapRegistrationData(formData);
-
-    this._authService.register(registrationData).subscribe({
+    this._authService.register(this.registrationForm.value).subscribe({
       next: (backendUser) => {
         this.isLoading = false;
-        this._toasterNotificationService.showSuccess('Success', 'Registration successful');
-
-        const redirectPath = registrationData.role === UserRole.Student ? '/student-dashboard' : '/coach-dashboard';
+        const redirectPath = this.registrationForm.value.role === UserRole.Student ? '/dashboard' : '/dashboard/coach';
         this._router.navigate([redirectPath]);
       },
       error: (error) => {
@@ -116,6 +143,10 @@ export class RegisterPageComponent {
         this._toasterNotificationService.showError('Fail', 'Registration failed');
       }
     })
+  }
+
+  toggleTheme() {
+    this.themeService.toggleTheme();
   }
 
   hasError(controlName: string, errorName: string): boolean {
@@ -144,18 +175,35 @@ export class RegisterPageComponent {
       lastName: ['', Validators.maxLength(50)],
       birthDate: [null],
       country: [null as string | null, Validators.required],
-      gender: [Gender.Male, Validators.required],
+      gender: ['male', Validators.required],
       role: [UserRole.Student, Validators.required],
       email: ['', [Validators.required, Validators.email]],
+      github: ['', ConsultationsValidationHelper.linkValidator()],
+      linkedin: ['', ConsultationsValidationHelper.linkValidator()],
+      telegram: ['', ConsultationsValidationHelper.linkValidator()],
       username: ['', Validators.required],
       password: ['', [Validators.required, Validators.minLength(6)]],
       confirmPassword: ['', Validators.required]
     }, {
-      validators: [
-        /*ConsultationsValidationHelper.passwordMatchValidator(),
-        ConsultationsValidationHelper.usernameValidator()*/
-      ]
+      validators: []
     });
+  }
+
+  private validateCurrentStep() {
+    const currentFields = this.currentStep.fields;
+    let valid = true;
+
+    currentFields.forEach(field => {
+      const control = this.registrationForm.get(field);
+
+      if (control && control.invalid) {
+        control.markAsTouched();
+        control.markAsDirty();
+        valid = false;
+      }
+    });
+
+    return valid;
   }
 
   private loadCountries() {
@@ -167,5 +215,13 @@ export class RegisterPageComponent {
 
   get isImageUploaded(): boolean {
     return false;
+  }
+
+  get currentStep(): RegistrationStep {
+    return this.steps[this.currentStepIndex];
+  }
+
+  get isLastStep(): boolean {
+    return this.currentStepIndex == this.steps.length - 1;
   }
 }

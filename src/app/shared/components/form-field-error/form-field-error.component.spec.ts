@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ConsValidationComponent } from './cons-validation.component';
+import { FormFieldErrorComponent } from './form-field-error.component';
 
-describe('ConsValidationComponent', () => {
-  let component: ConsValidationComponent;
-  let fixture: ComponentFixture<ConsValidationComponent>;
+describe('FormFieldErrorComponent', () => {
+  let component: FormFieldErrorComponent;
+  let fixture: ComponentFixture<FormFieldErrorComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ConsValidationComponent]
+      declarations: [FormFieldErrorComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(ConsValidationComponent);
+    fixture = TestBed.createComponent(FormFieldErrorComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

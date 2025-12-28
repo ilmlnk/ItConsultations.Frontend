@@ -1,5 +1,5 @@
 import { Component, Input, Output } from '@angular/core';
-import { Consultation } from '../../../../../shared/models/consultation';
+import { Consultation } from '../../../../../shared/models/consultation.model';
 import { EventEmitter } from '@angular/core';
 import { ConsultationsService } from '../../../../../shared/services/consultations/consultations.service';
 
@@ -30,12 +30,16 @@ export class ConsultationCardComponent {
   }
 
   get coachRating() {
-    const total = this.model.coach.reviews.reduce((sum, review) => sum + review.rating, 0);
+    if (!this.model.coach.reviews) { 
+      return 0;
+    }
+
+    const total = this.model.coach.reviews?.reduce((sum, review) => sum + review.rating, 0);
     return (total / this.model.coach.reviews.length).toFixed(2);
   }
 
   get coachReviewsCount() {
-    return this.model.coach.reviews.length;
+    return this.model.coach.reviews?.length;
   }
 
   private loadFavoriteStatus() {

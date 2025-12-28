@@ -1,6 +1,11 @@
+import { Attachment } from "./attachment.model";
+
 export interface Review {
   id: number;
-  //consReviewId: string;
+  reviewConsId: string;
+  text: string;
+  createdAt: Date;
+  updatedAt: Date;
   rating: number;
-  comment: string;
+  attachments: Attachment[];
 }

@@ -1,4 +1,4 @@
-import { Coach } from "./coach";
+import { Coach } from "./coach.model";
 
 export interface Consultation {
     id: number;
@@ -8,7 +8,6 @@ export interface Consultation {
     price: number;
     currency: string;
     thumbnailUrl: string;
-    coachImageUrl: string;
     isFavorite: boolean;
     duration: number;
     coach: Coach;

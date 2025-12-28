@@ -1,131 +1,439 @@
+$primary-orange: #f97316;
+$secondary-orange: #fbbf24;
+$bg-color: #f8f9fa;
+$card-bg: #ffffff;
+$text-color: #333;
+$text-muted: #64748b;
+$border-radius: 20px;
+$input-bg: #f8fafc;
+$btn-grey-bg: #f1f5f9;
+$btn-grey-hover: #e2e8f0;
 
-.page-container {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: #ffffff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-    padding: 2rem 1rem;
-}
+.registration-wrapper {
+  display: grid;
+  grid-template-columns: 500px 1fr;
+  grid-template-rows: auto 1fr;
+  gap: 20px;
+  background-color: $bg-color;
+  padding: 40px;
+  min-height: 100vh;
 
-.glass-form {
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
-    border-radius: 24px;
-    padding: 2.5rem;
+  .registration-form-title {
+    font-weight: 600;
+    grid-column: 1 / -1;
     width: 100%;
-}
 
-.form-layout {
-    display: grid;
+    margin-top: 0;
+    margin-bottom: 10px;
+  }
+
+  @media (max-width: 1024px) {
     grid-template-columns: 1fr;
-    gap: 2rem;
+    grid-template-rows: auto auto 1fr;
+  }
 }
 
-@media (min-width: 1024px) {
-    .form-layout {
-        grid-template-columns: 1fr 1fr;
-        gap: 3rem; 
+.personal-text-fields {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto;
+  gap: 20px;
+}
+
+.sidebar-card,
+.content-card {
+  background: $card-bg;
+  border-radius: $border-radius;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+  padding: 30px;
+}
+
+.sidebar-card-footer {
+  display: flex;
+  flex-shrink: 0;
+  margin-top: auto;
+  justify-content: end;
+  gap: 20px;
+}
+
+.sidebar-card {
+  .steps-nav-header {
+    display: flex;
+    align-items: start;
+    justify-content: start;
+    margin-bottom: 40px;
+  }
+
+  .steps-nav-header,
+  .sidebar-card-footer {
+    ::ng-deep .p-button {
+      background-color: $btn-grey-bg;
+      border: 1px solid transparent;
+      color: $text-muted;
+      width: 3rem;
+      height: 3rem;
+      border-radius: 12px;
+      transition: all 0.2s;
+
+      &:enabled:hover {
+        background-color: $btn-grey-hover;
+        color: $text-color;
+        border-color: transparent;
+      }
+
+      &:enabled:active,
+      &:focus {
+        background-color: darken($btn-grey-hover, 5%);
+        box-shadow: 0 0 0 2px rgba($text-muted, 0.2);
+      }
     }
-}
+  }
 
-.form-column-left {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-}
+  display: flex;
+  flex-direction: column;
 
-.form-row {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-}
+  .user-preview {
+    text-align: center;
+    margin-bottom: 40px;
 
-@media (min-width: 768px) {
-    .form-row {
-        grid-template-columns: 1fr 1fr;
+    .avatar-container {
+      position: relative;
+      display: inline-block;
+      margin-bottom: 15px;
+
+      ::ng-deep .custom-avatar {
+        background-color: #e2e8f0;
+        color: #64748b;
+        width: 200px;
+        height: 200px;
+
+        .p-avatar-icon {
+          align-items: center;
+          align-content: center;
+          justify-content: center;
+          text-align: center;
+          display: flex;
+          font-size: 80px;
+        }
+      }
+
+      .edit-badge {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        background-color: $primary-orange;
+        color: white;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        font-size: 14px;
+      }
     }
+
+    h3 {
+      margin: 0;
+      font-size: 18px;
+      font-weight: 700;
+      color: $text-color;
+    }
+
+    .role-text {
+      font-size: 14px;
+      color: $text-muted;
+    }
+  }
+
+  .steps-nav {
+    width: 100%;
+
+    .step-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 20px;
+      color: $text-muted;
+      font-weight: 500;
+      cursor: pointer;
+      border-radius: 10px;
+      margin-bottom: 5px;
+      transition: all 0.2s;
+
+      i {
+        font-size: 18px;
+      }
+
+      &:hover {
+        background-color: #f1f5f9;
+      }
+
+      &.active {
+        background-color: #fff1e6;
+        color: $primary-orange;
+        font-weight: 600;
+      }
+    }
+  }
 }
 
-.radio-group {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1.5rem;
-}
+.content-card {
+  width: 100%;
 
-.radios {
-    display: grid;
-}
-
-.gender-group {
-    padding-top: 0.5rem;
-    display: grid;
-    grid-template-columns: 1fr;
-}
-
-.gender-group .group-label {
-    font-size: 0.875rem; 
-    font-weight: 500; 
-    color: rgba(255, 255, 255, 0.8); 
-    margin-bottom: 0.75rem;
-    display: block;
-}
-
-.gender-group mat-radio-group {
-    display: flex;
-    gap: 1.5rem; 
-}
-
-.submit-container {
-    padding-top: 2rem;
-}
-
-
-.photo-upload-section {
-    border: 2px dashed rgba(255, 255, 255, 0.3);
-    border-radius: 16px;
-    padding: 1.5rem;
-    text-align: center;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    position: relative;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-.photo-upload-section:hover {
-    background-color: rgba(255, 255, 255, 0.05);
-}
-.photo-upload-section input[type="file"] {
-    display: none;
-}
-.photo-upload-section .upload-icon {
-    font-size: 3rem;
-    color: rgba(255, 255, 255, 0.7);
-}
-.photo-preview {
-    width: 128px;
-    height: 128px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 3px solid rgba(255, 255, 255, 0.5);
-    margin: 0 auto 1rem;
-}
-
-.form-title {
-    text-align: center;
-    font-size: 2.25rem;
+  .section-title {
+    font-size: 20px;
     font-weight: 700;
-    margin-bottom: 0.5rem;
+    margin-top: 0;
+    margin-bottom: 25px;
+    color: $text-color;
+  }
+
+  ::ng-deep {
+
+    .p-inputtext,
+    .p-calendar,
+    .p-password-input {
+      border-radius: 10px;
+      background-color: $input-bg;
+      border: 1px solid #e2e8f0;
+      color: $text-color;
+      transition: all 0.2s;
+
+      &:enabled:focus,
+      &.p-focus {
+        background-color: #ffffff;
+        border-color: $primary-orange;
+        box-shadow: 0 0 0 1px $primary-orange;
+      }
+
+      &:hover:not(:focus) {
+        border-color: #cbd5e1;
+      }
+    }
+
+    .p-select {
+      width: 100%;
+      border-radius: 10px;
+      background: $input-bg !important;
+      border: 1px solid #e2e8f0 !important;
+
+      .p-dropdown-label {
+        color: $text-color !important;
+        background: transparent !important;
+      }
+
+      .p-dropdown-label.p-placeholder {
+        color: #64748b !important;
+      }
+
+      .p-dropdown-trigger {
+        color: #64748b !important;
+        background: transparent !important;
+      }
+
+      &:not(.p-disabled).p-focus {
+        border-color: $primary-orange !important;
+        box-shadow: 0 0 0 1px $primary-orange !important;
+      }
+
+      &:not(.p-disabled):hover {
+        border-color: #cbd5e1 !important;
+      }
+    }
+
+    .p-select-list-container {
+      background: none;
+      border: none;
+    }
+
+    .p-select-overlay {
+      background-color: #ffffff !important;
+      border: none;
+    }
+
+    .p-select-list {
+      background-color: #ffffff !important;
+      border-radius: 10px;
+      border: 1px solid #e2e8f0;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15) !important;
+
+      .p-select-option {
+        color: $text-color !important;
+        background-color: transparent;
+        margin: 2px 5px;
+        border-radius: 6px;
+
+        &:not(.p-select-option-selected):not(.p-disabled).p-focus {
+          background-color: #f1f5f9 !important;
+          color: $text-color !important;
+        }
+      }
+    }
+
+    .p-radiobutton {
+      .p-radiobutton-box {
+        background-color: $input-bg;
+        border: 2px solid #cbd5e1;
+        border-radius: 50%;
+
+        &.p-highlight {
+          border-color: $primary-orange;
+          background-color: $primary-orange;
+
+          .p-radiobutton-icon {
+            background-color: #ffffff;
+          }
+        }
+
+        &:not(.p-disabled):not(.p-highlight):hover {
+          border-color: $primary-orange;
+          background-color: #ffffff;
+        }
+      }
+    }
+
+    .p-datepicker-panel {
+      color: black;
+      background: white;
+      border: 1px solid #e2e8f0;
+
+      .p-datepicker-decade {
+        color: black;
+      }
+
+      .p-datepicker-header {
+        background: white;
+      }
+
+      .p-datepicker-day-selected {
+        background-color: $primary-orange;
+        font-weight: 600;
+      }
+
+      .p-datepicker-prev-button,
+      .p-datepicker-next-button {
+        &:hover {
+          background-color: #f1f5f9;
+        }
+      }
+
+      .p-datepicker-select-month,
+      .p-datepicker-weekday,
+      .p-datepicker-select-year,
+      .p-datepicker-day,
+      .p-datepicker-month,
+      .p-datepicker-year {
+        color: black;
+
+        &:hover {
+          color: black;
+          background-color: #f1f5f9;
+        }
+      }
+
+      .p-datepicker-today>.p-datepicker-day {
+        background-color: $secondary-orange;
+      }
+    }
+  }
+
+  .p-datepicker {
+    width: 100%;
+
+    .p-inputtext {
+      width: 100%;
+    }
+
+    .p-datepicker-header {
+      background-color: #ffffff;
+    }
+
+    table td {
+      &>span.p-highlight {
+        background-color: $primary-orange;
+        color: #ffffff;
+      }
+    }
+  }
+
+  .p-password {
+    width: 100%;
+
+    input {
+      width: 100%;
+    }
+  }
 }
-.form-subtitle {
-    text-align: center;
-    margin-bottom: 2.5rem;
-    color: rgba(255, 255, 255, 0.7);
+
+form {
+  div[class*="col-"] {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+
+    label {
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+      color: #333;
+    }
+  }
+
+  ::ng-deep {
+
+    .p-dropdown,
+    .p-datepicker,
+    .p-inputtext {
+      width: 100%;
+      color: black;
+    }
+
+    .p-datepicker {
+      display: flex;
+
+      .p-inputtext {
+        width: 100%;
+      }
+    }
+  }
+
+  .gender-container {
+    display: flex;
+    gap: 20px;
+
+    .field-radiobutton {
+      display: flex;
+      align-items: stretch;
+      margin-bottom: 0;
+
+      label {
+        margin-bottom: 0;
+        margin-left: 0.5rem;
+        font-weight: normal;
+      }
+    }
+  }
+}
+
+label {
+  color: #475569;
+  font-size: 14px;
+}
+
+.form-footer {
+  display: flex;
+  gap: 20px;
+}
+
+.form-footer .action-btn {
+  &.p-button-warning {
+    background-color: $primary-orange;
+    border-color: $primary-orange;
+
+    &:hover {
+      background-color: darken($primary-orange, 5%) !important;
+      border-color: darken($primary-orange, 5%) !important;
+    }
+  }
 }

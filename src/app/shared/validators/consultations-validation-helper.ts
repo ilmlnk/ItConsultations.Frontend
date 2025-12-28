@@ -77,7 +77,7 @@ export class ConsultationsValidationHelper {
         return null;
       }
 
-      const regex = /^https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)$/;
+      const regex = /^(https?:\/\/)?(localhost(:\d+)?(https?:\/\/)?(\/.*)?|(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z]{2,63}\/[-a-zA-Z0-9()@:%_\+.~#?&//=]+)$/;
       const valid = regex.test(control.value);
       return valid ? null : { invalid: true };
     };

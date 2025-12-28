@@ -7,8 +7,15 @@ $sidebar-width: 300px;
 $focus-bg-color: #475569;
 $focus-text-color: #ffffff;
 
+:host {
+    display: block;
+    height: 100%;
+}
+
 .layout-sidebar {
-    min-height: 100%;
+    z-index: 100;
+    position: fixed;
+    height: 100%;
     width: $sidebar-width;
     background-color: $sidebar-bg;
     border-right: 1px solid $border-color;
@@ -33,6 +40,14 @@ $focus-text-color: #ffffff;
     .sidebar-menu {
         flex: 1;
         overflow-y: auto;
+
+        &::-webkit-scrollbar {
+            width: 6px;
+        }
+        &::-webkit-scrollbar-thumb {
+            background-color: #ccc;
+            border-radius: 4px;
+        }
 
         ::ng-deep .p-panelmenu {
             .p-panelmenu-item.p-focus>.p-panelmenu-item-content,
@@ -110,6 +125,66 @@ $focus-text-color: #ffffff;
                         background-color: $focus-bg-color !important;
                         color: #fff !important;
                     }
+                }
+            }
+        }
+    }
+
+    .sidebar-footer {
+        flex-shrink: 0;
+        margin-top: auto;
+        padding: 20px;
+        border-top: 1px solid $border-color;
+        background-color: $sidebar-bg;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+
+            ::ng-deep .custom-avatar {
+                background-color: #f1f5f9;
+                color: #94a3b8;
+                width: 45px;
+                height: 45px;
+                
+                .p-avatar-icon {
+                    font-size: 24px;
+                }
+            }
+
+            .user-name {
+                font-weight: 600;
+                font-size: 14px;
+                color: #333;
+                white-space: nowrap;
+            }
+        }
+
+        .user-actions {
+            display: flex;
+            gap: 8px;
+
+            .action-btn {
+                width: 36px;
+                height: 36px;
+                color: #94a3b8; // Сірий колір іконок
+                border: 1px solid #e2e8f0; // Легка рамка
+                border-radius: 8px;
+                padding: 0;
+                background: transparent;
+                
+                &:hover {
+                    background-color: #f8fafc;
+                    color: #333;
+                    border-color: #cbd5e1;
+                }
+
+                ::ng-deep .p-button-icon {
+                    font-size: 1.1rem;
                 }
             }
         }

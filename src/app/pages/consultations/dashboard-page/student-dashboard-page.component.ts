@@ -1,5 +1,5 @@
-import { Component, inject, Renderer2 } from '@angular/core';
-import { Consultation } from '../../../shared/models/consultation';
+import { Component, inject } from '@angular/core';
+import { Consultation } from '../../../shared/models/consultation.model';
 import { ConsultationsService } from '../../../shared/services/consultations/consultations.service';
 import { CalendarOptions } from '@fullcalendar/core/index.js';
 import dayGridPlugin from '@fullcalendar/daygrid';
@@ -7,12 +7,12 @@ import timeGridPlugin from '@fullcalendar/timegrid';
 import { AuthService } from '../../../shared/services/auth/auth.service';
 
 @Component({
-  selector: 'cons-dashboard-page',
+  selector: 'cons-student-dashboard-page',
   standalone: false,
-  templateUrl: './dashboard-page.component.html',
-  styleUrl: './dashboard-page.component.scss',
+  templateUrl: './student-dashboard-page.component.html',
+  styleUrl: './student-dashboard-page.component.scss',
 })
-export class DashboardPageComponent {
+export class StudentDashboardPageComponent {
   calendarOptions: CalendarOptions = {
     initialView: 'dayGridWeek',
     plugins: [dayGridPlugin, timeGridPlugin],
@@ -28,14 +28,14 @@ export class DashboardPageComponent {
   private _consultationService = inject(ConsultationsService);
   private _authService = inject(AuthService);
 
-  constructor() {}
+  constructor() { }
 
   ngOnInit() {
     this.loadRecentConsultations();
   }
-  
+
 
   loadRecentConsultations() {
-    
+
   }
 }

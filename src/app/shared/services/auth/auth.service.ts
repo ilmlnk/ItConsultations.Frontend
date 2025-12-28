@@ -1,10 +1,9 @@
 import { inject, Injectable } from '@angular/core';
-import { BehaviorSubject, catchError, firstValueFrom, from, Observable, of, switchMap, tap, throwError } from 'rxjs';
+import { BehaviorSubject, catchError, from, Observable, of, switchMap, tap, throwError, map, retry } from 'rxjs';
 import { Router } from '@angular/router';
-import { UserRegisterModel } from '../../models/user-register-model';
+import { UserEntity } from '../../models/user-entity.model';
 import { HttpClient } from '@angular/common/http';
 import { SettingsService } from '../settings/settings.service';
-import { ConsultationsMapper } from '../../mappers/consultations-mapper';
 import { initializeApp, FirebaseApp } from 'firebase/app';
 import {
   Auth,
@@ -23,10 +22,16 @@ import {
   sendPasswordResetEmail,
   signInWithRedirect,
   getRedirectResult,
-  UserProfile
+  UserProfile,
+  getIdToken,
+  deleteUser,
+  User,
+  updateProfile
 } from 'firebase/auth';
 import { Environment } from '../../../../environment';
-import { UserRole } from '../../enums/user-role';
+import { UserRole } from '../../enums/user-role.enum';
+import { ToasterNotificationsService } from '../notifications/toaster-notifications.service';
+import { UserProfileResponse } from '../../models/dto/user-profile-response.dto';
 
 @Injectable({
   providedIn: 'root'
@@ -35,20 +40,21 @@ export class AuthService {
   // * auth endpoints
   private _apiUrlPost = '/api/auth';
   private _apiUrlGet = '/api/auth';
-  private _apiUrlPut = '/api/auth';
-  private _apiUrlDelete = '/api/auth';
 
   private _app: FirebaseApp;
   private _auth: Auth;
+
   private _http: HttpClient = inject(HttpClient);
   private _router: Router = inject(Router);
   private _appSettings: SettingsService = inject(SettingsService);
+  private _toasterNotificationService = inject(ToasterNotificationsService);
+
   private _currentUserSubject = new BehaviorSubject<FirebaseUser | null>(null);
-  private _recaptchaVerifier: RecaptchaVerifier | undefined;
   private _userProfileSubject = new BehaviorSubject<UserProfile | null>(null);
+  private _recaptchaVerifier: RecaptchaVerifier | undefined;
 
   public currentUser$: Observable<FirebaseUser | null> = this._currentUserSubject.asObservable();
-  public userProfile$: Observable<UserProfile | null> = this._userProfileSubject.asObservable();
+  public userProfile$: Observable<any | null> = this._userProfileSubject.asObservable();
 
   constructor() {
     this._app = initializeApp(Environment.firebaseConfig);
@@ -58,22 +64,79 @@ export class AuthService {
       this._currentUserSubject.next(user);
 
       if (user) {
-        this.fetchAndSetUserProfile(user.uid).subscribe();
+        this.fetchAndSetUserProfile(user.uid).subscribe({
+          next: (profile) => {
+            if (profile) {
+              this._userProfileSubject.next(profile);
+            } else {
+              this._userProfileSubject.next(null);
+            }
+          },
+          error: (err) => {
+            this._userProfileSubject.next(null);
+          }
+        });
       } else {
         this._userProfileSubject.next(null);
       }
     });
   }
 
-  register(formData: UserRegisterModel) {
+  register(formData: UserEntity) {
+    let firebaseUser: User | null = null;
+
     return from(
       createUserWithEmailAndPassword(this._auth, formData.email, formData.password)
     ).pipe(
       switchMap((userCredential) => {
-        const dto = ConsultationsMapper.mapUserRegistrationModel(formData, userCredential);
-        return this._http.post<FirebaseUser>(`${this._appSettings.currentAppSettings.serviceUrl}${this._apiUrlPost}/register`, dto);
+        firebaseUser = userCredential.user;
+
+        return from(updateProfile(firebaseUser, {
+          displayName: `${formData.firstName} ${formData.lastName}`,
+          photoURL: formData.photoUrl || null
+        })).pipe(
+          map(() => userCredential)
+        );
+      }),
+      switchMap((userCredential) => {
+        const user = userCredential.user;
+
+        return from(user.getIdToken())
+          .pipe(
+            map((token: string) => {
+              return { user, token };
+            })
+          );
+      }),
+      switchMap(({ user }) => {
+        const registerDto = {
+          ...formData,
+          firebaseUid: user.uid
+        };
+
+        return this._http.post<any>(
+          `${this._appSettings.currentAppSettings.serviceUrl}${this._apiUrlPost}/register`,
+          registerDto
+        ).pipe(
+          catchError((error) => {
+            if (firebaseUser) {
+              return from(deleteUser(firebaseUser)).pipe(
+                switchMap(() => {
+                  this._toasterNotificationService.showError('Fail', 'Registration failed');
+                  return throwError(() => error);
+                }),
+                catchError(() => {
+                  this._toasterNotificationService.showError('Fail', 'Registration failed');
+                  return throwError(() => error);
+                })
+              );
+            }
+            this._toasterNotificationService.showError('Fail', 'Registration failed');
+            return throwError(() => error);
+          })
+        )
       })
-    )
+    );
   }
 
   login(creds: { email: string; password: string }): Observable<UserCredential> {
@@ -115,33 +178,48 @@ export class AuthService {
     )
   }
 
-  async syncUserWithBackend(
-    userCredential: UserCredential,
-    role: UserRole
-  ): Promise<UserProfile | null> {
-    const user = userCredential.user;
+  syncUserWithBackend(firebaseUser: FirebaseUser, role: UserRole): Observable<UserProfile> {
+    const names = firebaseUser.displayName ? firebaseUser.displayName.split(' ') : ['User', ''];
 
-    const firstName = user.displayName?.split(' ')[0] || '';
-    const lastName = user.displayName?.split(' ').slice(1).join(' ') || '';
-
-    const dto = {
-      firebaseUid: user.uid,
-      email: user.email,
-      firstName: firstName,
-      lastName: lastName,
+    const registerDto = {
+      email: firebaseUser.email,
+      firstName: names[0],
+      lastName: names.length > 1 ? names.slice(1).join(' ') : '',
+      firebaseUid: firebaseUser.uid,
       role: role
+    };
+
+    return this._http.post<UserProfile>(
+      `${this._appSettings.serviceUrl}/api/auth/register`,
+      registerDto
+    ).pipe(
+      tap(profile => this._userProfileSubject.next(profile))
+    );
+  }
+
+  handleRedirectResult(): Promise<UserCredential | null> {
+    return getRedirectResult(this._auth);
+  }
+
+  getUserRole(uid: string) {
+    if (!uid) {
+      return of(null);
     }
 
-    const registerUrl = `${this._appSettings.currentAppSettings.serviceUrl}${this._apiUrlPost}/register`; // Use your register endpoint
+    return this._http.get<UserProfileResponse>(
+      `${this._appSettings.currentAppSettings.serviceUrl}${this._apiUrlGet}/users/${uid}`).pipe(
+        retry(2),
+        map((response: UserProfileResponse) => {
+          const role = response.role as UserRole;
 
-    try {
-      const createdProfile = await firstValueFrom(this._http.post<UserProfile>(registerUrl, dto));
-      this._userProfileSubject.next(createdProfile);
-      return createdProfile;
-    } catch (backendError) {
-      const message = (backendError as any)?.error?.message;
-      throw new Error(message);
-    }
+          if (Object.values(UserRole).includes(role)) {
+            return role;
+          }
+
+          return null;
+        }),
+        catchError(() => of(null))
+      )
   }
 
   async signInWithEmail(email: string, password: string): Promise<UserCredential> {
@@ -211,31 +289,6 @@ export class AuthService {
     await this._auth.signOut();
     this._router.navigate(['/']);
   }
-/*
-  async getIdToken(): Promise<string | null> {
-    const user = this.currentUser$;
-
-    if (user) {
-      const { getIdToken } = await import('firebase/auth');
-      return await getIdToken(user);
-    }
-
-    return null;
-  }
-
-  async updateProfile(displayName: string, photoUrl: string): Promise<void> {
-    if (this.currentUser$) {
-      const { updateProfile } = await import('firebase/auth');
-      await updateProfile(this.currentUser$, {
-        displayName: displayName || this.currentUser$.displayName,
-        photoURL: photoUrl || this.currentUser$.photoURL
-      })
-    }
-  }
-*/
-  handleRedirectResult(): Promise<UserCredential | null> {
-    return getRedirectResult(this._auth);
-  }
 
   private fetchAndSetUserProfile(firebaseUid: string): Observable<UserProfile | null> {
     const url = `${this._appSettings.currentAppSettings.serviceUrl}${this._apiUrlGet}/profile/${firebaseUid}`;
@@ -257,5 +310,17 @@ export class AuthService {
 
   get currentUserProfile(): UserProfile | null {
     return this._userProfileSubject.value;
+  }
+
+  get apiToken(): Observable<string | null> {
+    return this.currentUser$.pipe(
+      switchMap(user => {
+        if (user) {
+          return from(getIdToken(user));
+        }
+
+        return of(null);
+      })
+    );
   }
 }

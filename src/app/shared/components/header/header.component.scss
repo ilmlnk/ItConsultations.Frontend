@@ -1,0 +1,5 @@
+$sidebar-width: 300px;
+
+.header-content {
+    margin-left: calc(#{$sidebar-width} + 1rem);
+}

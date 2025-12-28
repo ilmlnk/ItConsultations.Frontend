@@ -1,58 +1,17 @@
 <div class="login-page">
-    <div class="login-container" [ngSwitch]="currentStep">
-        <ng-container *ngSwitchCase="'Login'">
-            <h1>Welcome back!</h1>
-            <label>Log in to your account using...</label>
-            <div class="third-party-login">
-                <button mat-button (click)="thirdPartyLogin('google')">
-                    <span>Google</span>
-                </button>
-                <button mat-button (click)="thirdPartyLogin('facebook')">
-                    <span>Facebook</span>
-                </button>
-                <button mat-button (click)="thirdPartyLogin('github')">
-                    <span>Github</span>
-                </button>
+    <h1 class="registration-form-title">Registration Form</h1>
+    <div class="sidebar-card">
+        <div class="steps-nav-header">
+            <button pButton icon="pi pi-arrow-left"></button>
+        </div>
+        <div class="user-preview">
+            <div class="avatar-container">
+                <p-avatar icon="pi pi-user" size="xlarge" shape="circle" styleClass="custom-avatar"></p-avatar>
+                <div class="edit-badge"><i class="pi pi-pencil"></i></div>
             </div>
-            <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-                <div class="form-group">
-                    <input matInput type="text" id="loginIdentity" formControlName="loginIdentity"
-                        placeholder="Email or Username">
-                </div>
-                <div class="form-group">
-                    <input matInput type="password" id="password" formControlName="password" placeholder="Password">
-                </div>
-                <div class="form-options">
-                    <mat-checkbox formControlName="rememberMe" color="primary">
-                        Remember me
-                    </mat-checkbox>
-
-                    <a class="forgot-link" (click)="onExampleError()">Forgot your password?</a>
-                </div>
-                <button mat-button type="submit" [disabled]="!loginForm.valid">Login</button>
-            </form>
-        </ng-container>
-        
-        <ng-container *ngSwitchCase="'RoleSelection'">
-            <h1>One last step!</h1>
-            <label>Are you joining as a Student or a Coach?</label>
-
-            <div class="role-selection">
-                <button mat-flat-button color="primary" (click)="onRoleSelected(studentRole)">
-                    I am a Student
-                </button>
-                <button mat-stroked-button color="primary" (click)="onRoleSelected(coachRole)">
-                    I am a Coach
-                </button>
-            </div>
-        </ng-container>
-
-        <ng-container *ngSwitchCase="'Loading'">
-            <div class="loading-container">
-                <mat-spinner diameter="28"></mat-spinner>
-                <label>Loading, please wait...</label>
-            </div>
-        </ng-container>
+            <h3>{{ loginForm.get('firstName')?.value || 'New' }} {{ loginForm.get('lastName')?.value ||
+                'User' }}</h3>
+        </div>
     </div>
 </div>
 <cons-toaster-notification></cons-toaster-notification>

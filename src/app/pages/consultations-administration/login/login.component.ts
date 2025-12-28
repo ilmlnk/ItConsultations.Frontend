@@ -5,7 +5,7 @@ import { AuthService } from '../../../shared/services/auth/auth.service';
 import { Subscription, switchMap, take } from 'rxjs';
 import { ToasterNotificationsService } from '../../../shared/services/notifications/toaster-notifications.service';
 import { UserCredential } from 'firebase/auth';
-import { UserRole } from '../../../shared/enums/user-role';
+import { UserRole } from '../../../shared/enums/user-role.enum';
 
 @Component({
   selector: 'cons-login',
@@ -109,7 +109,8 @@ export class LoginComponent {
     this._cdr.detectChanges();
 
     try {
-      await this._authService.syncUserWithBackend(this._tempUserCredential, role);
+      await this._authService.syncUserWithBackend(this._tempUserCredential.user, role);
+
       this._toasterNotificationsService.showSuccess('Success', 'Profile created');
       this.navigateToDashboardBasedOnRole(this._tempUserCredential.user.uid, role);
     } catch (error) {
@@ -121,7 +122,7 @@ export class LoginComponent {
 
   public isInvalid(controlName: string): boolean {
     const control = this.loginForm.get(controlName);
-    
+
     if (!control) {
       return false;
     }
@@ -194,12 +195,34 @@ export class LoginComponent {
   private navigateToDashboardBasedOnRole(firebaseUid: string, selectedRole?: UserRole) {
     const roleToUse = selectedRole;
 
-    if (!roleToUse && !selectedRole) {
-      this._router.navigate(['/navigate']);
+    if (selectedRole) {
+      this.performNavigation(selectedRole);
       return;
     }
 
-    const redirectPath = roleToUse === UserRole.Student ? '/student-dashboard' : '/coach-dashboard';
+    this.currentStep = 'Loading';
+    this._cdr.detectChanges();
+
+    this._authService.getUserRole(firebaseUid).subscribe({
+      next: (role: UserRole | null) => {
+        if (role) {
+          this.performNavigation(role);
+        } else {
+          this.currentStep = 'RoleSelection';
+          this._cdr.detectChanges();
+        }
+      },
+      error: (err) => {
+        console.error('Failed to fetch user role', err);
+        this._toasterNotificationsService.showError('Error', 'Could not retrieve user details.');
+        this.currentStep = 'Login';
+        this._cdr.detectChanges();
+      }
+    });
+  }
+
+  private performNavigation(role: UserRole) {
+    const redirectPath = role === UserRole.Student ? '' : '/coach';
     this._router.navigate([redirectPath]);
   }
 
