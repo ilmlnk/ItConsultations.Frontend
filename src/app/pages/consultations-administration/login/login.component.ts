@@ -6,6 +6,7 @@ import { Subscription, switchMap, take } from 'rxjs';
 import { ToasterNotificationsService } from '../../../shared/services/notifications/toaster-notifications.service';
 import { UserCredential } from 'firebase/auth';
 import { UserRole } from '../../../shared/enums/user-role.enum';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'cons-login',
@@ -14,22 +15,23 @@ import { UserRole } from '../../../shared/enums/user-role.enum';
   styleUrl: './login.component.scss'
 })
 export class LoginComponent {
-  loginForm!: FormGroup;
-  loading: boolean = false;
-  showPassword: boolean = false;
-  currentStep = 'Login';
+    loginForm!: FormGroup;
+    loading: boolean = false;
+    showPassword: boolean = false;
+    currentStep = 'Login';
 
-  private _tempUserCredential: UserCredential;
-  private _fb: FormBuilder = inject(FormBuilder);
-  private _authService: AuthService = inject(AuthService);
-  private _router: Router = inject(Router);
-  private _toasterNotificationsService: ToasterNotificationsService = inject(ToasterNotificationsService);
-  private _cdr: ChangeDetectorRef = inject(ChangeDetectorRef);
-  private _authSubscription: Subscription | null = null;
+    private _tempUserCredential: UserCredential;
+    private _fb: FormBuilder = inject(FormBuilder);
+    private _authService: AuthService = inject(AuthService);
+    private _router: Router = inject(Router);
+    private _toasterNotificationsService: ToasterNotificationsService = inject(ToasterNotificationsService);
+    private _cdr: ChangeDetectorRef = inject(ChangeDetectorRef);
+    private _authSubscription: Subscription | null = null;
+    private _location = inject(Location);
 
   async ngOnInit() {
     this.initLoginForm();
-    this.checkRedirect();
+    await this.checkRedirect();
   }
 
   ngOnDestroy() {
@@ -130,6 +132,10 @@ export class LoginComponent {
     return control.invalid && (control.dirty || control.touched);
   }
 
+  navigateToPreviousPage() {
+      this._location.back();
+  }
+
   private initLoginForm() {
     this.loginForm = this._fb.group({
       loginIdentity: ['', [Validators.required]],
@@ -143,7 +149,6 @@ export class LoginComponent {
     this._cdr.detectChanges();
     try {
       const userCredential = await this._authService.handleRedirectResult();
-      console.log('Redirect Result Credential:', userCredential);
 
       if (userCredential) {
         this.handleSuccessfulLogin(userCredential);
@@ -152,17 +157,14 @@ export class LoginComponent {
           take(1)
         ).subscribe(user => {
           if (user) {
-            console.log('User already logged in:', user.uid);
             this.navigateToDashboardBasedOnRole(user.uid);
           } else {
-            console.log('No user session found. Showing login form.');
             this.currentStep = 'Login';
             this._cdr.detectChanges();
           }
         });
       }
     } catch (error: any) {
-      console.error('Error during redirect check:', error);
       this._toasterNotificationsService.showError('Login Error', 'Could not complete login. Please try again.');
       this.currentStep = 'Login';
       this._cdr.detectChanges();
@@ -213,7 +215,6 @@ export class LoginComponent {
         }
       },
       error: (err) => {
-        console.error('Failed to fetch user role', err);
         this._toasterNotificationsService.showError('Error', 'Could not retrieve user details.');
         this.currentStep = 'Login';
         this._cdr.detectChanges();
@@ -224,13 +225,5 @@ export class LoginComponent {
   private performNavigation(role: UserRole) {
     const redirectPath = role === UserRole.Student ? '' : '/coach';
     this._router.navigate([redirectPath]);
-  }
-
-  get studentRole() {
-    return UserRole.Student;
-  }
-
-  get coachRole() {
-    return UserRole.Coach;
   }
 }

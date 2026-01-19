@@ -1,0 +1,43 @@
+<section class="experts-section">
+    <h1 class="section-title">Featured Experts</h1>
+    <div class="experts-container">
+        <div class="sidebar-list">
+            <div *ngFor="let person of experts; let i = index" class="expert-item" [class.active]="selectedIndex === i"
+                (click)="selectExpert(i)">
+                <img [src]="person.avatarUrl" alt="{{ person.name }}" class="avatar-small">
+                <div class="expert-info">
+                    <h4 class="name">{{ person.name }}</h4>
+                    <span class="company">{{ person.company }}</span>
+                </div>
+                <span class="active-indicator" *ngIf="selectedIndex === i"></span>
+            </div>
+        </div>
+        <div class="profile-panel">
+            <div class="profile-content" [class.fade-anim]="true">
+                <div class="profile-header">
+                    <img [src]="experts[selectedIndex].photoUrl" class="profile-photo">
+                    <div class="header-text">
+                        <h2>{{ experts[selectedIndex].name }}</h2>
+                        <p class="role-badge">{{ experts[selectedIndex].role }} at {{ experts[selectedIndex].company
+                            }}</p>
+                    </div>
+                </div>
+
+                <div class="bio-section">
+                    <h3>About</h3>
+                    <p>{{ experts[selectedIndex].bio }}</p>
+                </div>
+
+                <div class="skills-section">
+                    <h3>Superpowers</h3>
+                    <div class="skills-list">
+                        <span *ngFor="let skill of experts[selectedIndex].skills" class="skill-tag">
+                            {{ skill }}
+                        </span>
+                    </div>
+                </div>
+                <button class="btn-book">Book a Session</button>
+            </div>
+        </div>
+    </div>
+</section>

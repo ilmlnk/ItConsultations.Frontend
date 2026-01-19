@@ -1,40 +1,27 @@
 import { NgModule } from '@angular/core';
-import { ConsultationsService } from './services/consultations/consultations.service';
-import { MatIconModule } from '@angular/material/icon';
-import { MatButtonModule } from '@angular/material/button';
-import { MatBadgeModule } from '@angular/material/badge';
-import { MatTooltipModule } from '@angular/material/tooltip';
-import { MatMenuModule } from '@angular/material/menu';
-import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatListModule } from '@angular/material/list';
-import { ToasterNotificationsService } from './services/notifications/toaster-notifications.service';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { BrowserModule } from '@angular/platform-browser';
-import { ModalService } from './services/modal/modal.service';
-import { AuthService } from './services/auth/auth.service';
-import { AppRoutingModule } from "../app-routing.module";
-import { FormFieldErrorComponent } from './components/form-field-error/form-field-error.component';
+import { CommonModule } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { PaginatorModule } from 'primeng/paginator';
+import { ButtonModule } from 'primeng/button';
+import { InputTextModule } from 'primeng/inputtext';
+import { SelectButtonModule } from 'primeng/selectbutton';
+import { MenuModule } from 'primeng/menu';
 
 @NgModule({
   declarations: [],
   imports: [
-    MatIconModule,
-    MatButtonModule,
-    MatBadgeModule,
-    MatTooltipModule,
-    MatMenuModule,
-    MatDatepickerModule,
-    MatListModule,
-    BrowserAnimationsModule,
-    BrowserModule,
-    AppRoutingModule
-],
-  exports: [],
-  providers: [
-    ConsultationsService,
-    ToasterNotificationsService,
-    ModalService,
-    AuthService
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    PaginatorModule,
+    ButtonModule,
+    InputTextModule,
+    SelectButtonModule,
+    MenuModule
+  ],
+  exports: [
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class SharedModule { }

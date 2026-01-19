@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Coach } from '../../../../shared/models/coach.model';
+import { Coach } from '../../../../shared/models/model/coach.model';
 import { CoachesService } from '../../../../shared/services/coaches/coaches.service';
 
 @Component({

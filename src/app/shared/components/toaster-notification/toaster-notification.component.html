@@ -8,7 +8,6 @@
           <div class="notification-content">
             <div class="notification-header">
               <div class="notification-header-left">
-                <mat-icon>{{ getNotificationIcon(notification.type) }}</mat-icon>
                 <h2 class="notification-title">{{ notification.title }}</h2>
               </div>
               <div class="notification-header-right">
@@ -16,7 +15,6 @@
                   {{ stack.value.length }}
                 </label>
                 <button class="notification-close-btn" (click)="closeNotification(notification.id, $event)">
-                  <mat-icon>close</mat-icon>
                 </button>
               </div>
             </div>

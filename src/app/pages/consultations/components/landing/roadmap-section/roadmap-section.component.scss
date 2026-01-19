@@ -1,0 +1,109 @@
+@import '../../../../../../styles/variables';
+
+.roadmap-section {
+    padding: 80px 20px;
+    overflow: hidden;
+}
+
+.section-title {
+    text-align: center;
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 2.5rem;
+    color: black;
+    margin-bottom: 80px;
+}
+
+.timeline-container {
+    position: relative;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px 0;
+}
+
+.timeline-line {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 4px;
+    height: 100%;
+    background: $vibrant-gradient;
+    box-shadow: 0 0 15px rgba(0, 229, 255, 0.5);
+    border-radius: 4px;
+    z-index: 1;
+}
+
+.timeline-item {
+    position: relative;
+    width: 50%;
+    padding: 20px 40px;
+    box-sizing: border-box;
+    z-index: 2;
+
+    &.left {
+        left: 0; text-align: right;
+        .step-card { margin-left: auto; }
+        .timeline-dot { right: -50px; }
+        .features-grid { justify-content: flex-end; }
+    }
+
+    &.right {
+        left: 50%; text-align: left;
+        .timeline-dot { left: -50px; }
+        .features-grid { justify-content: flex-start; }
+    }
+}
+
+.timeline-dot {
+    position: absolute; top: 40px; width: 20px; height: 20px;
+    background: $bg-dark; border: 2px solid $accent-color; border-radius: 50%;
+    z-index: 3; display: flex; justify-content: center; align-items: center;
+    box-shadow: 0 0 10px $accent-color;
+
+    .dot-inner {
+        width: 8px; height: 8px; background: $accent-color; border-radius: 50%;
+        animation: pulse 2s infinite;
+    }
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.5); opacity: 0.5; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+.step-card {
+    background: $card-bg; backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 20px; padding: 30px;
+    position: relative; transition: transform 0.3s ease, box-shadow 0.3s ease; max-width: 450px;
+
+    &:hover {
+        transform: translateY(-5px); border-color: rgba(255, 255, 255, 0.3);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        .step-number { color: rgba(255, 255, 255, 0.1); }
+    }
+
+    .step-icon { font-size: 2.5rem; margin-bottom: 15px; }
+    h3 { color: black; font-size: 1.5rem; margin-bottom: 10px; }
+    p { color: $text-secondary; line-height: 1.5; margin-bottom: 20px; }
+    .step-number {
+        position: absolute; top: 10px; right: 20px; font-size: 4rem;
+        font-weight: 900; color: rgba(255, 255, 255, 0.03); pointer-events: none;
+    }
+}
+
+.features-grid { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 15px; }
+.feature-tag {
+    background: rgba(0, 229, 255, 0.1); color: #00e5ff; padding: 6px 12px;
+    border-radius: 8px; font-size: 0.85rem; font-weight: 600; border: 1px solid rgba(0, 229, 255, 0.2);
+}
+.action-btn {
+    background: $text-white; color: #12121f; border: none; padding: 10px 20px;
+    border-radius: 50px; font-weight: bold; cursor: pointer; margin-top: 15px; transition: 0.3s;
+    &:hover { background: #ff0055; color: white; box-shadow: 0 5px 15px rgba(255, 0, 85, 0.4); }
+}
+
+@media (max-width: 768px) {
+    .timeline-line { left: 20px; }
+    .timeline-item { width: 100%; padding-left: 50px; padding-right: 0; margin-bottom: 30px; }
+    .timeline-item.left, .timeline-item.right { left: 0; text-align: left; .timeline-dot { left: 10px; right: auto; } .step-card { margin-left: 0; } .features-grid { justify-content: flex-start; } }
+}

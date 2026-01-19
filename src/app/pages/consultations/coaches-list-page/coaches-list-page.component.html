@@ -1,5 +1,62 @@
-<div class="coaches-list-page-wrapper">
-    <mat-card class="coaches-list">
-        <cons-coaches-list></cons-coaches-list>
-    </mat-card>
-</div>
+<cons-page-wrapper
+    title="Coaches List"
+    [viewOptions]="userTypes"
+    [(selectedViewOption)]="selectedUserType"
+    [(searchValue)]="searchValue"
+    [selectedItemsCount]="selectedCoaches.length"
+    [exportMenuItems]="exportItems"
+    [first]="first"
+    [rows]="rows"
+    [totalRecords]="coaches.length"
+    [rowsPerPageOptions]="rowsOptions"
+    (onPageChange)="onPageChange($event)">
+
+          <p-table [value]="coaches | slice:first:(first + rows)" [(selection)]="selectedCoaches" dataKey="fullName" [paginator]="false"
+            responsiveLayout="scroll" styleClass="p-datatable-custom consultations-table">
+
+            <ng-template pTemplate="header">
+              <tr>
+                <th style="width: 4rem"><p-tableHeaderCheckbox></p-tableHeaderCheckbox></th>
+                <th class="col-photo">Photo</th>
+                <th>Full Name</th>
+                <th>Position</th>
+                <th>Company</th>
+                <th>Topics</th>
+                <th class="col-actions"></th>
+              </tr>
+            </ng-template>
+
+            <ng-template pTemplate="body" let-item let-i="rowIndex">
+              <tr>
+                <td><p-tableCheckbox [value]="item"></p-tableCheckbox></td>
+                <td>
+                  <p-avatar icon="pi pi-user" styleClass="p-mr-2" shape="circle"
+                    [style]="{'background-color': '#e2e8f0', 'color': '#ffffff'}" size="large">
+                  </p-avatar>
+                </td>
+                <td class="font-bold">{{ item.fullName }}</td>
+                <td>{{ item.position }}</td>
+                <td>{{ item.company }}</td>
+                <td>
+                  <div class="topics-list">
+                    <p-chip *ngFor="let topic of item.topics | slice:0:3" [removable]="false">{{ topic }}</p-chip>
+                    <p-chip *ngIf="item.topics.length > 3" [pTooltip]="item.topics.slice(3).join(', ')" tooltipPosition="top">+{{ item.topics.length - 3 }}</p-chip>
+                  </div>
+                </td>
+
+                <td>
+                  <div class="action-buttons-column">
+                    <div class="social-buttons-row">
+                        <button pButton icon="pi pi-send" class="p-button-outlined p-button-secondary icon-btn"></button>
+                        <button pButton icon="pi pi-heart" class="p-button-outlined p-button-secondary icon-btn"></button>
+                        <button pButton icon="pi pi-github" class="p-button-outlined p-button-secondary icon-btn"></button>
+                        <button pButton icon="pi pi-linkedin" class="p-button-outlined p-button-secondary icon-btn"></button>
+                    </div>
+                    <button pButton label="Learn more" class="order-btn"></button>
+                  </div>
+                </td>
+              </tr>
+            </ng-template>
+          </p-table>
+
+</cons-page-wrapper>

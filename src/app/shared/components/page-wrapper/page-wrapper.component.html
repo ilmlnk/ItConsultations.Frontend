@@ -1,0 +1,25 @@
+<div class="layout-wrapper">
+    <main class="layout-main">
+        <div class="layout-content">
+            <cons-page-header
+                [viewOptions]="viewOptions"
+                [selectedViewOption]="selectedViewOption"
+                (selectedViewOptionChange)="selectedViewOptionChange.emit($event)"
+                [searchValue]="searchValue"
+                (searchValueChange)="searchValueChange.emit($event)"
+                [selectedItemsCount]="selectedItemsCount"
+                [exportMenuItems]="exportMenuItems">
+            </cons-page-header>
+            <p-card [header]="title" styleClass="content-card">
+                <ng-content></ng-content>
+                <cons-paginator
+                    [first]="first"
+                    [rows]="rows"
+                    [totalRecords]="totalRecords"
+                    [rowsPerPageOptions]="rowsPerPageOptions"
+                    (onPageChange)="onPageChangeHandler($event)">
+                </cons-paginator>
+            </p-card>
+        </div>
+    </main>
+</div>

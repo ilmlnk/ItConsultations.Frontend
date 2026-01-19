@@ -1,0 +1,27 @@
+<div class="toolbar-container">
+    <div class="toolbar-group">
+        <p-selectButton [options]="viewOptions" [(ngModel)]="selectedViewOption" (ngModelChange)="selectedViewOptionChange.emit($event)" optionLabel="label" optionValue="value"
+                        styleClass="custom-select-button">
+            <ng-template let-item pTemplate="item">
+                <i [class]="item.icon" style="margin-right: 8px;"></i>
+                <span>{{item.label}}</span>
+            </ng-template>
+        </p-selectButton>
+    </div>
+
+    <div class="toolbar-group search-group">
+          <span class="p-input-icon-left w-100">
+            <i class="pi pi-search"></i>
+            <input type="text" pInputText [(ngModel)]="searchValue" (ngModelChange)="searchValueChange.emit($event)" placeholder="Search"
+                   class="w-100 custom-search-input" />
+          </span>
+    </div>
+
+    <div class="toolbar-group actions-group">
+        <button pButton icon="pi pi-sort-alt" class="p-button-outlined custom-btn-icon" (click)="onSort.emit()"></button>
+        <button pButton [label]="'Export' + (selectedItemsCount > 0 ? ' (' + selectedItemsCount + ')' : '')" icon="pi pi-download" iconPos="right"
+                class="p-button-outlined custom-btn" (click)="exportMenu.toggle($event)"></button>
+        <p-menu #exportMenu [model]="exportMenuItems" [popup]="true" appendTo="body"></p-menu>
+        <button pButton label="Filter" icon="pi pi-filter" class="p-button-outlined custom-btn" (click)="onFilter.emit()"></button>
+    </div>
+</div>

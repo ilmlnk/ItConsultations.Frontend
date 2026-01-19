@@ -1,9 +1,11 @@
+<!--
+critical: replace mat card with primeng component
 <mat-card class="consultation-card">
   <div class="consultation-sidebar-wrapper">
     <div class="coach-avatar card-content sidebar-content">
       <img [src]="model.coach.pictureUrl" />
       <div class="rating-display">
-        <mat-icon class="star-icon">star</mat-icon>
+        critical: replace mat chip with primeng component
         <span class="rating-value">{{ coachRating }}</span>
         <span class="reviews-count" *ngIf="model">({{ coachReviewsCount }})</span>
       </div>
@@ -28,14 +30,14 @@
         </div>
       </div>
       <div class="content-footer">
-        <button mat-raised-button color="primary" class="book-button" (click)="openBookingConsultation()">
+        <button class="book-button" (click)="openBookingConsultation()">
           Book
         </button>
         <div class="pricing">
           <span class="price">{{ model.price }} {{ model.currency }}</span>
           <div class="consultation-meta">
             <span class="duration" *ngIf="model.duration">
-              <mat-icon>schedule</mat-icon>
+              critical: replace mat icon with primeng component
               {{ model.duration }} min
             </span>
           </div>
@@ -49,22 +51,14 @@
       <div class="skills-section" *ngIf="model.coach.skills && model.coach.skills.length > 0">
         <h4>Skills</h4>
         <div class="skills-list">
-          <mat-chip-set>
-            <mat-chip *ngFor="let skill of model.coach.skills">
-              {{ skill }}
-            </mat-chip>
-          </mat-chip-set>
+          critical: replace mat chip set with primeng component
         </div>
       </div>
 
       <div class="topics-section" *ngIf="model.coach.topics && model.coach.topics.length > 0">
         <h4>Topics</h4>
         <div class="topics-list">
-          <mat-chip-set>
-            <mat-chip *ngFor="let topic of model.coach.topics" color="accent">
-              {{ topic }}
-            </mat-chip>
-          </mat-chip-set>
+          critical: replace mat chip with primeng component
         </div>
       </div>
 
@@ -79,3 +73,4 @@
     </div>
   </div>
 </mat-card>
+-->

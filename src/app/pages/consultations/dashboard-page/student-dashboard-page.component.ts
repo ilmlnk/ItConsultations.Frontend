@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { Consultation } from '../../../shared/models/consultation.model';
+import { Consultation } from '../../../shared/models/model/consultation.model';
 import { ConsultationsService } from '../../../shared/services/consultations/consultations.service';
 import { CalendarOptions } from '@fullcalendar/core/index.js';
 import dayGridPlugin from '@fullcalendar/daygrid';

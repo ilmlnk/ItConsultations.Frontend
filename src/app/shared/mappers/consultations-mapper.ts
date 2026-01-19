@@ -1,4 +1,4 @@
-import { UserEntity } from "../models/user-entity.model";
+import { UserEntity } from "../models/model/user-entity.model";
 import { User } from "firebase/auth";
 
 export class ConsultationsMapper {

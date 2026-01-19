@@ -1,0 +1,40 @@
+@import '../../../../styles/variables';
+
+$body-bg: #f5f7fa;
+
+.layout-wrapper {
+    display: flex;
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.layout-main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background-color: $body-bg;
+    overflow: hidden;
+}
+
+.layout-content {
+    flex: 1;
+    padding: 30px;
+    overflow-y: auto;
+
+    ::ng-deep .content-card {
+        &.p-card {
+            background-color: #ffffff !important;
+            color: #000000 !important;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+            border-radius: 8px;
+        }
+        .p-card-title {
+            color: #000000 !important;
+        }
+        .p-card-body {
+            padding: 20px;
+        }
+    }
+}

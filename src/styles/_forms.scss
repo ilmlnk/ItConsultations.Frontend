@@ -1,0 +1,177 @@
+@import 'variables';
+
+// Global Input Styles for PrimeNG Components
+
+.p-inputtext {
+    border-radius: 10px;
+    background-color: $input-bg !important;
+    border: 1px solid #e2e8f0;
+    color: $text-color !important;
+    transition: all 0.2s;
+    width: 100%;
+
+    &:enabled:focus,
+    &.p-focus {
+        background-color: #ffffff !important;
+        border-color: $primary-orange;
+        box-shadow: 0 0 0 1px $primary-orange;
+    }
+
+    &:hover:not(:focus) {
+        border-color: #cbd5e1;
+    }
+}
+
+.p-calendar,
+.p-password {
+    width: 100%;
+}
+
+// Dropdown (p-select)
+.p-select {
+    width: 100%;
+    border-radius: 10px;
+    background: $input-bg !important;
+    border: 1px solid #e2e8f0 !important;
+
+    .p-dropdown-label {
+        color: $text-color !important;
+        background: transparent !important;
+    }
+
+    .p-dropdown-label.p-placeholder {
+        color: $text-muted !important;
+    }
+
+    .p-dropdown-trigger {
+        color: $text-muted !important;
+        background: transparent !important;
+    }
+
+    &:not(.p-disabled).p-focus {
+        border-color: $primary-orange !important;
+        box-shadow: 0 0 0 1px $primary-orange !important;
+    }
+
+    &:not(.p-disabled):hover {
+        border-color: #cbd5e1 !important;
+    }
+}
+
+.p-select-list-container {
+    background: none;
+    border: none;
+}
+
+.p-select-overlay {
+    background-color: #ffffff !important;
+    border: none;
+}
+
+.p-select-list {
+    background-color: #ffffff !important;
+    border-radius: 10px;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15) !important;
+
+    .p-select-option {
+        color: $text-color !important;
+        background-color: transparent;
+        margin: 2px 5px;
+        border-radius: 6px;
+
+        &:not(.p-select-option-selected):not(.p-disabled).p-focus {
+            background-color: $btn-grey-bg !important;
+            color: $text-color !important;
+        }
+    }
+}
+
+// Radio Button
+.p-radiobutton {
+    .p-radiobutton-box {
+        background-color: $input-bg !important;
+        border: 2px solid #cbd5e1 !important;
+        border-radius: 50%;
+
+        &.p-highlight {
+            border-color: $primary-orange !important;
+            background-color: $primary-orange !important;
+
+            .p-radiobutton-icon {
+                background-color: #ffffff !important;
+                color: #ffffff !important;
+            }
+        }
+
+        &:not(.p-disabled):not(.p-highlight):hover {
+            border-color: $primary-orange !important;
+            background-color: #ffffff !important;
+        }
+    }
+}
+
+// Datepicker Panel
+.p-datepicker {
+    width: 100%;
+    color: $black !important;
+    background: $white !important;
+    border: 1px solid #e2e8f0;
+
+    .p-datepicker-header {
+        background: $white !important;
+        color: $black !important;
+    }
+
+    .p-datepicker-day-selected {
+        background-color: $primary-orange;
+        font-weight: 600;
+    }
+
+    .p-datepicker-today > .p-datepicker-day {
+        background-color: $secondary-orange;
+    }
+
+    .p-inputtext {
+        width: 100%;
+    }
+}
+
+.p-password,
+.p-datepicker,
+.p-select {
+    width: 100%;
+    input {
+        width: 100%;
+    }
+}
+
+// Checkbox
+.p-checkbox {
+    .p-checkbox-box {
+        background-color: #ffffff !important;
+        border: 1px solid #e0e0e0 !important;
+        border-radius: 4px;
+
+        &:not(.p-disabled):hover {
+            border-color: $primary-blue !important;
+        }
+    }
+
+    .p-checkbox-checked:not(.p-disabled):has(.p-checkbox-input:hover) .p-checkbox-box {
+        background: $primary-blue !important;
+        border-color: $primary-blue !important;
+
+        .p-checkbox-icon {
+            color: #ffffff !important;
+        }
+    }
+}
+
+.p-checkbox-checked .p-checkbox-box {
+    background-color: $primary-blue !important;
+    border-color: $primary-blue !important;
+    .p-checkbox-icon {
+        color: #ffffff !important;
+    }
+}

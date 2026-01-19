@@ -1,0 +1,84 @@
+@import '../../../../../../styles/variables';
+
+.faq-section {
+    padding: 80px 0 40px;
+    min-height: 600px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+h1 {
+    text-align: center;
+    color: $black;
+    font-size: 2.5rem;
+    margin-bottom: 50px;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.content-wrapper {
+    width: 100%;
+    max-width: 800px;
+}
+
+::ng-deep .custom-accordion {
+    .p-accordion-tab {
+        margin-bottom: 15px;
+    }
+
+    .p-accordion-header-link {
+        background-color: $bg-panel !important;
+        color: $text-white !important;
+        box-shadow: none !important;
+        border-radius: 15px !important;
+        border: 1px solid rgba(255, 255, 255, 0.05) !important;
+        padding: 25px !important;
+        font-family: 'Segoe UI', sans-serif;
+        font-size: 1.1rem;
+        font-weight: 500;
+        transition: all 0.3s ease !important;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        text-decoration: none;
+
+        &:hover {
+            background: rgba(255, 255, 255, 0.05) !important;
+        }
+
+        .p-accordion-toggle-icon {
+            color: $text-secondary;
+            order: 1; 
+        }
+    }
+
+    .p-accordion-header.p-highlight .p-accordion-header-link {
+        background-color: rgba(255, 255, 255, 0.08) !important;
+        border-color: rgba(255, 255, 255, 0.2) !important;
+        border-bottom-right-radius: 0 !important;
+        border-bottom-left-radius: 0 !important;
+        color: $accent-color !important;
+
+        .p-accordion-toggle-icon {
+            color: $active-border;
+            transform: rotate(45deg);
+        }
+    }
+
+    .p-toggleable-content {
+        background-color: $bg-panel !important;
+        border: 1px solid rgba(255, 255, 255, 0.2); // Match expanded border
+        border-top: none;
+        border-bottom-right-radius: 15px;
+        border-bottom-left-radius: 15px;
+        
+        .p-accordion-content {
+            background: transparent !important;
+            border: none !important;
+            padding: 0 25px 25px 25px !important;
+            color: $text-secondary !important;
+            line-height: 1.6;
+            font-size: 1rem;
+        }
+    }
+}

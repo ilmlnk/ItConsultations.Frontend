@@ -1,0 +1,237 @@
+<!--
+<div class="registration-wrapper">
+  <h1 class="registration-form-title">Application Form</h1>
+  <div class="sidebar-card">
+    <div class="steps-nav-header">
+      <button pButton icon="pi pi-arrow-left"></button>
+    </div>
+    <div class="user-preview">
+      <div class="avatar-container">
+        <p-avatar icon="pi pi-user" size="xlarge" shape="circle" styleClass="custom-avatar"></p-avatar>
+        <div class="edit-badge"><i class="pi pi-pencil"></i></div>
+      </div>
+      <h3>
+        {{ registrationForm.get('firstName')?.value || 'New' }}
+        {{ registrationForm.get('lastName')?.value || 'User' }}
+      </h3>
+    </div>
+
+    <div class="steps-nav">
+      <div *ngFor="let step of steps; let i = index" class="step-item" [class.active]="currentStepIndex === i">
+        <i [class]="step.icon"></i>
+        <span>{{ step.label }}</span>
+      </div>
+    </div>
+    <div class="sidebar-card-footer">
+      <button
+        pButton
+        (click)="toggleTheme()"
+        [icon]="(themeService.isDarkMode$ | async) ? 'pi pi-sun' : 'pi pi-moon'"
+        class="p-button-text"
+      ></button>
+      <button pButton icon="pi pi-globe">
+
+      </button>
+      <button pButton icon="pi pi-exclamation-triangle"></button>
+    </div>
+  </div>
+
+  <div class="content-card">
+    <h2 class="section-title">{{ currentStep.label }}</h2>
+    <form [formGroup]="registrationForm" class="grid formgrid p-fluid">
+      <ng-container *ngIf="currentStep.value === 'personal'">
+        <div class="col-12 mb-4">
+          <cons-form-field
+            label="Gender"
+            inputId="gender"
+            [control]="registrationForm.get('gender')"
+            [isRequired]="true">
+            <div class="gender-container">
+              <div class="field-radiobutton">
+                <p-radioButton name="gender" value="male" formControlName="gender"
+                               inputId="male"></p-radioButton>
+                <label for="male">Male</label>
+              </div>
+              <div class="field-radiobutton">
+                <p-radioButton name="gender" value="female" formControlName="gender"
+                               inputId="female"></p-radioButton>
+                <label for="female">Female</label>
+              </div>
+              <div class="field-radiobutton">
+                <p-radioButton name="gender" value="other" formControlName="gender"
+                               inputId="other"></p-radioButton>
+                <label for="other">Other</label>
+              </div>
+              <div class="field-radiobutton">
+                <p-radioButton name="gender" value="not-to-say" formControlName="gender"
+                               inputId="not-to-say"></p-radioButton>
+                <label for="not-to-say">Prefer not to say</label>
+              </div>
+            </div>
+            <cons-form-field-error
+              [control]="registrationForm.get('gender')"
+              errorKey="required"
+              message="Field is required.">
+            </cons-form-field-error>
+          </cons-form-field>
+        </div>
+
+        <div class="personal-text-fields">
+          First name
+          <cons-form-field
+            label="First Name"
+            [control]="registrationForm.get('firstName')"
+            [isRequired]="true">
+            <div class="col-12 md:col-6 mb-2">
+              <input pInputText id="firstname" formControlName="firstName" placeholder="Roland" />
+            </div>
+            <cons-form-field-error
+              [control]="registrationForm.get('firstName')"
+              errorKey="required"
+              message="Field is required.">
+            </cons-form-field-error>
+            <cons-form-field-error
+              [control]="registrationForm.get('firstName')"
+              errorKey="minlength"
+              message="Name should consist of at least 2 characters.">
+            </cons-form-field-error>
+          </cons-form-field>
+
+          Last name
+          <cons-form-field label="Last Name" [control]="registrationForm.get('lastName')"
+                           [isRequired]="false">
+            <div class="col-12 md:col-6 mb-2">
+              <input pInputText id="lastName" formControlName="lastName" placeholder="Donald" />
+            </div>
+          </cons-form-field>
+
+          Email
+          <cons-form-field
+            label="Email"
+            [control]="registrationForm.get('email')"
+            [isRequired]="true"
+          >
+            <div class="col-12 md:col-6 mb-2">
+              <input pInputText id="email" formControlName="email" placeholder="roland@gmail.com" />
+            </div>
+            <cons-form-field-error
+              [control]="registrationForm.get('email')"
+              errorKey="required"
+              message="Field is required.">
+            </cons-form-field-error>
+            <cons-form-field-error
+              [control]="registrationForm.get('email')"
+              errorKey="email"
+              message="Field is invalid.">
+            </cons-form-field-error>
+          </cons-form-field>
+
+          Linkedin url
+          <cons-form-field label="LinkedIn URL" [control]="registrationForm.get('linkedin')"
+                           [isRequired]="false">
+            <div class="col-12 md:col-6 mb-2">
+              <input pInputText id="linkedin" formControlName="linkedin"
+                     placeholder="https://www.linkedin.com/in/roland" />
+            </div>
+            <cons-form-field-error
+              [control]="registrationForm.get('linkedin')"
+              errorKey="invalid"
+              message="Field is invalid.">
+            </cons-form-field-error>
+          </cons-form-field>
+
+          Telegram url
+          <cons-form-field label="Telegram URL" [control]="registrationForm.get('telegram')"
+                           [isRequired]="false">
+            <div class="col-12 md:col-6 mb-2">
+              <input pInputText id="telegram" formControlName="telegram" placeholder="t.me/roland" />
+            </div>
+            <cons-form-field-error
+              [control]="registrationForm.get('telegram')"
+              errorKey="invalid"
+              message="Field is invalid.">
+            </cons-form-field-error>
+          </cons-form-field>
+
+          Github url
+          <cons-form-field label="GitHub URL" [control]="registrationForm.get('github')" [isRequired]="false">
+            <div class="col-12 md:col-6 mb-2">
+              <input pInputText id="github" formControlName="github"
+                     placeholder="https://www.github.com/roland" />
+            </div>
+            <cons-form-field-error
+              [control]="registrationForm.get('github')"
+              errorKey="invalid"
+              message="Field is invalid.">
+            </cons-form-field-error>
+          </cons-form-field>
+
+          Birth date
+          <cons-form-field label="Birth Date" [control]="registrationForm.get('birthDate')"
+                           [isRequired]="false">
+            <div class="col-12 md:col-6 mb-2">
+              <p-date-picker formControlName="birthDate" placeholder="12/12/2000"></p-date-picker>
+            </div>
+          </cons-form-field>
+
+          Country
+          <cons-form-field label="Country" [control]="registrationForm.get('country')" [isRequired]="true">
+            <div class="col-12 md:col-6 mb-2">
+              <p-select [options]="allCountries" formControlName="country" optionLabel="name"
+                        placeholder="Select country"></p-select>
+            </div>
+          </cons-form-field>
+        </div>
+      </ng-container>
+
+
+      <ng-container *ngIf="currentStep.value === 'security'">
+        <div class="col-12 mb-2">
+          <label for="username" class="font-bold mb-1 block">Username</label>
+          <input pInputText id="username" formControlName="username"
+                 [ngClass]="{'ng-invalid ng-dirty': hasError('username', 'required')}" />
+          <small *ngIf="hasError('username', 'required')" class="p-error block mt-1">
+            Username is required.
+          </small>
+        </div>
+
+        <div class="col-12 mb-2">
+          <label for="password" class="font-bold mb-1 block">Password</label>
+          <p-password id="password" formControlName="password" [toggleMask]="true"
+                      [feedback]="false"></p-password>
+          <small *ngIf="hasError('password', 'required')" class="p-error block mt-1">
+            Password is required.
+          </small>
+        </div>
+
+        <div class="col-12 mb-2">
+          <label for="confirmPassword" class="font-bold mb-1 block">Confirm Password</label>
+          <p-password id="confirmPassword" formControlName="confirmPassword" [toggleMask]="true"
+                      [feedback]="false"></p-password>
+          <small
+            *ngIf="registrationForm.get('confirmPassword')?.hasError('passwordMismatch') && registrationForm.get('confirmPassword')?.touched"
+            class="p-error block mt-1">
+            Passwords do not match.
+          </small>
+        </div>
+      </ng-container>
+
+    </form>
+
+    <div class="form-footer flex justify-content-between mt-4">
+      <button *ngIf="currentStepIndex > 0" pButton type="button" label="Back"
+              class="p-button-outlined p-button-secondary action-btn" (click)="onBack()">
+      </button>
+
+      <button *ngIf="!isLastStep" pButton type="button" label="Next" class="p-button-warning action-btn ml-auto"
+              (click)="onNext()">
+      </button>
+
+      <button *ngIf="isLastStep" [disabled]="isLoading" pButton type="button"
+              class="p-button-warning action-btn ml-auto" (click)="onSubmit()" label="Sign up">
+        <p-progress-spinner *ngIf="isLoading" strokeWidth="8" fill="transparent" animationDuration="1s"
+                            [style]="{ width: '20px', height: '20px' }" />
+      </button>
+    </div>
+  </div>
+-->

@@ -2,7 +2,7 @@
     <h1 class="registration-form-title">Registration Form</h1>
     <div class="sidebar-card">
         <div class="steps-nav-header">
-            <button pButton icon="pi pi-arrow-left"></button>
+            <button pButton pButtonIcon="pi pi-arrow-left" (click)="navigateToPreviousPage()"></button>
         </div>
         <div class="user-preview">
             <div class="avatar-container">
@@ -10,7 +10,7 @@
                 <div class="edit-badge"><i class="pi pi-pencil"></i></div>
             </div>
             <h3>
-                {{ registrationForm.get('firstName')?.value || 'New' }} 
+                {{ registrationForm.get('firstName')?.value || 'New' }}
                 {{ registrationForm.get('lastName')?.value || 'User' }}
             </h3>
         </div>
@@ -22,16 +22,16 @@
             </div>
         </div>
         <div class="sidebar-card-footer">
-            <button 
-                pButton 
-                (click)="toggleTheme()" 
+            <button
+                pButton
+                (click)="toggleTheme()"
                 [icon]="(themeService.isDarkMode$ | async) ? 'pi pi-sun' : 'pi pi-moon'"
                 class="p-button-text"
             ></button>
             <button pButton icon="pi pi-globe">
 
             </button>
-            <button pButton icon="pi pi-exclamation-triangle"></button>
+            <button pButton pButtonIcon="pi pi-exclamation-triangle"></button>
         </div>
     </div>
 
@@ -40,10 +40,10 @@
         <form [formGroup]="registrationForm" class="grid formgrid p-fluid">
             <ng-container *ngIf="currentStep.value === 'personal'">
                 <div class="col-12 mb-4">
-                    <cons-form-field 
+                    <cons-form-field
                         label="Gender"
                         inputId="gender"
-                        [control]="registrationForm.get('gender')" 
+                        [control]="registrationForm.get('gender')"
                         [isRequired]="true">
                         <div class="gender-container">
                             <div class="field-radiobutton">
@@ -77,8 +77,8 @@
 
                 <div class="personal-text-fields">
                     <!-- First name -->
-                    <cons-form-field 
-                    label="First Name" 
+                    <cons-form-field
+                    label="First Name"
                     [control]="registrationForm.get('firstName')"
                     [isRequired]="true">
                         <div class="col-12 md:col-6 mb-2">
@@ -105,9 +105,9 @@
                     </cons-form-field>
 
                     <!-- Email -->
-                    <cons-form-field 
-                        label="Email" 
-                        [control]="registrationForm.get('email')" 
+                    <cons-form-field
+                        label="Email"
+                        [control]="registrationForm.get('email')"
                         [isRequired]="true"
                         >
                         <div class="col-12 md:col-6 mb-2">
@@ -179,6 +179,11 @@
                             <p-select [options]="allCountries" formControlName="country" optionLabel="name"
                                 placeholder="Select country"></p-select>
                         </div>
+                        <cons-form-field-error
+                            [control]="registrationForm.get('country')"
+                            errorKey="required"
+                            message="Field is required.">
+                        </cons-form-field-error>
                     </cons-form-field>
                 </div>
             </ng-container>
@@ -233,3 +238,4 @@
             </button>
         </div>
     </div>
+</div>

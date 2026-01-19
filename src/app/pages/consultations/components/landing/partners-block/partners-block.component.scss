@@ -1,0 +1,169 @@
+$white: #ffffff;
+$black: #000;
+$gray: #a0a0b0;
+$dark-base: #12121f; // Main dark page background
+$dark-surface: #1c1c2e; // Panels/Buttons surface color
+$dark-inner: #151525; // Inner card background
+$dark-chat: #191929; // Chat background
+
+// Accent Colors
+$cyan: #00e5ff; // Electric Blue
+$magenta: #ff0055; // Vibrant Magenta
+$gold: #FFD700;
+$orange: #FFA500;
+$purple: #7928CA;
+$pink: #FF0080;
+
+// --- Typography ---
+$text-main: $black;
+$text-secondary: $gray;
+$text-inverse: $dark-surface; // Dark text for light buttons
+
+// --- Backgrounds ---
+$bg-body: $dark-base;
+$bg-panel: $dark-surface;
+$bg-chat: $dark-chat;
+$card-inner: $dark-inner;
+
+// Transparent Backgrounds (Glassmorphism)
+$card-bg: #f8f9fc; // Standard transparency
+$card-bg-light: rgba(255, 255, 255, 0.03); // Lighter variation
+$bubble-bg: rgba(255, 255, 255, 0.05);
+
+// --- Buttons & Accents ---
+$accent-color: $cyan;
+$active-border: $magenta;
+
+$btn-primary-bg: $white;
+$btn-primary-text: $dark-surface;
+
+// --- Gradients ---
+// Vibrant gradient base colors
+$gradient-vibrant-colors: $magenta, $cyan;
+$vibrant-gradient: linear-gradient(135deg, $magenta, $cyan);
+
+$mentor-gradient: linear-gradient(45deg, $purple, $pink);
+$star-gradient: linear-gradient(180deg, $gold, $orange);
+$vibrant-border: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+
+// --- Misc ---
+$star-color: $gold;
+
+.partners-block {
+    padding: 60px 0;
+    text-align: center;
+    overflow: hidden;
+}
+
+.block-title {
+    color: $text-main;
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 2rem;
+    margin-bottom: 40px;
+    font-weight: 300;
+}
+
+.carousel-wrapper {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+
+.carousel-track {
+    display: flex;
+    gap: 40px;
+    width: max-content;
+    animation: scroll 30s linear infinite;
+
+    &:hover {
+        animation-play-state: paused;
+    }
+}
+
+.company-item {
+    background: $card-bg;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 15px 40px;
+    gap: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    cursor: default;
+    white-space: nowrap;
+
+    .company-text {
+        font-family: 'Segoe UI', sans-serif;
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: rgb(165, 161, 161);
+        transition: all 0.3s ease;
+    }
+
+    &:hover {
+        transform: translateY(-5px);
+        border-color: rgba(255, 255, 255, 0.3);
+        background: rgba(255, 255, 255, 0.1);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+
+        .company-text {
+            color: transparent;
+            background: $vibrant-gradient;
+            -webkit-background-clip: text;
+            background-clip: text;
+            opacity: 1;
+        }
+    }
+
+    .company-icon {
+        font-size: 1.8rem;
+    }
+}
+
+@keyframes scroll {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+.fade-overlay {
+    position: absolute;
+    top: -20px;
+    bottom: 0;
+    width: 250px;
+    height: 250px;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.fade-left {
+    left: -10px;
+    background: #fff;
+    filter: blur(6px);
+}
+
+.fade-right {
+    right: -10px;
+    background: #fff;
+    filter: blur(6px);
+}
+
+@media (max-width: 768px) {
+    .carousel-track {
+        gap: 20px;
+        animation-duration: 20s;
+    }
+
+    .company-item {
+        padding: 10px 25px;
+
+        .company-text {
+            font-size: 1.2rem;
+        }
+    }
+}

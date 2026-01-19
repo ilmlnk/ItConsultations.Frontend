@@ -1,0 +1,58 @@
+<header class="header">
+    <div class="grid-container">
+        <div class="main-content">
+            <a routerLink="/" class="logo">Logo</a>
+
+            <div class="header-actions">
+                <nav class="call-to-action">
+                    <div class="nav-item">
+                        <button pButton
+                                type="button"
+                                label="Use Cases"
+                                icon="pi pi-angle-down"
+                                iconPos="right"
+                                class="p-button-text nav-link-btn"
+                                (mouseenter)="showOverlay($event)"
+                                (mouseleave)="hideOverlay()">
+                        </button>
+
+                        <p-overlayPanel #op styleClass="custom-nav-panel">
+                            <div class="nav-panel-content" (mouseenter)="clearHideTimeout()" (mouseleave)="hideOverlay()">
+
+                                <div class="panel-left">
+                                    <h3>Intuitive for every type of builder</h3>
+                                    <p>Explore how Google Antigravity helps you build</p>
+                                    <button pButton label="See overview" class="p-button-outlined p-button-sm"></button>
+                                </div>
+
+                                <div class="panel-right">
+                                    <ul class="nav-list">
+                                        <li *ngFor="let item of useCases">
+                                            <a [routerLink]="item.route" class="nav-list-item">
+                                                <i [class]="item.icon"></i>
+                                                <span>{{ item.label }}</span>
+                                                <i class="pi pi-chevron-right arrow-icon"></i>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                            </div>
+                        </p-overlayPanel>
+                    </div>
+
+                    <div class="nav-item">Pricing</div>
+                    <div class="nav-item">Blog</div>
+                </nav>
+                <button *ngIf="!isAuthorized" class="auth-btn login-mode" routerLink="/auth/login">
+                    <span>Login</span>
+                </button>
+
+                <button *ngIf="isAuthorized" class="auth-btn profile-mode" routerLink="/dashboard">
+                    <img [src]="userAvatar" alt="User Avatar" class="user-avatar">
+                    <span class="user-name">{{ userName }}</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</header>

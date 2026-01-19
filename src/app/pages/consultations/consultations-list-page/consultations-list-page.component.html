@@ -1,44 +1,27 @@
-<div class="layout-wrapper">
-  <main class="layout-main">
-    <div class="layout-content">
-      <div class="toolbar-container">
-        <div class="toolbar-group">
-          <p-selectButton [options]="userTypes" [(ngModel)]="selectedUserType" optionLabel="label" optionValue="value"
-            styleClass="custom-select-button">
-            <ng-template let-item pTemplate="item">
-              <i [class]="item.icon" style="margin-right: 8px;"></i>
-              <span>{{item.label}}</span>
-            </ng-template>
-          </p-selectButton>
-        </div>
+<cons-page-wrapper
+    title="Consultations List"
+    [viewOptions]="userTypes"
+    [(selectedViewOption)]="selectedUserType"
+    [(searchValue)]="searchValue"
+    [selectedItemsCount]="selectedConsultations.length"
+    [exportMenuItems]="exportItems"
+    [first]="first"
+    [rows]="rows"
+    [totalRecords]="consultations.length"
+    [rowsPerPageOptions]="rowsOptions"
+    (onPageChange)="onPageChange($event)">
 
-        <div class="toolbar-group search-group">
-          <span class="p-input-icon-left w-100">
-            <i class="pi pi-search"></i>
-            <input type="text" pInputText [(ngModel)]="searchValue" placeholder="Search"
-              class="w-100 custom-search-input" />
-          </span>
-        </div>
-
-        <div class="toolbar-group actions-group">
-          <button pButton icon="pi pi-sort-alt" class="p-button-outlined custom-btn-icon"></button>
-          <button pButton label="Export" icon="pi pi-download" iconPos="right"
-            class="p-button-outlined custom-btn"></button>
-          <button pButton label="Filter" icon="pi pi-filter" class="p-button-outlined custom-btn"></button>
-        </div>
-
-      </div>
-      <p-card header="Consultations List" styleClass="content-card">
-        <p-table [value]="consultations" [paginator]="true" [rows]="10" [showCurrentPageReport]="false"
+        <p-table [value]="consultations | slice:first:(first + rows)" [(selection)]="selectedConsultations" dataKey="fullName" [paginator]="false"
           responsiveLayout="scroll" styleClass="p-datatable-custom consultations-table">
 
           <ng-template pTemplate="header">
             <tr>
-              <th style="width: 50px">#</th>
+              <th style="width: 4rem"><p-tableHeaderCheckbox></p-tableHeaderCheckbox></th>
               <th style="width: 80px">Photo</th>
               <th>Full Name</th>
               <th>Position</th>
               <th>Company</th>
+              <th>Price per 50 min</th>
               <th>Topics</th>
               <th style="width: 280px"></th>
             </tr>
@@ -46,7 +29,7 @@
 
           <ng-template pTemplate="body" let-item let-i="rowIndex">
             <tr>
-              <td>{{ i + 1 }}</td>
+              <td><p-tableCheckbox [value]="item"></p-tableCheckbox></td>
               <td>
                 <p-avatar icon="pi pi-user" styleClass="p-mr-2" shape="circle"
                   [style]="{'background-color': '#e2e8f0', 'color': '#ffffff'}" size="large">
@@ -55,35 +38,29 @@
               <td class="font-bold">{{ item.fullName }}</td>
               <td>{{ item.position }}</td>
               <td>{{ item.company }}</td>
-              <td *ngFor="let topic of item.topics">
-                <p-chip [removable]="false" label="{{ topic }}"></p-chip>
-              </td>
-
+              <td class="font-bold">{{ item.price | currency }}</td>
               <td>
-                <div class="action-buttons">
-                  <button pButton label="Order Consultation" class="p-button-success order-btn">
-
-                  </button>
-
-                  <button pButton icon="pi pi-heart" class="p-button-outlined p-button-secondary icon-btn">
-                  </button>
-
-                  <button pButton icon="pi pi-github" class="p-button-outlined p-button-secondary icon-btn">
-                  </button>
-
-                  <button pButton icon="pi pi-linkedin" class="p-button-outlined p-button-secondary icon-btn">
-                  </button>
-                  <button pButton icon="pi pi-ellipsis-h" class="p-button-outlined p-button-secondary icon-btn">
-                  </button>
+                <div class="topics-list">
+                  <p-chip *ngFor="let topic of item.topics" [removable]="false" [label]="topic"></p-chip>
                 </div>
               </td>
+
+                <td>
+                    <div class="action-buttons-column">
+                        <div class="social-buttons-row">
+                            <button pButton icon="pi pi-send" class="p-button-outlined p-button-secondary icon-btn"></button>
+                            <button pButton icon="pi pi-heart" class="p-button-outlined p-button-secondary icon-btn"></button>
+                            <button pButton icon="pi pi-github" class="p-button-outlined p-button-secondary icon-btn"></button>
+                            <button pButton icon="pi pi-linkedin" class="p-button-outlined p-button-secondary icon-btn"></button>
+                        </div>
+                        <button pButton label="Book a consultation" class="order-btn"></button>
+                    </div>
+                </td>
             </tr>
           </ng-template>
         </p-table>
-      </p-card>
-    </div>
-  </main>
-</div>
+
+</cons-page-wrapper>
 
 <cons-consultation-modal *ngIf="isBookingModalOpen" [model]="selectedConsultation" [isOpen]="isBookingModalOpen"
   (close)="onCloseBookingModal()">

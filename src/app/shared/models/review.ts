@@ -1,4 +1,4 @@
-import { Attachment } from "./attachment.model";
+import { Attachment } from "./model/attachment.model";
 
 export interface Review {
   id: number;

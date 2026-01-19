@@ -1,0 +1,64 @@
+// --- Base Palette ---
+$white: #ffffff;
+$black: #000;
+$gray: #a0a0b0;
+$dark-base: #12121f;
+$dark-surface: #1c1c2e;
+$dark-inner: #151525;
+$dark-chat: #191929;
+
+// Accent Colors
+$cyan: #00e5ff;
+$magenta: #ff0055;
+$gold: #FFD700;
+$orange: #FFA500;
+$purple: #7928CA;
+$pink: #FF0080;
+
+// --- Typography ---
+$text-main: $black;
+$text-secondary: $gray;
+$text-inverse: $dark-surface;
+$text-white: $white;
+
+// --- Backgrounds ---
+$bg-body: $dark-base;
+$bg-panel: $dark-surface;
+$bg-chat: $dark-chat;
+$card-inner: $dark-inner;
+$bg-dark: $dark-base;
+
+$bg-color: #ffffff;
+$card-bg: #f8f9fc;
+$card-bg-light: rgba(255, 255, 255, 0.03);
+$bubble-bg: rgba(255, 255, 255, 0.05);
+
+$accent-color: $cyan;
+$active-border: $magenta;
+$color-primary: $magenta;
+$color-secondary: $cyan;
+
+$btn-primary-bg: $white;
+$btn-primary-text: $dark-surface;
+
+$gradient-vibrant-colors: $magenta, $cyan;
+$vibrant-gradient: linear-gradient(135deg, $magenta, $cyan);
+
+$mentor-gradient: linear-gradient(45deg, $purple, $pink);
+$star-gradient: linear-gradient(180deg, $gold, $orange);
+$vibrant-border: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+
+// --- Misc ---
+$star-color: $gold;
+$border-color: rgba(255, 255, 255, 0.1);
+$border-radius: 20px;
+
+$primary-blue: #1a73e8;
+// --- Forms & Inputs ---
+$primary-orange: #f97316;
+$secondary-orange: #fbbf24;
+$input-bg: #f8fafc;
+$text-color: #333;
+$text-muted: #64748b;
+$btn-grey-bg: #f1f5f9;
+$btn-grey-hover: #e2e8f0;

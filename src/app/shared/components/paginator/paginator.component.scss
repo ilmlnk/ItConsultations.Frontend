@@ -1,0 +1,32 @@
+::ng-deep .p-paginator {
+    background-color: #ffffff !important;
+    color: #000000 !important;
+    border: none;
+    padding: 1rem 0;
+    justify-content: flex-end;
+
+    .p-paginator-first,
+    .p-paginator-prev,
+    .p-paginator-next,
+    .p-paginator-last,
+    .p-paginator-pages .p-paginator-page {
+        color: #000000 !important;
+        min-width: 2.5rem;
+        height: 2.5rem;
+        border-radius: 50%;
+
+        &:not(.p-disabled):not(.p-highlight):hover {
+            background-color: #f3f4f6 !important;
+        }
+    }
+
+    .p-dropdown, .p-select {
+        width: auto !important;
+        margin-left: 10px;
+    }
+
+    .p-paginator-current {
+        margin-right: auto;
+        color: #6b7280;
+    }
+}

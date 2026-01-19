@@ -1,0 +1,21 @@
+<section class="categories-section">
+    <h1 class="main-title">Popular Categories</h1>
+    <div class="top-tier-container">
+        <div class="hero-card" *ngFor="let cat of topCategories" [style.--hover-color]="cat.color">
+            <div class="icon-large">{{ cat.icon }}</div>
+            <h3>{{ cat.name }}</h3>
+            <p>{{ cat.desc }}</p>
+
+            <span class="arrow-btn">Explore →</span>
+        </div>
+    </div>
+    <div class="divider">
+        <span>Technologies & Approaches</span>
+    </div>
+    <!-- <div class="tech-grid">
+        <div class="tech-pill" *ngFor="let tech of techStack">
+            <span class="tech-icon">{{ tech.icon }}</span>
+            <span class="tech-name">{{ tech.name }}</span>
+        </div>
+    </div> -->
+</section>

@@ -1,22 +1,14 @@
-$primary-orange: #f97316;
-$secondary-orange: #fbbf24;
-$bg-color: #f8f9fa;
-$card-bg: #ffffff;
-$text-color: #333;
-$text-muted: #64748b;
-$border-radius: 20px;
-$input-bg: #f8fafc;
-$btn-grey-bg: #f1f5f9;
-$btn-grey-hover: #e2e8f0;
+@import '../../../../styles/variables';
 
 .registration-wrapper {
   display: grid;
   grid-template-columns: 500px 1fr;
   grid-template-rows: auto 1fr;
   gap: 20px;
-  background-color: $bg-color;
-  padding: 40px;
+  background-color: #ffffff;
+  padding: 20px;
   min-height: 100vh;
+    margin: 0 auto;
 
   .registration-form-title {
     font-weight: 600;
@@ -189,182 +181,6 @@ $btn-grey-hover: #e2e8f0;
     margin-bottom: 25px;
     color: $text-color;
   }
-
-  ::ng-deep {
-
-    .p-inputtext,
-    .p-calendar,
-    .p-password-input {
-      border-radius: 10px;
-      background-color: $input-bg;
-      border: 1px solid #e2e8f0;
-      color: $text-color;
-      transition: all 0.2s;
-
-      &:enabled:focus,
-      &.p-focus {
-        background-color: #ffffff;
-        border-color: $primary-orange;
-        box-shadow: 0 0 0 1px $primary-orange;
-      }
-
-      &:hover:not(:focus) {
-        border-color: #cbd5e1;
-      }
-    }
-
-    .p-select {
-      width: 100%;
-      border-radius: 10px;
-      background: $input-bg !important;
-      border: 1px solid #e2e8f0 !important;
-
-      .p-dropdown-label {
-        color: $text-color !important;
-        background: transparent !important;
-      }
-
-      .p-dropdown-label.p-placeholder {
-        color: #64748b !important;
-      }
-
-      .p-dropdown-trigger {
-        color: #64748b !important;
-        background: transparent !important;
-      }
-
-      &:not(.p-disabled).p-focus {
-        border-color: $primary-orange !important;
-        box-shadow: 0 0 0 1px $primary-orange !important;
-      }
-
-      &:not(.p-disabled):hover {
-        border-color: #cbd5e1 !important;
-      }
-    }
-
-    .p-select-list-container {
-      background: none;
-      border: none;
-    }
-
-    .p-select-overlay {
-      background-color: #ffffff !important;
-      border: none;
-    }
-
-    .p-select-list {
-      background-color: #ffffff !important;
-      border-radius: 10px;
-      border: 1px solid #e2e8f0;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15) !important;
-
-      .p-select-option {
-        color: $text-color !important;
-        background-color: transparent;
-        margin: 2px 5px;
-        border-radius: 6px;
-
-        &:not(.p-select-option-selected):not(.p-disabled).p-focus {
-          background-color: #f1f5f9 !important;
-          color: $text-color !important;
-        }
-      }
-    }
-
-    .p-radiobutton {
-      .p-radiobutton-box {
-        background-color: $input-bg;
-        border: 2px solid #cbd5e1;
-        border-radius: 50%;
-
-        &.p-highlight {
-          border-color: $primary-orange;
-          background-color: $primary-orange;
-
-          .p-radiobutton-icon {
-            background-color: #ffffff;
-          }
-        }
-
-        &:not(.p-disabled):not(.p-highlight):hover {
-          border-color: $primary-orange;
-          background-color: #ffffff;
-        }
-      }
-    }
-
-    .p-datepicker-panel {
-      color: black;
-      background: white;
-      border: 1px solid #e2e8f0;
-
-      .p-datepicker-decade {
-        color: black;
-      }
-
-      .p-datepicker-header {
-        background: white;
-      }
-
-      .p-datepicker-day-selected {
-        background-color: $primary-orange;
-        font-weight: 600;
-      }
-
-      .p-datepicker-prev-button,
-      .p-datepicker-next-button {
-        &:hover {
-          background-color: #f1f5f9;
-        }
-      }
-
-      .p-datepicker-select-month,
-      .p-datepicker-weekday,
-      .p-datepicker-select-year,
-      .p-datepicker-day,
-      .p-datepicker-month,
-      .p-datepicker-year {
-        color: black;
-
-        &:hover {
-          color: black;
-          background-color: #f1f5f9;
-        }
-      }
-
-      .p-datepicker-today>.p-datepicker-day {
-        background-color: $secondary-orange;
-      }
-    }
-  }
-
-  .p-datepicker {
-    width: 100%;
-
-    .p-inputtext {
-      width: 100%;
-    }
-
-    .p-datepicker-header {
-      background-color: #ffffff;
-    }
-
-    table td {
-      &>span.p-highlight {
-        background-color: $primary-orange;
-        color: #ffffff;
-      }
-    }
-  }
-
-  .p-password {
-    width: 100%;
-
-    input {
-      width: 100%;
-    }
-  }
 }
 
 form {
@@ -377,24 +193,6 @@ form {
       margin-bottom: 0.5rem;
       font-weight: 600;
       color: #333;
-    }
-  }
-
-  ::ng-deep {
-
-    .p-dropdown,
-    .p-datepicker,
-    .p-inputtext {
-      width: 100%;
-      color: black;
-    }
-
-    .p-datepicker {
-      display: flex;
-
-      .p-inputtext {
-        width: 100%;
-      }
     }
   }
 

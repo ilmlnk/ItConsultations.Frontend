@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Consultation } from '../../../shared/models/consultation.model';
+import { Consultation } from '../../../shared/models/model/consultation.model';
 import { ConsultationsService } from '../../../shared/services/consultations/consultations.service';
 import { MenuItem } from 'primeng/api';
 
@@ -12,6 +12,8 @@ import { MenuItem } from 'primeng/api';
 export class ConsultationsListPageComponent {
   isBookingModalOpen: boolean = false;
   selectedConsultation!: Consultation;
+  selectedConsultations: any[] = [];
+  exportItems: MenuItem[] = [];
 
   items: MenuItem[] = [];
   consultations: any[] = [
@@ -20,6 +22,7 @@ export class ConsultationsListPageComponent {
       fullName: 'John Doe',
       position: 'Software Engineer',
       company: 'Tech Corp',
+      price: 100,
       topics: ['Angular', 'TypeScript'],
     },
     {
@@ -27,6 +30,7 @@ export class ConsultationsListPageComponent {
       fullName: 'John Doe',
       position: 'Software Engineer',
       company: 'Tech Corp',
+      price: 150,
       topics: ['Angular', 'TypeScript'],
     },
     {
@@ -34,6 +38,7 @@ export class ConsultationsListPageComponent {
       fullName: 'John Doe',
       position: 'Software Engineer',
       company: 'Tech Corp',
+      price: 200,
       topics: ['Angular', 'TypeScript'],
     },
   ];
@@ -101,20 +106,54 @@ export class ConsultationsListPageComponent {
         icon: 'pi pi-fw pi-address-book'
       }
     ];
+
+    this.exportItems = [
+      {
+        label: 'PDF',
+        icon: 'pi pi-file-pdf',
+        command: () => {
+          this.exportPdf();
+        }
+      },
+      {
+        label: 'XLSX',
+        icon: 'pi pi-file-excel',
+        command: () => {
+          this.exportExcel();
+        }
+      },
+      {
+        label: 'CSV',
+        icon: 'pi pi-file',
+        command: () => {
+          this.exportCsv();
+        }
+      }
+    ];
     this.loadConsultations();
   }
   userTypes: any[] = [
-    { value: 'expanded', icon: 'pi pi-table' },
-    { value: 'compact', icon: 'pi pi-list' }
+    { value: 'expanded', icon: 'pi pi-table', label: 'Grid' },
+    { value: 'compact', icon: 'pi pi-list', label: 'List' }
   ];
   selectedUserType: string = 'expanded';
 
   searchValue: string = '';
 
   rowsOptions: number[] = [10, 20, 50];
-  selectedRows: number = 10;
+  rows: number = 10;
+  first: number = 0;
+
+  onPageChange(event: any) {
+      this.first = event.first;
+      this.rows = event.rows;
+  }
 
   selectedView: string = 'expanded';
+
+  exportPdf() { console.log('Exporting PDF', this.selectedConsultations); }
+  exportExcel() { console.log('Exporting Excel', this.selectedConsultations); }
+  exportCsv() { console.log('Exporting CSV', this.selectedConsultations); }
 
   onCloseBookingModal() {
     this.isBookingModalOpen = false;

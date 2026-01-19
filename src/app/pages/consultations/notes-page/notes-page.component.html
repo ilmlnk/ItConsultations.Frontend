@@ -1,1 +1,42 @@
-<p>notes-page-component works!</p>
+<cons-page-wrapper
+    title="Notes"
+    [viewOptions]="viewOptions"
+    [(selectedViewOption)]="selectedViewOption"
+    [(searchValue)]="searchValue"
+    [selectedItemsCount]="selectedNotes.length"
+    [exportMenuItems]="exportItems"
+    [first]="first"
+    [rows]="rows"
+    [totalRecords]="notes.length"
+    [rowsPerPageOptions]="rowsOptions"
+    (onPageChange)="onPageChange($event)">
+
+    <p-table [value]="notes | slice:first:(first + rows)" [(selection)]="selectedNotes" dataKey="id" [paginator]="false"
+        responsiveLayout="scroll" styleClass="p-datatable-custom notes-table"
+    >
+        <ng-template pTemplate="header">
+            <tr>
+                <th style="width: 4rem"><p-tableHeaderCheckbox></p-tableHeaderCheckbox></th>
+                <th style="width: 60px"></th>
+                <th>Name</th>
+                <th>Date Modified</th>
+                <th style="width: 80px"></th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-note>
+            <tr>
+                <td><p-tableCheckbox [value]="note"></p-tableCheckbox></td>
+                <td><i class="pi" [ngClass]="getFileIcon(note.type)" style="font-size: 1.5rem; color: #64748b"></i></td>
+                <td class="font-bold">{{ note.name }}</td>
+                <td class="text-secondary">{{ note.date | date: 'mediumDate' }}</td>
+                <td>
+                    <button
+                        type="button"
+                        pButton icon="pi pi-arrow-right"
+                        class="p-button-text p-button-rounded p-button-secondary action-arrow-btn"
+                    ></button>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+</cons-page-wrapper>

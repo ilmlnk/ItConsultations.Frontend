@@ -1,0 +1,26 @@
+<section class="roadmap-section">
+    <h1 class="section-title">How it Works</h1>
+    <div class="timeline-container">
+        <div class="timeline-line"></div>
+        <div class="timeline-item" *ngFor="let step of steps; let i = index" [class.left]="i % 2 === 0"
+            [class.right]="i % 2 !== 0">
+            <div class="timeline-dot">
+                <div class="dot-inner"></div>
+            </div>
+            <div class="step-card">
+                <div class="step-icon">{{ step.icon }}</div>
+                <h3>{{ step.title }}</h3>
+                <p>{{ step.description }}</p>
+                <div class="features-grid" *ngIf="step.features">
+                    <span class="feature-tag" *ngFor="let feature of step.features">
+                        {{ feature }}
+                    </span>
+                </div>
+                <button class="action-btn" *ngIf="step.cta">
+                    {{ step.cta }}
+                </button>
+                <span class="step-number">0{{ i + 1 }}</span>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,25 @@
+<section class="use-cases-section">
+    <h1 class="section-title">When does it come in handy?</h1>
+    <div class="tabs-container">
+        <div class="sidebar">
+            <div *ngFor="let item of cases; let i = index" class="tab-item" [class.active]="selectedIndex === i"
+                (click)="selectTab(i)">
+
+                <span class="tab-title">{{ item.title }}</span>
+                <span class="arrow" *ngIf="selectedIndex === i">→</span>
+            </div>
+        </div>
+        <div class="content-panel">
+            <div class="content-wrapper">
+                <h2>{{ cases[selectedIndex].title }}</h2>
+                <p class="description">{{ cases[selectedIndex].description }}</p>
+
+                <div class="tags-list">
+                    <span *ngFor="let tag of cases[selectedIndex].tags" class="tag">
+                        ✓ {{ tag }}
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

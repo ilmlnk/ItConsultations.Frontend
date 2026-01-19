@@ -20,7 +20,7 @@ import { LandingPageComponent } from './consultations/landing-page/landing-page.
 import { LoginComponent } from './consultations-administration/login/login.component';
 import { authGuard } from '../shared/guards/auth.guard';
 import { AuthRootComponent } from './consultations-administration/auth-root/auth-root.component';
-import { ApplyFormComponent } from './consultations/apply-form/apply-form.component';
+import { ApplyFormComponent } from './consultations-administration/apply-form/apply-form.component';
 import { CoachDashboardPageComponent } from './consultations/coach-dashboard-page/coach-dashboard-page.component';
 import { AdminDashboardPageComponent } from './consultations/admin-dashboard-page/admin-dashboard-page.component';
 import { StudentDashboardPageComponent } from './consultations/dashboard-page/student-dashboard-page.component';
@@ -29,118 +29,118 @@ import { guestGuard } from '../shared/guards/guest.guard';
 const routes: Routes = [
   {
     path: 'dashboard', component: ConsultationsPageRootComponent, children: [
-      { 
-        path: '', 
-        component: StudentDashboardPageComponent, 
+      {
+        path: '',
+        component: StudentDashboardPageComponent,
         canActivate: [authGuard],
         data: { title: 'Dashboard' }
       },
-      { 
-        path: 'admin', 
-        component: AdminDashboardPageComponent, 
+      {
+        path: 'admin',
+        component: AdminDashboardPageComponent,
         canActivate: [authGuard],
         data: { title: 'Dashboard' }
       },
-      { 
-        path: 'coach', 
-        component: CoachDashboardPageComponent, 
+      {
+        path: 'coach',
+        component: CoachDashboardPageComponent,
         canActivate: [authGuard],
-        data: { title: 'Dashboard' } 
+        data: { title: 'Dashboard' }
       },
-      { 
-        path: 'consultations-list', 
+      {
+        path: 'consultations',
         component: ConsultationsListPageComponent,
-        canActivate: [authGuard],
+        //canActivate: [authGuard],
         data: { title: 'Consultations' }
        },
-      { 
-        path: 'favorites', 
-        component: FavoritesConsultationsPageComponent, 
+      {
+        path: 'favorites',
+        component: FavoritesConsultationsPageComponent,
         canActivate: [authGuard],
         data: { title: 'Favorite Consultations' }
       },
-      { 
-        path: 'recordings', 
-        component: MeetingRecordingsPageComponent, 
-        canActivate: [authGuard] ,
+      {
+        path: 'recordings',
+        component: MeetingRecordingsPageComponent,
+        canActivate: [authGuard],
         data: { title: 'Recordings' }
       },
-      { 
-        path: 'notes', 
-        component: NotesPageComponent, 
-        canActivate: [authGuard] ,
+      {
+        path: 'notes',
+        component: NotesPageComponent,
+        //canActivate: [authGuard],
         data: { title: 'Notes' }
       },
-      { 
-        path: 'coaches', 
-        component: CoachesListPageComponent, 
-        canActivate: [authGuard],
+      {
+        path: 'coaches',
+        component: CoachesListPageComponent,
+        //canActivate: [authGuard],
         data: { title: 'Coaches' }
       },
-      { 
-        path: 'students', 
-        component: StudentsListPageComponent, 
+      {
+        path: 'students',
+        component: StudentsListPageComponent,
         canActivate: [authGuard],
         data: { title: 'Students' }
       },
-      { 
-        path: 'calendar', 
-        component: CalendarPageComponent, 
+      {
+        path: 'calendar',
+        component: CalendarPageComponent,
         canActivate: [authGuard],
         data: { title: 'Calendar' }
       },
-      { 
-        path: 'achievements', 
-        component: AchievementsPageComponent, 
+      {
+        path: 'achievements',
+        component: AchievementsPageComponent,
         canActivate: [authGuard],
         data: { title: 'Achievements' }
       },
-      { 
-        path: 'network', 
-        component: NetworkPageComponent, 
+      {
+        path: 'network',
+        component: NetworkPageComponent,
         canActivate: [authGuard],
         data: { title: 'Network' }
       },
-      { 
-        path: 'messenger', 
-        component: MessengerPageComponent, 
+      {
+        path: 'messenger',
+        component: MessengerPageComponent,
         canActivate: [authGuard],
         data: { title: 'Messenger' }
       },
-      { 
-        path: 'meetings', 
-        component: MeetingsPageComponent, 
+      {
+        path: 'meetings',
+        component: MeetingsPageComponent,
         canActivate: [authGuard],
         data: { title: 'Meetings' }
       },
-      { 
-        path: 'forum', 
-        component: ForumPageComponent, 
+      {
+        path: 'forum',
+        component: ForumPageComponent,
         canActivate: [authGuard],
         data: { title: 'Forum' }
       },
-      { 
-        path: 'individual-lessons', 
-        component: IndividualLessonsPageComponent, 
+      {
+        path: 'individual-lessons',
+        component: IndividualLessonsPageComponent,
         canActivate: [authGuard],
         data: { title: 'Individual Lessons' }
       },
-      { 
-        path: 'handbook', 
-        component: HandbookPageComponent, 
+      {
+        path: 'handbook',
+        component: HandbookPageComponent,
         canActivate: [authGuard],
         data: { title: 'Handbook' }
       }
     ]
   },
-  { 
-    path: '', 
-    component: LandingPageComponent 
+  {
+    path: '',
+    component: LandingPageComponent
   },
   {
-    path: 'auth', 
-    component: AuthRootComponent, 
-    canActivate: [guestGuard], 
+    path: 'auth',
+    component: AuthRootComponent,
+    canActivate: [guestGuard],
     children: [
       { path: 'login', component: LoginComponent },
       { path: 'register', component: RegisterPageComponent },

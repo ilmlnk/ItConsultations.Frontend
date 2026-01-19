@@ -1,0 +1,10 @@
+<section class="faq-section">
+    <h1>Frequently Asked Questions</h1>
+    <div class="content-wrapper">
+        <p-accordion [multiple]="true" styleClass="custom-accordion">
+            <p-accordionTab *ngFor="let item of faqs" [header]="item.question">
+                <p class="answer-text">{{ item.answer }}</p>
+            </p-accordionTab>
+        </p-accordion>
+    </div>
+</section>

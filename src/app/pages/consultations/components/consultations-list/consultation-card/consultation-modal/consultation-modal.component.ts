@@ -1,6 +1,6 @@
 import { ApplicationRef, Component, ComponentFactoryResolver, ComponentRef, EmbeddedViewRef, EventEmitter, Injector, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Consultation } from '../../../../../../shared/models/consultation.model';
+import { Consultation } from '../../../../../../shared/models/model/consultation.model';
 import { ToasterNotificationsService } from '../../../../../../shared/services/notifications/toaster-notifications.service';
 import { ModalWindowComponent } from '../../../../../../shared/components/modal-window/modal-window.component';
 import { animate, state, style, transition, trigger } from '@angular/animations';

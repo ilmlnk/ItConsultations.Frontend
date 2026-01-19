@@ -1,0 +1,141 @@
+@import '../../../../../../styles/variables';
+
+.experts-section {
+    padding: 80px 20px;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 2.5rem;
+    color: $text-main;
+    margin-bottom: 50px;
+}
+
+.experts-container {
+    display: flex;
+    max-width: 1100px;
+    margin: 0 auto;
+    gap: 30px;
+    min-height: 500px;
+
+    @media (max-width: 850px) {
+        flex-direction: column;
+    }
+}
+
+.sidebar-list {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.expert-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 15px 20px;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
+    position: relative;
+    overflow: hidden;
+
+    .avatar-small {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 2px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .expert-info {
+        .name { color: $text-white; font-size: 1.1rem; margin: 0; }
+        .company { color: $text-secondary; font-size: 0.9rem; }
+    }
+
+    &:hover:not(.active) { background: rgba(255, 255, 255, 0.08); }
+
+    &.active {
+        background: linear-gradient(90deg, rgba(255, 0, 85, 0.1), transparent);
+        border-color: rgba(255, 0, 85, 0.3);
+
+        .avatar-small { border-color: #ff0055; }
+        .active-indicator {
+            position: absolute;
+            left: 0; top: 0; bottom: 0;
+            width: 4px;
+            background: $vibrant-gradient;
+        }
+    }
+}
+
+.profile-panel {
+    flex: 2;
+    background: $bg-panel;
+    border-radius: 30px;
+    padding: 40px;
+    border: 1px solid $border-color;
+    position: relative;
+}
+
+.profile-content { animation: fadeIn 0.5s ease; }
+
+.profile-header {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    margin-bottom: 30px;
+
+    .profile-photo {
+        width: 100px; height: 100px;
+        border-radius: 20px; object-fit: cover;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .header-text {
+        h2 { color: $text-white; font-size: 2rem; margin: 0 0 5px 0; }
+        .role-badge {
+            display: inline-block;
+            background: rgba(0, 229, 255, 0.1);
+            color: #00e5ff;
+            padding: 5px 15px;
+            border-radius: 50px;
+            font-size: 0.9rem; font-weight: 600;
+        }
+    }
+}
+
+.bio-section, .skills-section {
+    margin-bottom: 30px;
+    h3 { color: $text-secondary; font-size: 1rem; text-transform: uppercase; margin-bottom: 10px; }
+}
+
+.bio-section p { color: $text-white; line-height: 1.6; font-size: 1.1rem; }
+
+.skills-list { display: flex; flex-wrap: wrap; gap: 10px; }
+.skill-tag {
+    background: rgba(255, 255, 255, 0.05);
+    color: $text-secondary;
+    padding: 8px 16px;
+    border-radius: 12px;
+    font-size: 0.9rem;
+    transition: 0.3s;
+    &:hover { color: $text-white; background: rgba(255, 0, 85, 0.2); }
+}
+
+.btn-book {
+    background: $text-white; color: #12121f; font-weight: bold; font-size: 1.1rem;
+    padding: 15px 40px; border-radius: 50px; border: none; cursor: pointer; transition: all 0.3s;
+    &:hover { background: $vibrant-gradient; color: white; transform: translateY(-3px); box-shadow: 0 10px 25px rgba(255, 0, 85, 0.4); }
+}
+
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+@media (max-width: 600px) {
+    .profile-header { flex-direction: column; text-align: center; }
+    .btn-book { width: 100%; }
+}

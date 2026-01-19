@@ -1,16 +1,41 @@
 <div class="login-page">
-    <h1 class="registration-form-title">Registration Form</h1>
-    <div class="sidebar-card">
-        <div class="steps-nav-header">
-            <button pButton icon="pi pi-arrow-left"></button>
+    <div class="login-card">
+        <div class="login-header">
+            <button pButton pButtonIcon="pi pi-arrow-left" (click)="navigateToPreviousPage()">
+                Back
+            </button>
+            <h1 class="login-title">Login</h1>
         </div>
-        <div class="user-preview">
-            <div class="avatar-container">
-                <p-avatar icon="pi pi-user" size="xlarge" shape="circle" styleClass="custom-avatar"></p-avatar>
-                <div class="edit-badge"><i class="pi pi-pencil"></i></div>
-            </div>
-            <h3>{{ loginForm.get('firstName')?.value || 'New' }} {{ loginForm.get('lastName')?.value ||
-                'User' }}</h3>
+
+        <div class="form-group">
+            <label for="identifier">Username or Email</label>
+            <input pInputText id="identifier" type="text" placeholder="Enter your username or email" class="w-full" />
+        </div>
+
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input pInputText id="password" type="password" placeholder="Enter your password" class="w-full" />
+        </div>
+
+        <div class="actions-row">
+            <a routerLink="/auth/forgot-password" class="forgot-password-link">Forgot password?</a>
+        </div>
+
+        <button pButton label="Login" class="login-btn"></button>
+
+        <div class="register-section">
+            <span>Don't have an account?</span>
+            <button pButton label="Register" class="p-button-link register-btn" routerLink="/auth/register"></button>
+        </div>
+
+        <div class="divider">
+            <span>Or login with</span>
+        </div>
+
+        <div class="social-login">
+            <button pButton icon="pi pi-google" class="p-button-rounded p-button-outlined p-button-secondary"></button>
+            <button pButton icon="pi pi-github" class="p-button-rounded p-button-outlined p-button-secondary"></button>
+            <button pButton icon="pi pi-linkedin" class="p-button-rounded p-button-outlined p-button-secondary"></button>
         </div>
     </div>
 </div>

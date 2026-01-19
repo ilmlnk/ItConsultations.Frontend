@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { catchError, map, Observable, of, tap } from 'rxjs';
-import { Country } from '../../models/country';
+import { Country } from '../../models/interfaces/country.interface';
 import { Environment } from '../../../../environment';
 import { CacheService } from '../cache/cache.service';
 

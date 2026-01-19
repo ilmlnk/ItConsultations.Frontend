@@ -1,5 +1,5 @@
 import { Component, Input, Output } from '@angular/core';
-import { Consultation } from '../../../../../shared/models/consultation.model';
+import { Consultation } from '../../../../../shared/models/model/consultation.model';
 import { EventEmitter } from '@angular/core';
 import { ConsultationsService } from '../../../../../shared/services/consultations/consultations.service';
 

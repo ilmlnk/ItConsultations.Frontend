@@ -3,7 +3,7 @@
     <div class="modal-header">
       <h3 class="modal-title">Book Consultation</h3>
       <button type="button" class="modal-close-btn" (click)="onClose()">
-        <mat-icon>close</mat-icon>
+        <!-- critical: replace mat-icon with primeng -->
       </button>
     </div>
 
@@ -50,18 +50,14 @@
         <div class="form-group">
           <label for="phone">Phone</label>
           <div>
-            <mat-select></mat-select>
+            <!-- critical: replace mat-select with select from primeng -->
             <input type="tel" id="phone" formControlName="phone" placeholder="+1 (555) 123-4567">
           </div>
         </div>
 
         <div class="form-group">
           <label for="topics">Topics</label>
-          <mat-chip-listbox class="topics-chips" [multiple]="true">
-            <mat-chip-option *ngFor="let competency of competenciesList" [value]="competency">
-              {{ competency }}
-            </mat-chip-option>
-          </mat-chip-listbox>
+          <!-- critical: replace mat-chip with chip from primeng  -->
         </div>
 
         <div class="form-group">
@@ -74,11 +70,11 @@
           <button type="button" class="btn btn-secondary" (click)="onClose()" [disabled]="isLoading">
             Cancel
           </button>
-          <button 
-            type="submit" 
-            class="btn btn-primary" 
+          <button
+            type="submit"
+            class="btn btn-primary"
             [disabled]="consultationForm.invalid || isLoading"
-            (click)="sendRequest()"  
+            (click)="sendRequest()"
           >
             <span *ngIf="!isLoading">Book Consultation</span>
             <span *ngIf="isLoading">Loading...</span>

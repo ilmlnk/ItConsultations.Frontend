@@ -1,0 +1,14 @@
+<section class="partners-block">
+    <h1 class="block-title">Our experts are working in:</h1>
+    <div class="carousel-wrapper">
+        <div class="carousel-track">
+            <div *ngFor="let company of scrollingCompanies" class="company-item">
+                <fa-icon [icon]="company.icon" class="company-icon" [style.color]="company.color"> </fa-icon>
+                <span class="company-text">{{ company.name }}</span>
+            </div>
+        </div>
+
+        <div class="fade-overlay fade-left"></div>
+        <div class="fade-overlay fade-right"></div>
+    </div>
+</section>

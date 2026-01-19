@@ -3,14 +3,15 @@ import { FormGroup, Validators } from '@angular/forms';
 import { Subject, Subscription, takeUntil } from 'rxjs';
 import { FormBuilder } from '@angular/forms';
 import { ToasterNotificationsService } from '../../../shared/services/notifications/toaster-notifications.service';
-import { Country } from '../../../shared/models/country';
+import { Country } from '../../../shared/models/interfaces/country.interface';
 import { CountryService } from '../../../shared/services/countries/country.service';
 import { UserRole } from '../../../shared/enums/user-role.enum';
 import { AuthService } from '../../../shared/services/auth/auth.service';
 import { Router } from '@angular/router';
-import { RegistrationStep } from '../../../shared/models/interfaces/registration-step';
+import { RegistrationStep } from '../../../shared/models/interfaces/registration-step.interface';
 import { ConsultationsValidationHelper } from '../../../shared/validators/consultations-validation-helper';
 import { DarkModeService } from '../../../shared/services/dark-mode/dark-mode.service';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'cons-register-page',
@@ -50,6 +51,7 @@ export class RegisterPageComponent {
   private _countryService = inject(CountryService);
   private _authService = inject(AuthService);
   private _router = inject(Router);
+  private _location = inject(Location);
 
   private countries$: Subscription;
 
@@ -154,12 +156,8 @@ export class RegisterPageComponent {
     return !!control && control.hasError(errorName) && (control.dirty || control.touched);
   }
 
-  displayCountry(countryOrName: Country | string): string {
-    if (!countryOrName) {
-      return '';
-    }
-
-    return typeof countryOrName === 'string' ? countryOrName : countryOrName.name;
+  navigateToPreviousPage() {
+      this._location.back();
   }
 
   private filterCountries(countries: Country[], value: string): Country[] {

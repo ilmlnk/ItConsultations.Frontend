@@ -1,167 +1,52 @@
-$sidebar-bg: #ffffff;
-$body-bg: #f5f7fa; 
-$primary-blue: #007bff;
-$text-color: #333;
-$border-color: #e0e0e0;
-$sidebar-width: 260px;
+@import '../../../../styles/variables';
 
-.layout-wrapper {
-  display: flex;
-  height: 100vh;
-  width: 100%;
-  overflow: hidden;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
+.icon-btn {
+    width: 3rem;
+    height: 3rem;
+    padding: 0;
+    justify-content: center;
+    transition: all 0.2s ease;
 
-.layout-main {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  background-color: $body-bg;
-  overflow: hidden;
-}
-
-.layout-header {
-  height: 70px;
-  background-color: $body-bg;
-  display: flex;
-  align-items: center;
-  padding: 0 30px;
-  
-  h2 {
-    margin: 0;
-    font-size: 24px;
-    font-weight: 500;
-  }
-}
-
-.layout-content {
-  flex: 1;
-  padding: 30px;
-  overflow-y: auto;
-
-  .content-card {
-    ::ng-deep .p-card {
-      box-shadow: 0 2px 10px rgba(0,0,0,0.03);
-      border-radius: 8px;
-      
-      .p-card-header {
-        padding: 20px 20px 0 20px;
-        font-size: 20px;
-        font-weight: 500;
-      }
-      
-      .p-card-body {
-        padding: 20px;
-      }
+    &:hover {
+        background-color: rgba($primary-blue, 0.1) !important;
+        border-color: $primary-blue !important;
+        color: $primary-blue !important;
     }
-  }
-}
-
-.toolbar-container {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-  margin-bottom: 20px;
-  flex-wrap: wrap; /* Щоб адаптувалось на малих екранах */
-  background: transparent;
-}
-
-.toolbar-group {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.search-group {
-  flex: 1;
-  min-width: 200px;
-
-  i {
-    position: absolute;
-    margin: 12px;
-    color: #999;
-  }
 }
 
 .w-100 {
   width: 100%;
 }
 
-::ng-deep .custom-select-button {
-    min-height: 40px;
-    align-items: center;
-    text-align: center;
-    justify-content: center;
-  .p-button {
-    background: #ffffff;
-    border: 1px solid #e0e0e0;
-    color: #666;
-    font-weight: 500;
-    font-size: 14px;
-    padding: 8px 16px;
-    
-    &:focus {
-      box-shadow: none;
-    }
-
-    &.p-highlight {
-      background: #ffffff;
-      border-color: #333;
-      color: #000;
-      font-weight: 600;
-      z-index: 1;
-    }
-
-    &:first-child {
-      border-top-left-radius: 8px;
-      border-bottom-left-radius: 8px;
-    }
-    &:last-child {
-      border-top-right-radius: 8px;
-      border-bottom-right-radius: 8px;
-    }
-  }
+.topics-list {
+    display: flex;
+    gap: 5px;
+    flex-wrap: wrap;
 }
 
-.custom-search-input {
-  border-radius: 8px;
-  border: 1px solid #e0e0e0;
-  padding-left: 2.5rem;
-  height: 42px;
-  
-  &:focus {
-    border-color: #aaa;
-    box-shadow: none;
-  }
+.action-buttons-column {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: fit-content;
 }
 
-::ng-deep .custom-btn {
-  background: #ffffff;
-  border: 1px solid #e0e0e0;
-  color: #333;
-  border-radius: 8px;
-  font-weight: 500;
-  height: 42px;
-
-  &:enabled:hover {
-    background: #f9f9f9;
-    color: #000;
-    border-color: #ccc;
-  }
-
-  .p-button-icon {
-    font-size: 14px;
-    color: #666;
-  }
+.social-buttons-row {
+    display: flex;
+    gap: 8px;
 }
 
-/* Квадратна кнопка сортування */
-::ng-deep .custom-btn-icon {
-  @extend .custom-btn;
-  width: 42px;
-  padding: 0;
-  justify-content: center;
+.order-btn {
+    width: 100%;
+    background-color: rgba($primary-blue, 0.1) !important;
+    color: $primary-blue !important;
+    border-color: transparent !important;
+
+    &:enabled:hover {
+        background-color: $primary-blue !important;
+        color: #ffffff !important;
+        border-color: $primary-blue !important;
+    }
 }
 
 /* 4. Pagination (Showing 10) */
@@ -169,7 +54,7 @@ $sidebar-width: 260px;
   display: flex;
   align-items: center;
   gap: 8px;
-  
+
   .label {
     color: #666;
     font-size: 14px;
@@ -192,11 +77,34 @@ $sidebar-width: 260px;
     gap: 10px;
 }
 
-/* Адаптивність */
-@media (max-width: 1200px) {
-  .search-group {
-    order: 3; /* Переносимо пошук вниз на малих екранах, якщо треба */
-    width: 100%;
-    flex: 100%;
-  }
+::ng-deep {
+
+    .consultations-table {
+        .p-datatable-thead > tr > th {
+            background-color: #ffffff !important;
+            color: #000000 !important;
+            border-bottom: 1px solid #e5e7eb !important;
+        }
+
+        .p-datatable-tbody > tr {
+            > td {
+                background-color: #ffffff !important;
+                color: #000000 !important;
+                border-bottom: 1px solid #e5e7eb !important;
+            }
+
+            &.p-highlight > td {
+                background-color: #f1f5f9 !important;
+            }
+        }
+    }
+
+    .p-chip {
+        background-color: rgba($primary-blue, 0.1) !important;
+        color: $primary-blue !important;
+        
+        .p-chip-text {
+            color: $primary-blue !important;
+        }
+    }
 }

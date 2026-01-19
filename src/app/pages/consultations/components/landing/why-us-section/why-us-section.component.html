@@ -1,0 +1,16 @@
+<section class="why-us-section">
+    <div class="header-content">
+        <h1 class="title">Why Choose Us</h1>
+        <p class="subtitle">We deliver quality that exceeds expectations.</p>
+    </div>
+    <div class="benefits-grid">
+        <div class="benefit-card" *ngFor="let item of benefits">
+            <h3>{{ item.title }}</h3>
+            <div class="star-rating">
+                <span class="star" *ngFor="let star of item.stars; let i = index" [style.--delay]="i * 0.1 + 's'"> ★
+                </span>
+            </div>
+            <p class="description">{{ item.desc }}</p>
+        </div>
+    </div>
+</section>

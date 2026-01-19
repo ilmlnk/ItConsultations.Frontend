@@ -1,24 +1,10 @@
 <div>
     <h1>Meetings</h1>
     <div class="meetings-page-content">
-        <button mat-button [matMenuTriggerFor]="menuConsultations">New meeting</button>
-        <mat-menu #menuConsultations="matMenu">
-            <button mat-menu-item>
-                <mat-icon>link</mat-icon>
-                <span>Create a meeting</span>
-            </button>
-            <button mat-menu-item>
-                <mat-icon>add</mat-icon>
-                <span>Start an instant meeting</span>
-            </button>
-            <button mat-menu-item>
-                <mat-icon>calendar_month</mat-icon>
-                <span>Plan a meeting in Calendar</span>
-            </button>
-        </mat-menu>
+        <button>New meeting</button>
+
         <div>
-            <mat-icon>keyboard</mat-icon>
-            <input matInput placeholder="Search">
+            <input placeholder="Search">
         </div>
         <button>Join</button>
     </div>

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Consultation } from '../../../shared/models/consultation.model';
+import { Consultation } from '../../../shared/models/model/consultation.model';
 import { FormGroup } from '@angular/forms';
 
 @Component({

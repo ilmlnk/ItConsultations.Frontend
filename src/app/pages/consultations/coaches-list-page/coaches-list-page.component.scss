@@ -1,8 +1,121 @@
-.mat-mdc-card {
-    border-radius: 12px !important;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1) !important;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    background-color: var(--mdc-menu-container-color) !important;
-    backdrop-filter: blur(10px);
-    padding: 24px;
+@import '../../../../styles/variables';
+
+.icon-btn, .custom-btn-icon {
+    width: 3rem;
+    height: 3rem;
+    padding: 0;
+    justify-content: center;
+    transition: all 0.2s ease;
+
+    &:hover {
+        background-color: rgba($primary-blue, 0.1) !important;
+        border-color: $primary-blue !important;
+        color: $primary-blue !important;
+    }
+}
+
+.toolbar-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    background: transparent;
+}
+
+.toolbar-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.search-group {
+    flex: 1;
+    min-width: 200px;
+
+    i {
+        position: absolute;
+        margin: 12px;
+        color: #999;
+    }
+}
+
+.w-100 {
+    width: 100%;
+}
+
+.col-id { width: 50px; }
+.col-photo { width: 80px; }
+.col-actions { width: 280px; }
+
+.topics-list {
+    display: flex;
+    gap: 5px;
+    flex-wrap: wrap;
+}
+
+.action-buttons-column {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: fit-content;
+}
+
+.social-buttons-row {
+    display: flex;
+    gap: 8px;
+}
+
+.order-btn {
+    width: 100%;
+    background-color: rgba($primary-blue, 0.1) !important;
+    color: $primary-blue !important;
+    border-color: transparent !important;
+
+    &:enabled:hover {
+        background-color: $primary-blue !important;
+        color: #ffffff !important;
+        border-color: $primary-blue !important;
+    }
+}
+
+::ng-deep {
+
+    .consultations-table {
+        .p-datatable-thead > tr > th {
+            background-color: #ffffff !important;
+            color: #000000 !important;
+            border-bottom: 1px solid #e5e7eb !important;
+        }
+
+        .p-datatable-tbody > tr {
+            > td {
+                background-color: #ffffff !important;
+                color: #000000 !important;
+                border-bottom: 1px solid #e5e7eb !important;
+            }
+
+            &.p-highlight > td {
+                background-color: #f1f5f9 !important;
+            }
+        }
+
+    .p-chip {
+        background-color: rgba($primary-blue, 0.1) !important;
+        color: $primary-blue !important;
+        
+        .p-chip-text {
+            color: $primary-blue !important;
+        }
+    }
+    }
+
+    .p-tooltip {
+        .p-tooltip-text {
+            background-color: #4b5563 !important;
+        }
+        &.p-tooltip-top .p-tooltip-arrow {
+            border-top-color: #4b5563 !important;
+        }
+    }
 }

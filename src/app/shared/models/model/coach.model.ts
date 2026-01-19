@@ -1,7 +1,7 @@
 import { Consultation } from "./consultation.model";
-import { Language } from "../enums/language.enum";
-import { Review } from "./review";
-import { CoachApplicationStatus } from "../enums/coach-application-status.enum";
+import { Language } from "../../enums/language.enum";
+import { Review } from "../review";
+import { CoachApplicationStatus } from "../../enums/coach-application-status.enum";
 
 export interface Coach {
     id: number;

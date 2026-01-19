@@ -1,7 +1,7 @@
 import { inject, Injectable } from '@angular/core';
 import { BehaviorSubject, catchError, from, Observable, of, switchMap, tap, throwError, map, retry } from 'rxjs';
 import { Router } from '@angular/router';
-import { UserEntity } from '../../models/user-entity.model';
+import { UserEntity } from '../../models/model/user-entity.model';
 import { HttpClient } from '@angular/common/http';
 import { SettingsService } from '../settings/settings.service';
 import { initializeApp, FirebaseApp } from 'firebase/app';
