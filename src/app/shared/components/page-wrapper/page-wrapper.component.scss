@@ -4,9 +4,8 @@ $body-bg: #f5f7fa;
 
 .layout-wrapper {
     display: flex;
-    height: 100vh;
+    min-height: 100%;
     width: 100%;
-    overflow: hidden;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
@@ -15,13 +14,11 @@ $body-bg: #f5f7fa;
     display: flex;
     flex-direction: column;
     background-color: $body-bg;
-    overflow: hidden;
 }
 
 .layout-content {
     flex: 1;
     padding: 30px;
-    overflow-y: auto;
 
     ::ng-deep .content-card {
         &.p-card {

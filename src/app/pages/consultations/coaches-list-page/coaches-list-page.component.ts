@@ -19,6 +19,7 @@ export class CoachesListPageComponent implements OnInit {
   searchValue: string = '';
 
   selectedCoaches: any[] = [];
+  selectedCoach: any = null;
   exportItems: MenuItem[] = [];
 
   rowsOptions: number[] = [10, 20, 50];
@@ -35,6 +36,14 @@ export class CoachesListPageComponent implements OnInit {
   onViewModeChange(mode: string) {
     this.selectedUserType = mode; // Optimistic UI update
     this._userPreferencesService.setPreference('coaches-view-mode', mode); // Server-side update
+  }
+
+  onSelectCoach(coach: any) {
+    this.selectedCoach = coach;
+  }
+
+  onBackToList() {
+    this.selectedCoach = null;
   }
 
   ngOnInit() {
@@ -89,4 +98,27 @@ export class CoachesListPageComponent implements OnInit {
       topics: ['Product Management', 'Agile', 'Leadership']
     }
   ];
+
+  // Mock consultations data for detail view
+  getConsultationsForCoach(coach: any): any[] {
+    // In a real app, you would filter by coach ID or fetch from API
+    return [
+      {
+        id: 1,
+        fullName: coach.fullName,
+        position: coach.position,
+        company: coach.company,
+        price: 100,
+        topics: [coach.topics[0], coach.topics[1] || 'General']
+      },
+      {
+        id: 2,
+        fullName: coach.fullName,
+        position: coach.position,
+        company: coach.company,
+        price: 150,
+        topics: [coach.topics[0], 'Career Advice']
+      }
+    ];
+  }
 }

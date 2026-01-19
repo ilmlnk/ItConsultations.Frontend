@@ -1,5 +1,6 @@
 <cons-page-wrapper
-    title="Coaches List"
+    [title]="selectedCoach ? selectedCoach.fullName : 'Coaches List'"
+    [showControls]="!selectedCoach"
     [viewOptions]="userTypes"
     [selectedViewOption]="selectedUserType"
     (selectedViewOptionChange)="onViewModeChange($event)"
@@ -12,7 +13,8 @@
     [rowsPerPageOptions]="rowsOptions"
     (onPageChange)="onPageChange($event)">
 
-          <p-table [value]="coaches | slice:first:(first + rows)" [(selection)]="selectedCoaches" dataKey="fullName" [paginator]="false"
+    <ng-container *ngIf="!selectedCoach; else coachDetails">
+        <p-table [value]="coaches | slice:first:(first + rows)" [(selection)]="selectedCoaches" dataKey="fullName" [paginator]="false"
             responsiveLayout="scroll" styleClass="p-datatable-custom consultations-table">
 
             <ng-template pTemplate="header">
@@ -53,11 +55,74 @@
                         <button pButton icon="pi pi-github" class="p-button-outlined p-button-secondary icon-btn"></button>
                         <button pButton icon="pi pi-linkedin" class="p-button-outlined p-button-secondary icon-btn"></button>
                     </div>
-                    <button pButton label="Learn more" class="order-btn"></button>
+                    <button pButton label="Learn more" class="order-btn" (click)="onSelectCoach(item)"></button>
                   </div>
                 </td>
               </tr>
             </ng-template>
           </p-table>
+    </ng-container>
+
+    <ng-template #coachDetails>
+        <div class="coach-details-container">
+            <button pButton label="Back to list" icon="pi pi-arrow-left" class="p-button-text mb-3" (click)="onBackToList()"></button>
+
+            <div class="grid">
+                <div class="col-12 md:col-4">
+                    <p-avatar icon="pi pi-user" styleClass="mb-3" shape="circle"
+                        [style]="{'background-color': '#e2e8f0', 'color': '#ffffff', 'width': '150px', 'height': '150px', 'font-size': '3rem'}" size="xlarge">
+                    </p-avatar>
+                    <h2>{{ selectedCoach.fullName }}</h2>
+                    <p class="text-secondary">{{ selectedCoach.position }} at {{ selectedCoach.company }}</p>
+
+                    <div class="flex gap-2 mt-3">
+                        <button pButton icon="pi pi-github" class="p-button-rounded p-button-secondary p-button-outlined"></button>
+                        <button pButton icon="pi pi-linkedin" class="p-button-rounded p-button-secondary p-button-outlined"></button>
+                    </div>
+                </div>
+
+                <div class="col-12 md:col-8">
+                    <h3>Expertise</h3>
+                    <div class="topics-list mb-4">
+                        <p-chip *ngFor="let topic of selectedCoach.topics" [label]="topic"></p-chip>
+                    </div>
+
+                    <h3>About</h3>
+                    <p>Experienced professional with a demonstrated history of working in the computer software industry. Skilled in {{ selectedCoach.topics.join(', ') }}.</p>
+
+                    <h3>Related Consultations</h3>
+                    <p-table [value]="getConsultationsForCoach(selectedCoach)" responsiveLayout="scroll" styleClass="p-datatable-custom consultations-table">
+                        <ng-template pTemplate="header">
+                            <tr>
+                                <th>Title</th>
+                                <th>Price per 50 min</th>
+                                <th>Topics</th>
+                                <th style="width: 150px"></th>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="body" let-consultation>
+                            <tr>
+                                <td class="font-bold">Personal Consultation</td>
+                                <td class="font-bold">{{ consultation.price | currency }}</td>
+                                <td>
+                                    <div class="topics-list">
+                                        <p-chip *ngFor="let topic of consultation.topics" [label]="topic"></p-chip>
+                                    </div>
+                                </td>
+                                <td>
+                                    <button pButton label="Book" class="order-btn"></button>
+                                </td>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="emptymessage">
+                            <tr>
+                                <td colspan="4">No consultations found for this coach.</td>
+                            </tr>
+                        </ng-template>
+                    </p-table>
+                </div>
+            </div>
+        </div>
+    </ng-template>
 
 </cons-page-wrapper>

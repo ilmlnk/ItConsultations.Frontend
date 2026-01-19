@@ -10,6 +10,7 @@ import { HeaderTitleService } from '../../services/header-title/header-title.ser
 })
 export class PageWrapperComponent implements OnInit, OnChanges {
   @Input() title: string = '';
+  @Input() showControls: boolean = true;
 
   private _headerTitleService = inject(HeaderTitleService);
   

@@ -79,6 +79,14 @@
     }
 }
 
+.coach-details-container {
+    padding: 1rem;
+
+    h3, p, .topics-list, .p-datatable {
+        margin-bottom: 20px;
+    }
+}
+
 ::ng-deep {
 
     .consultations-table {

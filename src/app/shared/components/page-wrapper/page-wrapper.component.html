@@ -2,6 +2,7 @@
     <main class="layout-main">
         <div class="layout-content">
             <cons-page-header
+                *ngIf="showControls"
                 [viewOptions]="viewOptions"
                 [selectedViewOption]="selectedViewOption"
                 (selectedViewOptionChange)="selectedViewOptionChange.emit($event)"
@@ -13,6 +14,7 @@
             <p-card styleClass="content-card">
                 <ng-content></ng-content>
                 <cons-paginator
+                    *ngIf="showControls"
                     [first]="first"
                     [rows]="rows"
                     [totalRecords]="totalRecords"
