@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { MenuItem } from 'primeng/api';
+import { UserPreferencesService } from '../../../shared/services/user-preferences/user-preferences.service';
 
 @Component({
   selector: 'cons-notes-page',
@@ -12,7 +13,7 @@ export class NotesPageComponent implements OnInit {
     { value: 'expanded', icon: 'pi pi-table', label: 'Grid' },
     { value: 'compact', icon: 'pi pi-list', label: 'List' }
   ];
-  selectedViewOption: string = 'expanded';
+  selectedViewOption: string = 'compact';
   searchValue: string = '';
   selectedNotes: any[] = [];
   exportItems: MenuItem[] = [];
@@ -20,6 +21,8 @@ export class NotesPageComponent implements OnInit {
   rowsOptions: number[] = [10, 20, 50];
   rows: number = 10;
   first: number = 0;
+
+  private _userPreferencesService = inject(UserPreferencesService);
 
   notes: any[] = [
     { id: 1, name: 'Project Requirements.docx', date: new Date('2023-10-25'), type: 'doc' },
@@ -31,6 +34,8 @@ export class NotesPageComponent implements OnInit {
   ];
 
   ngOnInit() {
+    this._userPreferencesService.getPreference('notes-view-mode', 'compact').subscribe(val => this.selectedViewOption = val);
+
     this.exportItems = [
       { label: 'PDF', icon: 'pi pi-file-pdf', command: () => this.exportPdf() },
       { label: 'XLSX', icon: 'pi pi-file-excel', command: () => this.exportExcel() },
@@ -41,6 +46,11 @@ export class NotesPageComponent implements OnInit {
   onPageChange(event: any) {
     this.first = event.first;
     this.rows = event.rows;
+  }
+
+  onViewModeChange(mode: string) {
+    this.selectedViewOption = mode; // Optimistic UI update
+    this._userPreferencesService.setPreference('notes-view-mode', mode); // Server-side update
   }
 
   exportPdf() { console.log('Export PDF', this.selectedNotes); }

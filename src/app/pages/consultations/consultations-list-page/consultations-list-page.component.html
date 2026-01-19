@@ -1,7 +1,8 @@
 <cons-page-wrapper
     title="Consultations List"
     [viewOptions]="userTypes"
-    [(selectedViewOption)]="selectedUserType"
+    [selectedViewOption]="selectedUserType"
+    (selectedViewOptionChange)="onViewModeChange($event)"
     [(searchValue)]="searchValue"
     [selectedItemsCount]="selectedConsultations.length"
     [exportMenuItems]="exportItems"

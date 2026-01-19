@@ -1,7 +1,8 @@
 <cons-page-wrapper
     title="Coaches List"
     [viewOptions]="userTypes"
-    [(selectedViewOption)]="selectedUserType"
+    [selectedViewOption]="selectedUserType"
+    (selectedViewOptionChange)="onViewModeChange($event)"
     [(searchValue)]="searchValue"
     [selectedItemsCount]="selectedCoaches.length"
     [exportMenuItems]="exportItems"

@@ -1,7 +1,8 @@
 <cons-page-wrapper
     title="Notes"
     [viewOptions]="viewOptions"
-    [(selectedViewOption)]="selectedViewOption"
+    [selectedViewOption]="selectedViewOption"
+    (selectedViewOptionChange)="onViewModeChange($event)"
     [(searchValue)]="searchValue"
     [selectedItemsCount]="selectedNotes.length"
     [exportMenuItems]="exportItems"

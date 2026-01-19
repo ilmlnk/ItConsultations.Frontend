@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Consultation } from '../../../shared/models/model/consultation.model';
 import { ConsultationsService } from '../../../shared/services/consultations/consultations.service';
 import { MenuItem } from 'primeng/api';
+import { UserPreferencesService } from '../../../shared/services/user-preferences/user-preferences.service';
 
 @Component({
   selector: 'cons-consultations-list-page',
@@ -43,9 +44,13 @@ export class ConsultationsListPageComponent {
     },
   ];
 
+  private _userPreferencesService = inject(UserPreferencesService);
+
   constructor(private _consultationService: ConsultationsService) { }
 
   ngOnInit() {
+    this._userPreferencesService.getPreference('consultations-view-mode', 'expanded').subscribe(val => this.selectedUserType = val);
+
     this.items = [
       {
         label: 'Dashboard',
@@ -147,6 +152,11 @@ export class ConsultationsListPageComponent {
   onPageChange(event: any) {
       this.first = event.first;
       this.rows = event.rows;
+  }
+
+  onViewModeChange(mode: string) {
+    this.selectedUserType = mode; // Optimistic UI update
+    this._userPreferencesService.setPreference('consultations-view-mode', mode); // Server-side update
   }
 
   selectedView: string = 'expanded';

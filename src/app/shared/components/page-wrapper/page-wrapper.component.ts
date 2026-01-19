@@ -1,5 +1,6 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, inject, OnInit, OnChanges, SimpleChanges } from '@angular/core';
 import { MenuItem } from 'primeng/api';
+import { HeaderTitleService } from '../../services/header-title/header-title.service';
 
 @Component({
   selector: 'cons-page-wrapper',
@@ -7,8 +8,10 @@ import { MenuItem } from 'primeng/api';
   templateUrl: './page-wrapper.component.html',
   styleUrl: './page-wrapper.component.scss'
 })
-export class PageWrapperComponent {
+export class PageWrapperComponent implements OnInit, OnChanges {
   @Input() title: string = '';
+
+  private _headerTitleService = inject(HeaderTitleService);
   
   // Header Inputs
   @Input() viewOptions: any[] = [];
@@ -28,5 +31,15 @@ export class PageWrapperComponent {
 
   onPageChangeHandler(event: any) {
     this.onPageChange.emit(event);
+  }
+
+  ngOnInit() {
+    this._headerTitleService.setTitle(this.title);
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['title']) {
+      this._headerTitleService.setTitle(this.title);
+    }
   }
 }
